@@ -1,0 +1,20 @@
+{% extends "pages/base.html" %}
+
+{% block title %}About — Markdown Pages{% endblock %}
+
+{% block content %}
+  <h1>About this site</h1>
+  <p>
+    This site exists to test one assumption: that written content can live as markdown files on the
+    filesystem while Django serves it like any other page.
+  </p>
+  <p>
+    The homepage and this page are ordinary templates. The blog is the experiment — each post is a file
+    in <code>content/blog/</code> with frontmatter for its title, date, and tags. The server parses the
+    file when you request it, so there is nothing to rebuild and nothing to sync.
+  </p>
+  <p>
+    Everything here is disposable. See <code>docs/projects/markdown-pages/</code> in the repo for the
+    reasoning and the plan.
+  </p>
+{% endblock %}

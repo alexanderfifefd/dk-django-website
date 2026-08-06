@@ -1,0 +1,27 @@
+{% extends "pages/base.html" %}
+
+{% block title %}Home — Markdown Pages{% endblock %}
+
+{% block content %}
+  <h1>A site that reads its blog from disk</h1>
+  <p class="lead">
+    This is a prototype. The pages you're looking at are plain Django templates, but every post on the
+    <a href="{% url 'blog_index' %}">blog</a> is a markdown file in a folder — no database rows, no admin,
+    no build step. Edit a file, reload, see the change.
+  </p>
+
+  <h2>Latest from the blog</h2>
+  {% if latest_posts %}
+    <ul class="post-list">
+      {% for post in latest_posts %}
+        <li>
+          <a href="{% url 'blog_detail' post.slug %}">{{ post.title }}</a>
+          <time datetime="{{ post.date|date:'Y-m-d' }}">{{ post.date|date:"j F Y" }}</time>
+          {% if post.summary %}<p>{{ post.summary }}</p>{% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No posts yet — drop a <code>.md</code> file into <code>content/blog/</code>.</p>
+  {% endif %}
+{% endblock %}

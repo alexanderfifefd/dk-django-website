@@ -5,10 +5,12 @@
 This repo explores how to build a pleasant Django website whose written content — blog posts, articles,
 long-form pages — is **authored as markdown files** rather than typed into an admin or CMS.
 
-An author writes a `.md` file with frontmatter metadata, drops it in a content folder, and a running Django
-server presents it as a page. There is no build step producing static HTML. Beyond that, nothing is settled:
-whether a database sits behind it, how content gets indexed or cached, and how pages are structured are all
-open questions the prototypes exist to answer.
+An author writes a `.md` file with frontmatter, drops it in a content folder, and Django serves it as a
+page. The one fixed commitment: **markdown files in git are the source of truth an author edits**.
+
+How those files become pages is open — parsed per request, ingested into the ORM by a management command,
+or handled by a package. Build/sync steps and content in the database are both fine, as long as the files
+stay what the author edits and the database can be rebuilt from them.
 
 The repo is a **collection of prototypes**, not one product. Each prototype exists to answer a specific
 question and is expected to be thrown away once it has. See `docs/projects/index.md` for what is being
@@ -29,9 +31,11 @@ Treat all state as disposable:
 - **Interactivity**: server-rendered pages by default. HTMX is the only sanctioned enhancement, and only
   when a page genuinely needs it — don't reach for it preemptively.
 - **Styling**: hand-written CSS, no framework, no preprocessor
-- **Markdown**: a Python markdown library plus frontmatter parsing (chosen per prototype)
+- **Markdown**: chosen per prototype — a parsing library plus frontmatter, or a package that owns the
+  markdown-to-page path
+- **Database**: sqlite; whether content lives in it is per-prototype
 - **Python env**: `uv`, with one shared environment at the repo root
-- **Build tooling**: none. No Node, no bundler, no npm.
+- **Frontend tooling**: none. No Node, no bundler, no npm. Python-side build or sync steps are fine.
 
 ## Repo layout
 

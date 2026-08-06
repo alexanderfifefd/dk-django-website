@@ -1,0 +1,26 @@
+{% extends "pages/base.html" %}
+
+{% block title %}Blog — Content Pipeline{% endblock %}
+
+{% block content %}
+  <h1>Blog</h1>
+  {% if posts %}
+    <ul class="post-list">
+      {% for post in posts %}
+        <li>
+          <a href="{% url 'blog_detail' post.slug %}">{{ post.title }}</a>
+          <time datetime="{{ post.date|date:'Y-m-d' }}">{{ post.date|date:"j F Y" }}</time>
+          {% if post.tags %}
+            <span class="tags">
+              {% for tag in post.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
+            </span>
+          {% endif %}
+          {% if post.summary %}<p>{{ post.summary }}</p>{% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No posts yet — drop a <code>.md</code> file into <code>content/blog/</code> and run
+      <code>manage.py ingest</code>.</p>
+  {% endif %}
+{% endblock %}

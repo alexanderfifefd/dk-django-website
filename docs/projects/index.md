@@ -12,35 +12,48 @@ Each project lives in `docs/projects/<name>/`:
 
 Most projects map to one prototype directory under `prototypes/`.
 
+## Starting a new project
+
+Discussion first, then an entry under Active here, then a plan once a decision is reached, then the
+prototype (`prototypes/NN-<project-name>/`, numbered in build order). When the question is answered, note
+the outcome in the plan and move the project to Completed.
+
 ## Active
 
 ### `markdown-pages` — can markdown files on disk be the content layer?
 
-A minimal site (home, about, blog) where blog posts are markdown files with frontmatter, parsed per
-request. No content in the database, no build step.
+A minimal site (home, about, blog) where blog posts are markdown files with frontmatter, parsed per request
+— the naive baseline.
 
 - **Discussion**: `docs/projects/markdown-pages/discussions/filesystem-as-content-source.md`
 - **Learnings**: `docs/projects/markdown-pages/discussions/learnings-from-prototype-01.md`
 - **Plan**: `docs/projects/markdown-pages/plans/2026-08-06-prototype-01-markdown-pages.md`
 - **Prototype**: `prototypes/01-markdown-pages/` — **built and working** (2026-08-06)
-- **Status**: prototype 01 done. The approach works at toy scale; the volume/caching question is still
-  open. The learnings doc lists candidate next prototypes, with volume testing as the highest-value one.
+- **Status**: prototype 01 done. Markdown as the authoring format is settled; per-request parsing is not.
+  The `content-pipeline` project picks up from here.
+
+### `content-pipeline` — who owns the path from markdown file to page?
+
+Explores replacing per-request parsing: content built into the ORM by an ingest command, or handed to a
+package. Files stay the source of truth; the database is derived and rebuildable.
+
+- **Discussion**: `docs/projects/content-pipeline/discussions/who-owns-the-markdown-layer.md`
+- **Plan**: `docs/projects/content-pipeline/plans/2026-08-06-prototype-02-content-pipeline.md`
+- **Prototype**: `prototypes/02-content-pipeline/` — not started.
+- **Status**: planned. Package survey found nothing credible; building our own ingest command.
 
 ## Completed
 
-_None yet — `markdown-pages` stays active until the volume question is answered._
+_None yet._
 
 ## Open questions not yet claimed by a project
 
 These are known unknowns. Each will likely become its own project.
 
-- **Caching / indexing**: prototype 01 proved per-request parsing works at toy scale but never measured a
-  large content tree. Still the biggest unknown; first candidate for prototype 02.
 - **Content beyond a flat blog**: nested content folders mapping to nested URLs — where URL-from-path gets
   properly tested.
-- **Content relationships**: tags, collections, and cross-references between files without a database to
-  join on.
+- **The content model**: if content is ingested into the ORM, what the models look like — one `Page` table
+  or a model per content type, and how tags and collections are represented.
 - **Authoring safety**: frontmatter is an unenforced contract (typos publish drafts); linting and draft
-  preview are unexplored.
-- **Navigation**: how much page-to-page navigation HTMX could handle with partial swaps, once a page
-  actually needs it. Prototype 01 needed none.
+  preview are unexplored. An ingest step is a natural place to validate.
+- **Scale**: parked. Never measured, not currently a priority.

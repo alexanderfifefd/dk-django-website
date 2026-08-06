@@ -1,0 +1,21 @@
+{% extends "pages/base.html" %}
+
+{% block title %}About — Content Pipeline{% endblock %}
+
+{% block content %}
+  <h1>About this site</h1>
+  <p>
+    This site exists to test one assumption: that markdown files can stay the source of truth for content
+    while the database does the serving.
+  </p>
+  <p>
+    The homepage and this page are ordinary templates. The blog is the experiment — each post is a file
+    in <code>content/blog/</code>, and <code>manage.py ingest</code> validates its frontmatter strictly,
+    renders the markdown, and syncs it into a <code>Post</code> table. The database is derived: flush it,
+    re-run ingest, and it comes back identical.
+  </p>
+  <p>
+    Everything here is disposable. See <code>docs/projects/content-pipeline/</code> in the repo for the
+    reasoning and the plan.
+  </p>
+{% endblock %}

@@ -16,6 +16,9 @@ repo-wide conventions, and understanding the one prototype you're about to work 
    - Read `docs/projects/index.md` to see which prototypes exist, which are active, and what question each
      one answers.
    - Identify which project the current task belongs to. If it isn't obvious, ask before reading further.
+   - If the task is a new line of enquiry, don't force it into an existing project: check the open questions
+     list and follow "Starting a new project" in the index instead. Steps 3, 4 and 6 below then apply to the
+     nearest prior prototype (the one the new work builds on) rather than a project of its own.
 
 3. **Read that project's docs, and only that project's**
    - Read the relevant `docs/projects/<project>/discussions/*.md` for the reasoning and decisions.
@@ -54,6 +57,9 @@ repo-wide conventions, and understanding the one prototype you're about to work 
 
      Is this correct, and where should I focus?
      ```
+
+   - For a new project, swap the prototype-specific lines for: the question the new project answers, which
+     open questions it claims, and what it inherits from the prior prototype.
 
 ## Guidelines
 

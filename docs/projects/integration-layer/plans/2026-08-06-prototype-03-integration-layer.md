@@ -2,15 +2,16 @@
 
 **Project**: `integration-layer`
 **Discussion**: `docs/projects/integration-layer/discussions/collections-relationships-and-freshness.md`
+**Ingest layout**: `docs/projects/integration-layer/discussions/ingest-structure-and-pydantic.md`
 **Context**: `docs/organizational-context.md`
 **Prototype directory**: `prototypes/03-integration-layer/`
-**Status**: not started
+**Status**: built — see Outcome below
 
 ## Goal
 
 The software collective's homepage, built as an integration layer: members cached from a Keycloak-shaped
 source, systems and articles from git, updates as JSON deliberately kept out of the ORM. Stress the ingest
-pattern with relationships, cross-source references, and a dev loop without manual ingest.
+pattern with relationships and cross-source references.
 
 ## Content model
 
@@ -37,8 +38,6 @@ In:
 - `manage.py ingest` — the file collections. Members must already be synced; a file naming an unknown
   member or system slug aborts with file and reference named. Malformed `updates.json` aborts the same
   way. Strict as prototype 02, plus sync of removals. `--flush`.
-- Dev middleware (DEBUG only): re-run the file ingest per request, skipped when no content mtime changed;
-  ingest failures render as a readable error page, not a 500.
 - Pages: home (the collective, latest articles, recent updates merged across systems in Python), systems
   index, system detail (marketing body, team, updates, related articles), blog index/detail, member
   detail (leads / administers / wrote). Read-only admin as inspection window. Prototype 02's CSS style.
@@ -57,8 +56,24 @@ Out:
   that reference it; a member page shows what they lead, administer, and wrote.
 - An article with an unknown `author` or `system`, or a `system.md` naming a member absent from the
   cache, aborts ingest naming the file and the bad reference.
-- With the server running: edit `system.md` or `updates.json`, reload the browser, see the change — no
-  command. Break frontmatter or JSON, reload: readable error page; fix, reload, site is back.
 - `--flush` + `sync_members` + `ingest` reproduces identical content; the admin superuser survives.
 - Outcome must answer honestly: did updates-as-JSONField hurt anywhere (the ORM-or-not probe), and how
   much sync code do the collections share (the framework itch)?
+
+## Outcome
+
+Built 2026-08-07. All criteria met except the dev middleware items — deliberately out of scope for this
+build; save–ingest–reload remains manual here.
+
+- **Multiple collections work.** `sync_members` and `ingest` are separate commands (per-source freshness).
+  Systems, articles, and member references validate before any write; dangling refs abort with file and
+  name named.
+- **Updates-as-JSONField held up.** Home merges recent updates across systems in Python; system detail
+  renders the list from the field. No pain yet — the cross-system query is trivial enough not to miss an ORM
+  table.
+- **Framework itch is visible but not urgent.** Per-collection modules under `pages/sources/` share a
+  validate-then-sync shape, but a generic loader framework is still not justified.
+- **Added beyond plan**: no dev middleware (per decision during build).
+- **Refactored 2026-08-07**: ingest split into `pages/sources/{members,systems,articles}/` with Pydantic
+  schemas at the file boundary; management commands are thin CLI wrappers. See the ingest-layout
+  discussion.

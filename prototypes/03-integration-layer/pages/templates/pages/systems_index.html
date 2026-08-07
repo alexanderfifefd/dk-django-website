@@ -1,0 +1,22 @@
+{% extends "pages/base.html" %}
+
+{% block title %}Systems — The Collective{% endblock %}
+
+{% block content %}
+  <h1>Systems</h1>
+  <p class="lead">Software the collective builds and operates.</p>
+
+  {% if systems %}
+    <ul class="system-list">
+      {% for system in systems %}
+        <li>
+          <a href="{% url 'system_detail' system.slug %}">{{ system.title }}</a>
+          <span class="system-meta"> — led by <a href="{% url 'member_detail' system.teamlead.username %}">{{ system.teamlead.name }}</a></span>
+          {% if system.summary %}<p>{{ system.summary }}</p>{% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No systems yet — add a folder under <code>content/systems/</code> and run <code>manage.py ingest</code>.</p>
+  {% endif %}
+{% endblock %}

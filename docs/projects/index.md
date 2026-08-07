@@ -20,18 +20,19 @@ the outcome in the plan and move the project to Completed.
 
 ## Active
 
+(none)
+
+## Completed
+
 ### `integration-layer` — do collections, relationships, and mixed sources break the ingest pattern?
 
-The software collective's homepage (`docs/organizational-context.md`): members cached from Keycloak-shaped
-data, systems and articles from git with cross-source references, updates as JSON deliberately outside the
-ORM, and a dev middleware that brings back save-and-reload for file sources.
+**Answer: yes, with separate sync commands.** Three derived collections (members from fixture, systems and
+articles from git) with real FKs and strict cross-source validation. Updates stay in a JSONField without
+pain at this scale. Dev middleware deferred — manual ingest remains.
 
 - **Discussion**: `docs/projects/integration-layer/discussions/collections-relationships-and-freshness.md`
 - **Plan**: `docs/projects/integration-layer/plans/2026-08-06-prototype-03-integration-layer.md`
-- **Prototype**: `prototypes/03-integration-layer/` — not started.
-- **Status**: planned.
-
-## Completed
+- **Prototype**: `prototypes/03-integration-layer/` — built and validated (2026-08-07)
 
 ### `markdown-pages` — can markdown files on disk be the content layer?
 

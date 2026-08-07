@@ -20,40 +20,45 @@ the outcome in the plan and move the project to Completed.
 
 ## Active
 
+### `integration-layer` — do collections, relationships, and mixed sources break the ingest pattern?
+
+The software collective's homepage (`docs/organizational-context.md`): members cached from Keycloak-shaped
+data, systems and articles from git with cross-source references, updates as JSON deliberately outside the
+ORM, and a dev middleware that brings back save-and-reload for file sources.
+
+- **Discussion**: `docs/projects/integration-layer/discussions/collections-relationships-and-freshness.md`
+- **Plan**: `docs/projects/integration-layer/plans/2026-08-06-prototype-03-integration-layer.md`
+- **Prototype**: `prototypes/03-integration-layer/` — not started.
+- **Status**: planned.
+
+## Completed
+
 ### `markdown-pages` — can markdown files on disk be the content layer?
 
-A minimal site (home, about, blog) where blog posts are markdown files with frontmatter, parsed per request
-— the naive baseline.
+**Answer: yes.** Markdown files with frontmatter work as the authoring format; per-request parsing worked
+at toy scale but gave up querying, validation, and relationships. Superseded by `content-pipeline`.
 
 - **Discussion**: `docs/projects/markdown-pages/discussions/filesystem-as-content-source.md`
 - **Learnings**: `docs/projects/markdown-pages/discussions/learnings-from-prototype-01.md`
 - **Plan**: `docs/projects/markdown-pages/plans/2026-08-06-prototype-01-markdown-pages.md`
-- **Prototype**: `prototypes/01-markdown-pages/` — **built and working** (2026-08-06)
-- **Status**: prototype 01 done. Markdown as the authoring format is settled; per-request parsing is not.
-  The `content-pipeline` project picks up from here.
+- **Prototype**: `prototypes/01-markdown-pages/` — built and working (2026-08-06)
 
 ### `content-pipeline` — who owns the path from markdown file to page?
 
-Explores replacing per-request parsing: content built into the ORM by an ingest command, or handed to a
-package. Files stay the source of truth; the database is derived and rebuildable.
+**Answer: we do.** No credible package exists; a ~100-line ingest command with strict validation syncs
+files into a derived `Post` table. Main cost found: the save–ingest–reload authoring loop, picked up by
+`integration-layer`.
 
 - **Discussion**: `docs/projects/content-pipeline/discussions/who-owns-the-markdown-layer.md`
+- **Learnings**: `docs/projects/content-pipeline/discussions/learnings-from-prototype-02.md`
 - **Plan**: `docs/projects/content-pipeline/plans/2026-08-06-prototype-02-content-pipeline.md`
-- **Prototype**: `prototypes/02-content-pipeline/` — not started.
-- **Status**: planned. Package survey found nothing credible; building our own ingest command.
-
-## Completed
-
-_None yet._
+- **Prototype**: `prototypes/02-content-pipeline/` — built and validated (2026-08-06)
 
 ## Open questions not yet claimed by a project
 
 These are known unknowns. Each will likely become its own project.
 
-- **Content beyond a flat blog**: nested content folders mapping to nested URLs — where URL-from-path gets
-  properly tested.
-- **The content model**: if content is ingested into the ORM, what the models look like — one `Page` table
-  or a model per content type, and how tags and collections are represented.
-- **Authoring safety**: frontmatter is an unenforced contract (typos publish drafts); linting and draft
-  preview are unexplored. An ingest step is a natural place to validate.
+- **Draft preview**: drafts are simply not ingested; viewing one at its URL behind an explicit flag is
+  unexplored.
+- **Media and assets**: images living next to the `.md` files that reference them.
 - **Scale**: parked. Never measured, not currently a priority.

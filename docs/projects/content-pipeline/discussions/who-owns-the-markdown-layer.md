@@ -47,4 +47,4 @@ is a single prototype — the same small site as 01, content ingested into the O
 - Manual ingest command for the prototype; deployment story is ingest-on-deploy.
 - Strict validation: bad frontmatter fails the ingest loudly, nothing half-written.
 
-Still open: the content model beyond a flat blog (one table vs. per-type, tags as relations) — deferred.
+Still open at the time: the content model beyond a flat blog — picked up by `integration-layer`.

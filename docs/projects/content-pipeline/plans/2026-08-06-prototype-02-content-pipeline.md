@@ -3,7 +3,7 @@
 **Project**: `content-pipeline`
 **Discussion**: `docs/projects/content-pipeline/discussions/who-owns-the-markdown-layer.md`
 **Prototype directory**: `prototypes/02-content-pipeline/`
-**Status**: not started
+**Status**: built — see Outcome below
 
 ## Goal
 
@@ -43,3 +43,16 @@ repo; the sqlite file is never precious.
 - A file with an unknown key or bad date fails ingest loudly and the database is untouched.
 - Deleting a file and re-ingesting removes its post; `--flush` + ingest reproduces identical content.
 - The draft post from prototype 01's content is absent from the database entirely.
+
+## Outcome
+
+Built and validated 2026-08-06, same day. All criteria met. Notes against the plan:
+
+- **The swap was small.** Copying prototype 01 and replacing its content layer took a `Post` model, a
+  ~100-line ingest command, and simpler views. Templates needed no changes — the dataclass fields became
+  model fields with the same names.
+- **Added beyond plan**: a read-only admin for `Post` (inspection window; derived rows shouldn't be
+  editable) and rewritten sample content, since the copied posts described prototype 01's behaviour.
+- **The authoring loop regression is real.** Save–ingest–reload was annoying within minutes of use. This,
+  not anything about the pipeline itself, is the main finding — see the learnings doc and the
+  `integration-layer` project that picks it up.

@@ -9,6 +9,8 @@ repo-wide conventions, and understanding the one prototype you're about to work 
 1. **Read the overview**
    - Read `docs/overview.md`. It is the source of truth for the stack, repo layout, conventions, and
      non-goals.
+   - For the active project (or when the task touches the real target site), also skim
+     `docs/high-level-goals.md` and `docs/organizational-context.md`.
    - Note especially: prototypes are standalone and never import from each other, there is one shared uv
      environment at the repo root, and there is no JavaScript build step.
 

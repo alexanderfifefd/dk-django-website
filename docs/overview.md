@@ -10,7 +10,8 @@ page. The one fixed commitment: **markdown files in git are the source of truth 
 
 How those files become pages is open — parsed per request, ingested into the ORM by a management command,
 or handled by a package. Build/sync steps and content in the database are both fine, as long as the files
-stay what the author edits and the database can be rebuilt from them.
+stay what the author edits and the database can be rebuilt from them. The longer arc goes beyond markdown
+(structured data as JSON, cached external APIs): see `docs/high-level-goals.md`.
 
 The repo is a **collection of prototypes**, not one product. Each prototype exists to answer a specific
 question and is expected to be thrown away once it has. See `docs/projects/index.md` for what is being
@@ -59,6 +60,10 @@ that prototype's own business. Its project docs under `docs/projects/` describe 
 ## Documentation map
 
 - **`docs/overview.md`** (this file): orientation. Stack, layout, conventions, non-goals.
+- **`docs/high-level-goals.md`**: where this is heading — Django as an integration layer over git-owned
+  data. The prototypes test pieces of it.
+- **`docs/organizational-context.md`**: what the site is for — a software collective's homepage — and the
+  nouns (members, systems, updates, articles) the data model mirrors.
 - **`docs/projects/`**: the reasoning behind each prototype, grouped by project.
   - **Start here**: `docs/projects/index.md` lists active and completed projects.
   - **`<project>/discussions/`**: what question we're answering, what options exist, what we chose.
@@ -91,7 +96,8 @@ uv run python manage.py migrate          # only if a prototype uses the ORM at a
 
 - No deployment, hosting, or production settings
 - No secrets management or security hardening
-- No authentication or user accounts
+- No wired-up identity provider or login flows (caching external identity data, e.g. Keycloak-shaped
+  fixtures, is fine)
 - No API, no JSON endpoints, no SPA routing
 - No JavaScript build pipeline
 - No shared framework or abstraction layer extracted across prototypes

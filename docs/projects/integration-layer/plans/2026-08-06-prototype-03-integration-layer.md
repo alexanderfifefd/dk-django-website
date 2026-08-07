@@ -21,8 +21,8 @@ content/
     system.md          # System: title, summary, teamlead, admins; body = marketing page
     updates.json       # list of {date, kind, message} -> System.updates JSONField
   blog/*.md            # Article: title, date, author, optional system, summary, draft
-fixtures/
-  members.json         # Keycloak-shaped user list
+external/
+  members.json         # Keycloak-shaped user list (externally owned, synced — not authored content)
 ```
 
 Models: `Member` (username, name — cached, nothing in git creates one), `System` (slug, title, summary,
@@ -33,11 +33,13 @@ body_html, `teamlead` FK, `admins` M2M, `updates` JSONField), `Article` (slug, t
 
 In:
 
-- `manage.py sync_members` — reads a Keycloak-shaped JSON list from a settings-configured file path or
-  URL (fixture by default). Separate command on purpose: freshness is per-source.
-- `manage.py ingest` — the file collections. Members must already be synced; a file naming an unknown
-  member or system slug aborts with file and reference named. Malformed `updates.json` aborts the same
-  way. Strict as prototype 02, plus sync of removals. `--flush`.
+- `manage.py sync_members` — reads a Keycloak-shaped JSON list from a settings-configured file path
+  (``external/members.json`` by default). Separate command on purpose: freshness is per-source.
+- `manage.py sync_systems` — syncs ``content/systems/``. Members must already be synced; a ``system.md``
+  naming an unknown member aborts with file and reference named. Malformed ``updates.json`` aborts the
+  same way. Strict validation, sync of removals. ``--flush``.
+- `manage.py sync_articles` — syncs ``content/blog/``. Members (and any named systems) must already be
+  synced; dangling references abort the same way. ``--flush``.
 - Pages: home (the collective, latest articles, recent updates merged across systems in Python), systems
   index, system detail (marketing body, team, updates, related articles), blog index/detail, member
   detail (leads / administers / wrote). Read-only admin as inspection window. Prototype 02's CSS style.
@@ -51,12 +53,13 @@ Out:
 
 ## How we know it worked
 
-- Fresh checkout: `uv sync`, `migrate`, `sync_members`, `ingest`, `runserver` — everything renders.
+- Fresh checkout: `uv sync`, `migrate`, `sync_members`, `sync_systems`, `sync_articles`, `runserver` —
+  everything renders.
 - A system's detail page shows its team (from the member cache), its updates (from JSON), and articles
   that reference it; a member page shows what they lead, administer, and wrote.
 - An article with an unknown `author` or `system`, or a `system.md` naming a member absent from the
-  cache, aborts ingest naming the file and the bad reference.
-- `--flush` + `sync_members` + `ingest` reproduces identical content; the admin superuser survives.
+  cache, aborts sync naming the file and the bad reference.
+- `--flush` on each sync command reproduces identical content; the admin superuser survives.
 - Outcome must answer honestly: did updates-as-JSONField hurt anywhere (the ORM-or-not probe), and how
   much sync code do the collections share (the framework itch)?
 
@@ -65,15 +68,18 @@ Out:
 Built 2026-08-07. All criteria met except the dev middleware items — deliberately out of scope for this
 build; save–ingest–reload remains manual here.
 
-- **Multiple collections work.** `sync_members` and `ingest` are separate commands (per-source freshness).
-  Systems, articles, and member references validate before any write; dangling refs abort with file and
-  name named.
+- **Multiple collections work.** One `sync_*` command per collection (per-source freshness). Systems,
+  articles, and member references validate before any write; dangling refs abort with file and name
+  named.
 - **Updates-as-JSONField held up.** Home merges recent updates across systems in Python; system detail
   renders the list from the field. No pain yet — the cross-system query is trivial enough not to miss an ORM
   table.
-- **Framework itch is visible but not urgent.** Per-collection modules under `pages/sources/` share a
+- **Framework itch is visible but not urgent.** Per-collection modules under `pages/sources/`
+  (including a separate `updates.py` for JSON that deliberately stays out of the ORM) share a
   validate-then-sync shape, but a generic loader framework is still not justified.
 - **Added beyond plan**: no dev middleware (per decision during build).
-- **Refactored 2026-08-07**: ingest split into `pages/sources/{members,systems,articles}/` with Pydantic
-  schemas at the file boundary; management commands are thin CLI wrappers. See the ingest-layout
-  discussion.
+- **Refactored 2026-08-07**: three `sync_*` commands, one module per collection under
+  `pages/sources/` (members, systems, updates, articles — schema, loader, syncer where
+  applicable, and `run_sync_*` on the synced collections), Pydantic at the file boundary,
+  management commands as thin CLI wrappers. `fixtures/` renamed to `external/`. See the
+  ingest-layout discussion.

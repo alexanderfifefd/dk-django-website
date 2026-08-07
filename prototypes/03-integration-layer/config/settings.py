@@ -69,8 +69,11 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
+# Git-owned, collectively authored content.
 CONTENT_DIR = BASE_DIR / "content"
-MEMBERS_FIXTURE = BASE_DIR / "fixtures" / "members.json"
+
+# Stand-ins for externally owned data (a Keycloak-shaped member list today).
+MEMBERS_SOURCE = BASE_DIR / "external" / "members.json"
 
 MAILERS = {
     "default": {

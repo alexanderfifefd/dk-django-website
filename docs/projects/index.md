@@ -26,9 +26,9 @@ the outcome in the plan and move the project to Completed.
 
 ### `integration-layer` — do collections, relationships, and mixed sources break the ingest pattern?
 
-**Answer: yes, with separate sync commands.** Three derived collections (members from fixture, systems and
-articles from git) with real FKs and strict cross-source validation. Updates stay in a JSONField without
-pain at this scale. Dev middleware deferred — manual ingest remains.
+**Answer: yes, with separate sync commands.** Three derived collections (members from `external/`,
+systems and articles from git) with real FKs and strict cross-source validation. Updates stay in a
+JSONField without pain at this scale. Dev middleware deferred — manual sync remains.
 
 - **Discussion**: `docs/projects/integration-layer/discussions/collections-relationships-and-freshness.md`
 - **Plan**: `docs/projects/integration-layer/plans/2026-08-06-prototype-03-integration-layer.md`

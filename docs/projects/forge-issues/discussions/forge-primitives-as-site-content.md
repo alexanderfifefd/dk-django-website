@@ -62,13 +62,27 @@ land better anyway. Unresolved; the issues prototype doesn't force it. We'll see
 - **Status badge** (toy, deferred): an open `incident`-labeled issue flips the system's badge amber.
   Gives labels semantics — only if the rendered page begs for it.
 
+## Open after prototype 04
+
+Presentation is unresolved. The sync and minimal list rendering are proven; the site UX is not. Particular
+threads:
+
+- **Prominent forge labels** — tags like `seeking-maintainer` or `help wanted` lifted out of the tag row
+  and surfaced prominently (system page header, get-involved strip, home callout).
+- **Which labels earn semantics** — convention to define in the monorepo vs presentation logic in Django;
+  prototype 04 treats all non-system labels as inert tags.
+- **Layout and surfaces** — get-involved page, system timeline, pulse vs lists — see Surfaces above.
+  Prototype 04 kept single-column lists on purpose; design is a later prototype.
+
 ## Decisions (2026-08-08)
 
 - **Issues and pull requests both go into prototype 04.** Same labels, same endpoint, one sync. Issues
   attract engagement; PRs communicate alive-ness. The plan is amended accordingly.
-- **Releases deferred.** The merged-PR pulse says "things ship" well enough for now, and a release
-  *announcement* is an authored update in any case (see "Two voices" in the organizational context) —
-  which also sidesteps releases being repo-scoped in the monorepo.
+- **PR presentation (amended during build):** item lists with open/closed badges, not aggregate pulse.
+  The pulse idea from the brainstorm was simpler to skip for now.
+- **Releases deferred.** PR lists say "things ship" well enough for now, and a release *announcement*
+  is an authored update in any case (see "Two voices" in the organizational context) — which also
+  sidesteps releases being repo-scoped in the monorepo.
 - **Milestones and projects: out at this stage**, as argued above.
 
 ## How states render
@@ -80,8 +94,8 @@ lands differently depending on the audience:
 |---|---|---|
 | Issue, open | "known issues" on its system page; `help wanted` also on the get-involved surface | honesty (users), entry points (maintainers) |
 | Issue, closed | leaves the lists; feeds a resolved count ("12 resolved this month") | responsiveness (users) |
-| PR, open | an in-review count in the pulse | work in flight (maintainers) |
-| PR, merged | the merged count in the pulse | alive-ness (both) |
+| PR, open | a list item with an "open" badge | work in flight (maintainers) |
+| PR, merged | a list item with a "closed" badge | alive-ness (both) |
 | PR, closed unmerged | nothing | — |
 
 Declined PRs deliberately render nowhere. Item-level rejection display would publicly shame one-off
@@ -90,6 +104,5 @@ audience. They still become rows (ingest-anyway, like unlabeled issues); the adm
 
 The audience split in one line: **users read states as a reliability narrative** (honest open issues,
 resolved counts, authored updates in the collective's voice); **prospective maintainers read them as an
-activity narrative** (merged pulse, in-review counts, help-wanted entry points). Same rows, two
-framings — which is the argument for keeping presentation logic in views and templates, not in the
-sync.
+activity narrative** (PR lists, help-wanted entry points). Same rows, two framings — which is the
+argument for keeping presentation logic in views and templates, not in the sync.

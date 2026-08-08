@@ -1,0 +1,30 @@
+{% extends "pages/base.html" %}
+
+{% block title %}{{ member.name }} — The Collective{% endblock %}
+
+{% block content %}
+  <h1>{{ member.name }}</h1>
+  <p class="lead">@{{ member.username }}</p>
+
+  <h2>Leads</h2>
+  {% if systems_led %}
+    <ul class="system-list">
+      {% for system in systems_led %}
+        <li><a href="{% url 'system_detail' system.slug %}">{{ system.title }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Does not lead any systems.</p>
+  {% endif %}
+
+  <h2>Administers</h2>
+  {% if systems_administered %}
+    <ul class="system-list">
+      {% for system in systems_administered %}
+        <li><a href="{% url 'system_detail' system.slug %}">{{ system.title }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Does not administer any systems.</p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends "pages/base.html" %}
+
+{% block title %}Home — The Collective{% endblock %}
+
+{% block content %}
+  <h1>A software collective</h1>
+  <p class="lead">
+    We build and maintain <a href="{% url 'systems_index' %}">systems</a> together. Members from a
+    Keycloak-shaped fixture, systems and authored updates from git, forge issues and pull requests
+    cached from the monorepo.
+  </p>
+
+  <h2>Pull requests</h2>
+  {% if pull_requests %}
+    <ul class="issue-list">
+      {% for pr in pull_requests %}
+        <li>
+          {% if pr.state == "open" %}
+            <span class="pr-state pr-state-open">open</span>
+          {% else %}
+            <span class="pr-state pr-state-closed">closed</span>
+          {% endif %}
+          <a href="{{ pr.url }}">{{ pr.title }}</a>
+          <span class="issue-meta">
+            <a href="{% url 'system_detail' pr.system.slug %}">{{ pr.system.title }}</a>
+            <time datetime="{{ pr.updated_at|date:'c' }}">{{ pr.updated_at|date:"j M Y" }}</time>
+          </span>
+          {% if pr.labels %}
+            <span class="issue-tags">
+              {% for label in pr.labels %}
+                <span class="issue-tag" style="--tag-color: #{{ label.color }}">{{ label.name }}</span>
+              {% endfor %}
+            </span>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No pull requests.</p>
+  {% endif %}
+
+  <h2>Recent updates</h2>
+  {% if recent_updates %}
+    <ul class="update-list">
+      {% for update in recent_updates %}
+        <li>
+          <span class="update-kind">{{ update.kind }}</span>
+          <a href="{% url 'system_detail' update.system.slug %}">{{ update.system.title }}</a>
+          <time datetime="{{ update.date }}">{{ update.date }}</time>
+          <p>{{ update.message }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No updates yet.</p>
+  {% endif %}
+
+  <h2>Open issues</h2>
+  {% if recent_issues %}
+    <ul class="issue-list">
+      {% for issue in recent_issues %}
+        <li>
+          <a href="{{ issue.url }}">{{ issue.title }}</a>
+          <span class="issue-meta">
+            <a href="{% url 'system_detail' issue.system.slug %}">{{ issue.system.title }}</a>
+            <time datetime="{{ issue.created_at|date:'c' }}">{{ issue.created_at|date:"j M Y" }}</time>
+          </span>
+          {% if issue.labels %}
+            <span class="issue-tags">
+              {% for label in issue.labels %}
+                <span class="issue-tag" style="--tag-color: #{{ label.color }}">{{ label.name }}</span>
+              {% endfor %}
+            </span>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No open issues.</p>
+  {% endif %}
+{% endblock %}

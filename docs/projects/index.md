@@ -20,19 +20,21 @@ the outcome in the plan and move the project to Completed.
 
 ## Active
 
+(none)
+
+## Completed
+
 ### `forge-issues` — does the ingest pattern extend to a forge's HTTP API?
 
-Forgejo issues and pull requests, labeled `system/<slug>` in one monorepo, cached as a derived table
-alongside the git-owned systems — issues rendered as items (engagement), PRs as an activity pulse
-(alive-ness). A new noun next to updates, not a replacement for them. First API source: live fetch,
-Pydantic with `extra="ignore"` at the boundary, per-source sync command.
+**Answer: yes.** Forgejo issues and pull requests, labeled `system/<slug>` in one monorepo, cached as a
+derived table alongside git-owned systems. First API source; Pydantic with `extra="ignore"` at the
+boundary; separate `sync_issues` command. Issues and PRs render as linked lists (open/closed badges on
+PRs); updates stay as authored JSON beside each system.
 
 - **Discussion**: `docs/projects/forge-issues/discussions/issues-from-the-forge.md`
 - **Primitives brainstorm**: `docs/projects/forge-issues/discussions/forge-primitives-as-site-content.md`
 - **Plan**: `docs/projects/forge-issues/plans/2026-08-07-prototype-04-forge-issues.md`
-- **Prototype**: `prototypes/04-forge-issues/` (not yet started)
-
-## Completed
+- **Prototype**: `prototypes/04-forge-issues/` — built and validated (2026-08-08)
 
 ### `integration-layer` — do collections, relationships, and mixed sources break the ingest pattern?
 
@@ -73,3 +75,8 @@ These are known unknowns. Each will likely become its own project.
   unexplored.
 - **Media and assets**: images living next to the `.md` files that reference them.
 - **Scale**: parked. Never measured, not currently a priority.
+- **Forge content presentation**: prototype 04 syncs issues and PRs and renders plain linked lists.
+  How to present them on the site is unresolved — e.g. promoting certain forge labels prominently
+  (`seeking-maintainer`, `help wanted`), dedicated surfaces (get-involved page, system timeline),
+  or giving labels semantics beyond small tags (status badges). Likely a design-focused prototype
+  building on `04-forge-issues`.

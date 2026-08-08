@@ -1,0 +1,7 @@
+[
+  {
+    "date": "2026-08-06",
+    "kind": "release",
+    "message": "v2.4 shipped with idempotent webhook delivery and improved dead-letter visibility."
+  }
+]

@@ -20,7 +20,17 @@ the outcome in the plan and move the project to Completed.
 
 ## Active
 
-(none)
+### `forge-issues` — does the ingest pattern extend to a forge's HTTP API?
+
+Forgejo issues and pull requests, labeled `system/<slug>` in one monorepo, cached as a derived table
+alongside the git-owned systems — issues rendered as items (engagement), PRs as an activity pulse
+(alive-ness). A new noun next to updates, not a replacement for them. First API source: live fetch,
+Pydantic with `extra="ignore"` at the boundary, per-source sync command.
+
+- **Discussion**: `docs/projects/forge-issues/discussions/issues-from-the-forge.md`
+- **Primitives brainstorm**: `docs/projects/forge-issues/discussions/forge-primitives-as-site-content.md`
+- **Plan**: `docs/projects/forge-issues/plans/2026-08-07-prototype-04-forge-issues.md`
+- **Prototype**: `prototypes/04-forge-issues/` (not yet started)
 
 ## Completed
 

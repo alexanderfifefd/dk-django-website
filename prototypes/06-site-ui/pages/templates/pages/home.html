@@ -1,0 +1,42 @@
+{% extends "pages/base.html" %}
+
+{% block title %}Home — The Collective{% endblock %}
+
+{% block content %}
+  <h1>A software collective</h1>
+  <p class="lead">
+    We build and maintain <a href="{% url 'systems_index' %}">systems</a> together. Member profiles,
+    system pages, articles, and operational updates — all authored as files in git.
+  </p>
+
+  <h2>Recent updates</h2>
+  {% if recent_updates %}
+    <ul class="update-list">
+      {% for update in recent_updates %}
+        <li>
+          <span class="update-kind">{{ update.kind }}</span>
+          <a href="{% url 'system_detail' update.system.slug %}">{{ update.system.title }}</a>
+          <time datetime="{{ update.date }}">{{ update.date }}</time>
+          <p>{{ update.message }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No updates yet.</p>
+  {% endif %}
+
+  <h2>Latest articles</h2>
+  {% if latest_articles %}
+    <ul class="post-list">
+      {% for article in latest_articles %}
+        <li>
+          <a href="{% url 'article_detail' article.slug %}">{{ article.title }}</a>
+          <time datetime="{{ article.date|date:'Y-m-d' }}">{{ article.date|date:"j F Y" }}</time>
+          {% if article.summary %}<p>{{ article.summary }}</p>{% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No articles yet.</p>
+  {% endif %}
+{% endblock %}

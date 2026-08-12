@@ -21,7 +21,18 @@ the outcome in the plan and move the project to Completed.
 
 ## Active
 
-(none)
+### `site-ui` — how should we present systems, members, articles, and updates?
+
+**Status: active** — prototype built; UI and content work in progress.
+
+Authored content only (no forge). Markdown in git syncs to ORM via `pages/sources/`; dev middleware
+re-syncs on each request. Real collective data in place (9 members, 5 systems, groups, 1 article).
+
+- **Overview**: `docs/projects/site-ui/overview.md` — **start here for current state**
+- **Discussion**: `docs/projects/site-ui/discussions/ui-without-ingest.md` (original decision)
+- **Discussion**: `docs/projects/site-ui/discussions/orm-pivot-for-ui-queries.md` (current architecture)
+- **Plan**: `docs/projects/site-ui/plans/2026-08-12-prototype-06-site-ui.md`
+- **Prototype**: `prototypes/06-site-ui/`
 
 ## Completed
 
@@ -96,5 +107,5 @@ These are known unknowns. Each will likely become its own project.
 - **Forge content presentation**: prototype 04 syncs issues and PRs and renders plain linked lists.
   How to present them on the site is unresolved — e.g. promoting certain forge labels prominently
   (`seeking-maintainer`, `help wanted`), dedicated surfaces (get-involved page, system timeline),
-  or giving labels semantics beyond small tags (status badges). Likely a design-focused prototype
-  building on `04-forge-issues`.
+  or giving labels semantics beyond small tags (status badges). Partially related to `site-ui`
+  (authored-noun presentation comes first); forge surfaces can layer onto those templates later.

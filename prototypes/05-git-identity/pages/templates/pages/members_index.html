@@ -1,0 +1,21 @@
+{% extends "pages/base.html" %}
+
+{% block title %}Members — The Collective{% endblock %}
+
+{% block content %}
+  <h1>Members</h1>
+  <p class="lead">People in the collective.</p>
+
+  {% if members %}
+    <ul class="member-list">
+      {% for member in members %}
+        <li>
+          <a href="{% url 'member_detail' member.username %}">{{ member.name }}</a>
+          <span class="member-meta">@{{ member.username }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No members yet — add a file under <code>content/members/</code> and run <code>manage.py sync_members</code>.</p>
+  {% endif %}
+{% endblock %}

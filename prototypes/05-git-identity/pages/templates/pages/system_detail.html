@@ -1,0 +1,89 @@
+{% extends "pages/base.html" %}
+
+{% block title %}{{ system.title }} — The Collective{% endblock %}
+
+{% block content %}
+  <article class="post">
+    <header>
+      <h1>{{ system.title }}</h1>
+      {% if system.summary %}<p class="lead">{{ system.summary }}</p>{% endif %}
+    </header>
+    {{ system.body_html|safe }}
+  </article>
+
+  <h2>Team</h2>
+  <ul class="team-list">
+    <li>Teamlead: <a href="{% url 'member_detail' system.teamlead.username %}">{{ system.teamlead.name }}</a></li>
+    {% for admin in system.admins.all %}
+      <li>Admin: <a href="{% url 'member_detail' admin.username %}">{{ admin.name }}</a></li>
+    {% endfor %}
+  </ul>
+
+  <h2>Pull requests</h2>
+  {% if pull_requests %}
+    <ul class="issue-list">
+      {% for pr in pull_requests %}
+        <li>
+          {% if pr.state == "open" %}
+            <span class="pr-state pr-state-open">open</span>
+          {% else %}
+            <span class="pr-state pr-state-closed">closed</span>
+          {% endif %}
+          <a href="{{ pr.url }}">{{ pr.title }}</a>
+          <span class="issue-meta">
+            <time datetime="{{ pr.updated_at|date:'c' }}">{{ pr.updated_at|date:"j M Y" }}</time>
+          </span>
+          {% if pr.labels %}
+            <span class="issue-tags">
+              {% for label in pr.labels %}
+                <span class="issue-tag" style="--tag-color: #{{ label.color }}">{{ label.name }}</span>
+              {% endfor %}
+            </span>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No pull requests for this system.</p>
+  {% endif %}
+
+  <h2>Updates</h2>
+  {% if system.updates %}
+    <ul class="update-list">
+      {% for update in system.updates %}
+        <li>
+          <span class="update-kind">{{ update.kind }}</span>
+          <time datetime="{{ update.date }}">{{ update.date }}</time>
+          <p>{{ update.message }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No updates for this system.</p>
+  {% endif %}
+
+  <h2>Open issues</h2>
+  {% if open_issues %}
+    <ul class="issue-list">
+      {% for issue in open_issues %}
+        <li>
+          <a href="{{ issue.url }}">{{ issue.title }}</a>
+          <span class="issue-meta">
+            <time datetime="{{ issue.created_at|date:'c' }}">{{ issue.created_at|date:"j M Y" }}</time>
+          </span>
+          {% if issue.labels %}
+            <span class="issue-tags">
+              {% for label in issue.labels %}
+                <span class="issue-tag" style="--tag-color: #{{ label.color }}">{{ label.name }}</span>
+              {% endfor %}
+            </span>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No open issues for this system.</p>
+  {% endif %}
+
+  <p><a href="{% url 'systems_index' %}">&larr; All systems</a></p>
+{% endblock %}

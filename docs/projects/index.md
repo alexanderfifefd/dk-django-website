@@ -24,6 +24,20 @@ the outcome in the plan and move the project to Completed.
 
 ## Completed
 
+### `git-identity` — how do we link cross-system activity to users?
+
+**Answer: yes, via git-backed identity assertions.** Member profiles in `content/members/*.md` carry an
+`identities` map in frontmatter (e.g. `forgejo: alexanrf`). `sync_issues` matches forge author logins
+against that map and sets a nullable `Issue.member` FK. Member pages show markdown bio plus linked PRs
+and open issues. No SSO or Django auth required.
+
+- **Discussion**: `docs/projects/git-identity/discussions/sso-and-account-linking.md`
+- **Discussion**: `docs/projects/git-identity/discussions/federated-identity-via-git.md`
+- **Discussion**: `docs/projects/git-identity/discussions/organizational-implications.md`
+- **Discussion**: `docs/projects/git-identity/discussions/forgejo-api-for-identity.md`
+- **Plan**: `docs/projects/git-identity/plans/2026-08-08-prototype-05-git-identity.md`
+- **Prototype**: `prototypes/05-git-identity/` — built and validated (2026-08-08)
+
 ### `forge-issues` — does the ingest pattern extend to a forge's HTTP API?
 
 **Answer: yes.** Forgejo issues and pull requests, labeled `system/<slug>` in one monorepo, cached as a

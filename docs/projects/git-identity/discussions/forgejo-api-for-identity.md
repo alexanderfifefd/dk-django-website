@@ -50,7 +50,8 @@ Member profile pages query the already-synced `Issue` table, not the forge per-u
 
 ## Frontmatter key: login or id?
 
-Start with the login string — matches what prototype 04 already stores:
+Start with the login string — matches what prototype 04/05 already store. The site slug (filename) is
+separate; see [member slug and references](./member-slug-and-references.md).
 
 ```yaml
 identities:

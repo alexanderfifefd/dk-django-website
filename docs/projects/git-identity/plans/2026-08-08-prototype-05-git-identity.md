@@ -29,4 +29,15 @@ This builds directly on the ingest patterns established in `04-forge-issues`.
 
 ## Outcome (2026-08-08)
 
-**Answer: yes.** Member profiles live in `content/members/*.md` with an `identities` map in frontmatter. `sync_issues` resolves `author` against `identities.forgejo` and sets a nullable `Issue.member` FK. Member pages show markdown bio plus linked PRs and open issues. No SSO or Django auth required.
+**Answer: yes.** Member profiles live in `content/members/<slug>.md` with an `identities` map in
+frontmatter. The filename is the canonical slug (same rule as system directories). `sync_issues`
+resolves `author` against `identities.forgejo` and sets a nullable `Issue.member` FK. Member pages show
+markdown bio plus linked PRs and open issues; a members index lists active members. No SSO or Django
+auth required.
+
+## Follow-up (2026-08-12)
+
+- Members index page and nav tab added.
+- Canonical slug convention documented in
+  `discussions/member-slug-and-references.md` — filename is the ID; `name` is display; `identities` is
+  for external systems only.

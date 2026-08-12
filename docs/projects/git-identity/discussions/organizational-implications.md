@@ -12,7 +12,8 @@
 
 ## 2. Locality of System Ownership
 
-**Observation:** System ownership (e.g., `teamlead: alexander`) should live in the system's markdown file (`content/systems/atlas.md`), not the member's profile.
+**Observation:** System ownership (e.g., `teamlead: alex`) should live in the system's markdown file
+(`content/systems/atlas/system.md`), not the member's profile.
 
 **Implication:**
 - **Locality:** To find out who owns Atlas, you look at the Atlas file.
@@ -28,10 +29,16 @@
 
 **Observation:** If a member leaves the collective and we delete their `content/members/*.md` file, the next Django sync will drop their `Member` record, breaking author attribution on all their historical PRs and articles.
 
-**Implication:** We should not delete members. Instead, we need an `active: false` or `status: alumni` flag in the frontmatter. Alumni profiles can be hidden from the main "Team" index, but their historical URLs (`/members/alice/`) must remain active so old content doesn't break.
+**Implication:** We should not delete members. Instead, we need an `active: false` flag in the
+frontmatter. Alumni profiles are hidden from the members index, but their historical URLs
+(`/members/alice/`) must remain active so old content doesn't break.
 
 ## 5. Identity Rotation / Handle Changes (Maintainability)
 
-**Observation:** If a member changes their Forgejo handle (e.g., from `alexander` to `alexander-dk`), updating their frontmatter to `forgejo: alexander-dk` will link their new PRs, but might orphan their old PRs if the forge API still reports them under the old handle.
+**Observation:** If a member changes their Forgejo handle (e.g., from `alexanrf` to `alex-dk`), updating
+their frontmatter to `forgejo: alex-dk` will link their new PRs, but might orphan old PRs if the forge
+API still reports them under the old handle.
 
-**Implication:** The `identities` frontmatter may eventually need to support arrays (e.g., `forgejo: [alexander-dk, alexander]`). This allows Django to link historical activity even if the external system's data is messy or immutable.
+**Implication:** The `identities` frontmatter may eventually need to support arrays (e.g.,
+`forgejo: [alex-dk, alexanrf]`). The site slug (filename) stays stable; only external mappings change.
+See [member slug and references](./member-slug-and-references.md).

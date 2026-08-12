@@ -6,18 +6,20 @@
 
 Instead of relying on complex API verification or OAuth flows, we use markdown frontmatter to manually assert identity. The source of truth for "who owns what" lives in git.
 
-A member's profile file (`content/members/alexander.md`) would look like this:
+A member's profile file (`content/members/alex.md`) would look like this:
 
 ```yaml
 ---
 name: Alexander
-role: Core Maintainer
 identities:
-  forgejo: alexander
+  forgejo: alexanrf
   matrix: "@alexander:matrix.org"
 ---
 This is my profile description...
 ```
+
+The filename (`alex`) is the site slug — used in URLs and cross-references (`teamlead: alex`, `author:
+alice`). See [member slug and references](./member-slug-and-references.md).
 
 ## Why this fits the architecture
 

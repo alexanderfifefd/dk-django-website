@@ -45,8 +45,11 @@ HUMAN NOTE: This goes for more systems as well. E.g. work on Loomio. We're discu
 
 ## The nouns
 
-- **Member**: a person in the collective. Identity is owned by Keycloak (prototypes: a Keycloak-shaped
-  fixture); Django caches a lightweight profile. Nothing in git creates a member.
+- **Member**: a person in the collective. Profile authored in git as
+  `content/members/<slug>.md` — the filename is the canonical slug for cross-references (`teamlead`,
+  `author`, etc.). Frontmatter carries a display `name` and an `identities` map linking to external
+  accounts (forge, Matrix, …). Django ingests and caches the profile; forge activity links via
+  `identities.forgejo`, not via SSO. See `docs/projects/git-identity/`.
 - **System**: software the collective maintains. Has a marketing/description page, one **teamlead**
   (single accountable person), several **admins**, operational updates, and related articles.
 - **Update**: a short operational notice scoped to one system ("downtime expected Saturday", "2.0 is

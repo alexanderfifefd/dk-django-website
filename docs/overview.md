@@ -66,9 +66,11 @@ that prototype's own business. Its project docs under `docs/projects/` describe 
   nouns (members, systems, updates, articles) the data model mirrors.
 - **`docs/projects/`**: the reasoning behind each prototype, grouped by project.
   - **Start here**: `docs/projects/index.md` lists active and completed projects.
+  - **`<project>/overview.md`**: when present, a project index with summaries and reading order.
   - **`<project>/discussions/`**: what question we're answering, what options exist, what we chose.
   - **`<project>/plans/`**: date-prefixed implementation plans (`YYYY-MM-DD-<slug>.md`).
-  - Don't read a project's docs unless the current task concerns it.
+  - Don't read a project's docs unless the current task concerns it — start with that project's
+    `overview.md` when one exists.
 
 A project in `docs/projects/` usually maps to one prototype directory under `prototypes/`. The project docs
 hold the intent; the prototype holds the code.

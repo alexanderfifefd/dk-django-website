@@ -7,6 +7,7 @@ earlier one instead.
 
 Each project lives in `docs/projects/<name>/`:
 
+- `overview.md` — when present, project summary, file index, and suggested reading order.
 - `discussions/<slug>.md` — the question, the options, the reasoning, the decision.
 - `plans/YYYY-MM-DD-<slug>.md` — what will be built, in what order, and how we'll know it worked.
 
@@ -26,17 +27,20 @@ the outcome in the plan and move the project to Completed.
 
 ### `git-identity` — how do we link cross-system activity to users?
 
-**Answer: yes, via git-backed identity assertions.** Member profiles in `content/members/*.md` carry an
-`identities` map in frontmatter (e.g. `forgejo: alexanrf`). `sync_issues` matches forge author logins
-against that map and sets a nullable `Issue.member` FK. Member pages show markdown bio plus linked PRs
-and open issues. No SSO or Django auth required.
+**Answer: yes, via git-backed identity assertions.** Member profiles in `content/members/<slug>.md` carry
+an `identities` map in frontmatter (e.g. `forgejo: alexanrf`). The filename is the canonical slug for
+cross-references. `sync_issues` matches forge author logins against that map and sets a nullable
+`Issue.member` FK. Member pages show markdown bio plus linked PRs and open issues; a members index
+lists active members. No SSO or Django auth required.
 
+- **Overview**: `docs/projects/git-identity/overview.md`
 - **Discussion**: `docs/projects/git-identity/discussions/sso-and-account-linking.md`
 - **Discussion**: `docs/projects/git-identity/discussions/federated-identity-via-git.md`
+- **Discussion**: `docs/projects/git-identity/discussions/member-slug-and-references.md`
 - **Discussion**: `docs/projects/git-identity/discussions/organizational-implications.md`
 - **Discussion**: `docs/projects/git-identity/discussions/forgejo-api-for-identity.md`
 - **Plan**: `docs/projects/git-identity/plans/2026-08-08-prototype-05-git-identity.md`
-- **Prototype**: `prototypes/05-git-identity/` — built and validated (2026-08-08)
+- **Prototype**: `prototypes/05-git-identity/` — built and validated (2026-08-12)
 
 ### `forge-issues` — does the ingest pattern extend to a forge's HTTP API?
 

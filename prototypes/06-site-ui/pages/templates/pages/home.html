@@ -3,40 +3,59 @@
 {% block title %}Home — The Collective{% endblock %}
 
 {% block content %}
-  <h1>A software collective</h1>
-  <p class="lead">
-    We build and maintain <a href="{% url 'systems_index' %}">systems</a> together. Member profiles,
-    system pages, articles, and operational updates — all authored as files in git.
-  </p>
+  <section class="hero">
+    <h1>A software collective</h1>
+    <p class="hero-lead">
+      We build and maintain open infrastructure together — identity, communication, decision-making,
+      and the tools that hold it all up.
+    </p>
+  </section>
 
-  <h2>Recent updates</h2>
-  {% if recent_updates %}
-    <ul class="update-list">
-      {% for update in recent_updates %}
-        <li>
-          <span class="update-kind">{{ update.kind }}</span>
-          <a href="{% url 'system_detail' update.system.slug %}">{{ update.system.title }}</a>
-          <time datetime="{{ update.date }}">{{ update.date }}</time>
-          <p>{{ update.message }}</p>
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>No updates yet.</p>
-  {% endif %}
+  <section class="home-section">
+    <div class="section-heading">
+      <h2>Systems</h2>
+      <a class="section-link" href="{% url 'systems_index' %}">View all</a>
+    </div>
+    {% if systems %}
+      <ul class="system-list">
+        {% for system in systems %}
+          <li>
+            <a href="{% url 'system_detail' system.slug %}">{{ system.title }}</a>
+            {% if system.summary %}<p>{{ system.summary }}</p>{% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No systems yet.</p>
+    {% endif %}
+  </section>
 
-  <h2>Latest articles</h2>
-  {% if latest_articles %}
-    <ul class="post-list">
-      {% for article in latest_articles %}
-        <li>
-          <a href="{% url 'article_detail' article.slug %}">{{ article.title }}</a>
-          <time datetime="{{ article.date|date:'Y-m-d' }}">{{ article.date|date:"j F Y" }}</time>
-          {% if article.summary %}<p>{{ article.summary }}</p>{% endif %}
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>No articles yet.</p>
-  {% endif %}
+  <section class="home-section">
+    <div class="section-heading">
+      <h2>Latest articles</h2>
+      <a class="section-link" href="{% url 'articles_index' %}">View all</a>
+    </div>
+    {% if latest_articles %}
+      <ul class="post-list">
+        {% for article in latest_articles %}
+          <li>
+            <a href="{% url 'article_detail' article.slug %}">{{ article.title }}</a>
+            {% if article.system %}
+              <a class="system-badge" href="{% url 'system_detail' article.system.slug %}">{{ article.system.title }}</a>
+            {% endif %}
+            <time datetime="{{ article.date|date:'Y-m-d' }}">{{ article.date|date:"j F Y" }}</time>
+            {% if article.summary %}<p>{{ article.summary }}</p>{% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No articles yet.</p>
+    {% endif %}
+  </section>
+
+  <section class="join-cta">
+    <h2>Interested in joining?</h2>
+    <p>Tell us a bit about yourself — no account signup, just a conversation starter.</p>
+    <a class="btn btn-primary" href="{% url 'join' %}">Get in touch</a>
+  </section>
 {% endblock %}

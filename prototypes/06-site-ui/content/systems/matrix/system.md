@@ -1,6 +1,7 @@
 ---
 title: Matrix
 summary: Federated chat for members and maintainers.
+stage: production
 teamlead: alexanrf
 admins: []
 ---

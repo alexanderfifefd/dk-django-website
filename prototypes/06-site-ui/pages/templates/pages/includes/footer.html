@@ -1,0 +1,35 @@
+{% load static %}
+<footer class="site-footer">
+  <div class="footer-main">
+    <div class="footer-pages">
+      <h2 class="footer-heading">Pages</h2>
+      <ul class="footer-links">
+        <li><a href="{% url 'systems_index' %}">Systems</a></li>
+        <li><a href="{% url 'about' %}">About us</a></li>
+        <li><a href="{% url 'members_index' %}">Members</a></li>
+        <li><a href="{% url 'articles_index' %}">Articles</a></li>
+        <li><a href="{% url 'join' %}">Join</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-about">
+      <a class="footer-logo" href="{% url 'home' %}">
+        <img src="{% static 'img/logo-light-theme.png' %}" alt="datakollektivet">
+      </a>
+      <p>
+        A software collective building and maintaining open infrastructure for its members.
+        Collectively owned, democratically governed, open source.
+      </p>
+    </div>
+
+    <div class="footer-newsletter">
+      <h2 class="footer-heading">Follow us by email</h2>
+      <form class="footer-newsletter-form" action="#" method="get">
+        <label class="visually-hidden" for="footer-email">Email address</label>
+        <input id="footer-email" type="email" name="email" placeholder="your@email.com" autocomplete="email">
+        <button type="submit" class="btn btn-primary">Sign up</button>
+      </form>
+      <p class="footer-newsletter-note">Occasional updates — no spam.</p>
+    </div>
+  </div>
+</footer>

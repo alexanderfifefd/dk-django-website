@@ -1,6 +1,8 @@
 ---
 title: Loomio
 summary: Collaborative decision-making for the collective.
+stage: production
+url: loomio.datakollektivet.no
 teamlead: gingermusketeer
 admins: [alexanrf]
 ---

@@ -2,7 +2,7 @@
 
 **Question:** How should we present systems, members, articles, and updates on the collective homepage?
 
-**Status:** Active — prototype built; UI and content work in progress (2026-08-12).
+**Status:** Paused — UI baseline validated; resume for content polish or forge surfaces (2026-08-12).
 
 **Prototype:** `prototypes/06-site-ui/`
 
@@ -23,15 +23,60 @@ features needed real relationships (system leads on members index, org groups, o
 |---|---|---|
 | Members | `content/members/<nick>.md` | Lowercase slug = nick; `name`, optional `role`, `groups: [...]` |
 | Groups | `content/members/groups.yaml` | Vocabulary (`board`, `maintainers`); membership on member files |
-| Systems | `content/systems/<slug>/` | `system.md` + `updates.json`; teamlead + admins |
-| Articles | `content/articles/<slug>.md` | author, optional system, draft flag |
+| Systems | `content/systems/<slug>/` | `system.md` + `updates.json`; `stage`, optional `url`, teamlead, admins |
+| Articles | `content/articles/<slug>.md` | author, optional system, summary, draft flag |
 
-Real data: 9 members, 5 systems, 2 groups, 1 article. No placeholder alice/bob/atlas content remains.
+Real data: **9 members**, **6 systems** (5 live + Listmonk suggestion), **2 groups**, **1 article**.
+Board group populated on the About page (4 members at time of writing).
 
 ## Pages shipped
 
-Home, systems index/detail, members index/detail, articles index/detail. CSS is prototype 03 baseline —
-expected to change substantially.
+| Page | URL | Notes |
+|---|---|---|
+| Home | `/` | Hero, systems list, latest articles, join CTA |
+| Systems | `/systems/`, `/systems/<slug>/` | Index: stage badge + external URL; detail: header metadata + full-width body/updates/articles |
+| Members | `/members/`, `/members/<nick>/` | Not in main nav; linked from About and footer |
+| Articles | `/articles/`, `/articles/<slug>/` | Index and detail layouts refined; system badge where linked |
+| About | `/about/` | Static template; board listing from `groups: [board]` |
+| Join | `/join/` | Lead form (not wired up) |
+
+## Site chrome
+
+- **Header/footer** — `pages/templates/pages/includes/header.html` and `footer.html`, included from
+  `base.html`. Wider layout width (`--layout-width`) than main content (`--content-width`).
+- **Logo** — `static/img/logo-light-theme.png` (datakollektivet wordmark), centered in header; footer
+  centre column.
+- **CSS** — `static/css/site.css`; evolved from prototype 03 baseline. Stage badges, article bylines,
+  two-tier page width.
+
+## Static vs markdown pages
+
+- **Markdown-authored** — member/system/article detail bodies (synced to `body_html`).
+- **Template HTML** — home intro, about, join, header, footer (not in `content/`).
+
+## System frontmatter
+
+### `stage`
+
+Lifecycle, not runtime state: `suggestion`, `development`, or `production`. Shown as a badge on the
+systems index and in system detail metadata. Migration `0002_system_stage`.
+
+### `url`
+
+Optional public URL for the running service. Authors write a hostname or full URL in `system.md`; ingest
+adds `https://` when omitted (`pages/sources/systems.py`). Shown on the systems index and in detail
+metadata as an external link. Migration `0003_system_url`.
+
+Current URLs in content:
+
+| System | URL |
+|---|---|
+| Keycloak | sso.datakollektivet.no |
+| Loomio | loomio.datakollektivet.no |
+| Forgejo | forge.hornwitser.no |
+| Website | datakollektivet.no |
+| Matrix | — |
+| Listmonk | — |
 
 ## How to read this project
 
@@ -52,10 +97,16 @@ expected to change substantially.
 
 | File | Summary |
 |---|---|
-| [2026-08-12-prototype-06-site-ui.md](./plans/2026-08-12-prototype-06-site-ui.md) | Plan, outcome, and status for continuing UI work. |
+| [2026-08-12-prototype-06-site-ui.md](./plans/2026-08-12-prototype-06-site-ui.md) | Plan, outcome, and status. |
 
 ## Related docs
 
 - `docs/organizational-context.md` — the nouns this prototype presents
 - `docs/projects/integration-layer/` — ingest pattern this prototype now follows
-- `docs/projects/index.md` — repo-wide project list
+- `docs/projects/index.md` — repo-wide project list and open questions (media, template tags in markdown, …)
+
+## Resume here
+
+- Member bios, system copy, real updates, more articles
+- Forge/identity surfaces layered onto these templates (`git-identity`, `forge-issues`)
+- Media in markdown and template components — see open questions in `docs/projects/index.md`

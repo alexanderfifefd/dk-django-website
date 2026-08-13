@@ -3,6 +3,8 @@
 from dataclasses import dataclass
 from pathlib import Path
 
+from typing import Literal
+
 import frontmatter
 from django.conf import settings
 from django.db import transaction
@@ -20,11 +22,25 @@ from pages.sources.common import (
 )
 
 
+SystemStage = Literal["suggestion", "development", "production"]
+
+
+def normalize_url(url: str) -> str:
+    url = url.strip()
+    if not url:
+        return ""
+    if "://" not in url:
+        return f"https://{url}"
+    return url
+
+
 class SystemFrontmatter(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     title: str
     summary: str = ""
+    stage: SystemStage = "production"
+    url: str = ""
     teamlead: str
     admins: list[str] = Field(default_factory=list)
 
@@ -67,6 +83,7 @@ def _load_system(
     parsed = frontmatter.load(path)
     try:
         meta = SystemFrontmatter.model_validate(parsed.metadata)
+        meta = meta.model_copy(update={"url": normalize_url(meta.url)})
     except ValidationError as exc:
         errors.append(f"{label}: {format_validation_error(exc)}")
         return None
@@ -96,6 +113,8 @@ def sync_systems(records: list[SystemRecord], members: dict[str, Member]) -> Syn
                 defaults={
                     "title": record.meta.title,
                     "summary": record.meta.summary,
+                    "stage": record.meta.stage,
+                    "url": record.meta.url,
                     "body_html": record.body_html,
                     "teamlead": members[record.meta.teamlead],
                     "updates": record.updates,

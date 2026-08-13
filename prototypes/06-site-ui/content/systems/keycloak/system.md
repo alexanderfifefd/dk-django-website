@@ -1,6 +1,8 @@
 ---
 title: Keycloak
 summary: Identity and access management for collective services.
+stage: production
+url: sso.datakollektivet.no
 teamlead: gingermusketeer
 admins: [luisa]
 ---

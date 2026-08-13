@@ -1,0 +1,61 @@
+{% extends "pages/base.html" %}
+
+{% block title %}About us — The Collective{% endblock %}
+
+{% block content %}
+  <h1>About us</h1>
+  <p class="lead">
+    A software collective that builds and maintains open infrastructure for its members — and makes
+    that work legible from the outside.
+  </p>
+
+  <h2>What we do</h2>
+  <p>
+    We run a set of <a href="{% url 'systems_index' %}">systems</a> — identity, communication,
+    decision-making, source control, and the site itself. Each system has a team lead, admins, and
+    operational updates so anyone can see who is accountable and what is happening.
+  </p>
+  <p>
+    Members write about the work in <a href="{% url 'articles_index' %}">articles</a>, publish
+    short notices when something affects users, and keep their profiles in git alongside the content
+    they maintain.
+  </p>
+
+  <h2>How we work</h2>
+  <p>
+    We are async and distributed. There is no heavy process handbook — instead, we converge on light
+    shared habits: label work in the forge, write updates when users need to know, and keep system
+    pages honest about what is maintained and what needs help.
+  </p>
+  <p>
+    Content lives in the repository. Anyone in the collective edits markdown files, review happens in
+    the forge, and the site reflects what is in git.
+  </p>
+
+  <h2>Who we are</h2>
+  <p>
+    The collective is its members — people who build, operate, and steward the systems together.
+    Profiles carry org roles and group membership alongside per-system accountability.
+  </p>
+  <p><a href="{% url 'members_index' %}">See all members</a></p>
+
+  <h2>Board</h2>
+  {% if board_members %}
+    <ul class="member-list">
+      {% for member in board_members %}
+        <li>
+          <a href="{% url 'member_detail' member.username %}">{{ member.name }}</a>
+          <span class="member-meta">@{{ member.username }}</span>
+          {% if member.role %}<p class="member-org">{{ member.role }}</p>{% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No board members listed yet.</p>
+  {% endif %}
+
+  <p class="about-cta">
+    Curious about joining?
+    <a class="btn btn-primary" href="{% url 'join' %}">Get in touch</a>
+  </p>
+{% endblock %}

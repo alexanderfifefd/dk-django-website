@@ -1,5 +1,5 @@
 ---
 name: Max
 role: Technical Coordinator
-groups: [maintainers]
+groups: [board, maintainers]
 ---

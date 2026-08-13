@@ -34,10 +34,17 @@ class Member(models.Model):
 class System(models.Model):
     """Software the collective maintains, derived from ``system.md``."""
 
+    class Stage(models.TextChoices):
+        SUGGESTION = "suggestion", "Suggestion"
+        DEVELOPMENT = "development", "Development"
+        PRODUCTION = "production", "Production"
+
     slug = models.SlugField(unique=True)
     title = models.CharField(max_length=200)
     summary = models.TextField(blank=True)
     body_html = models.TextField()
+    stage = models.CharField(max_length=20, choices=Stage.choices, default=Stage.PRODUCTION)
+    url = models.URLField(blank=True)
     teamlead = models.ForeignKey(Member, on_delete=models.PROTECT, related_name="systems_led")
     admins = models.ManyToManyField(Member, related_name="systems_administered", blank=True)
     updates = models.JSONField(default=list, blank=True)

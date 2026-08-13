@@ -1,6 +1,8 @@
 ---
 title: Forgejo
 summary: Git hosting, code review, and issue tracking.
+stage: production
+url: forge.hornwitser.no
 teamlead: tormod
 admins: []
 ---

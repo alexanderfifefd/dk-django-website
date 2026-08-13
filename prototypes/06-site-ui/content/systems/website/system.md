@@ -1,6 +1,8 @@
 ---
 title: Website
 summary: The collective's public homepage.
+stage: development
+url: datakollektivet.no
 teamlead: alexanrf
 admins: [hornwitser]
 ---

@@ -23,10 +23,11 @@ the outcome in the plan and move the project to Completed.
 
 ### `site-ui` — how should we present systems, members, articles, and updates?
 
-**Status: active** — prototype built; UI and content work in progress.
+**Status: paused** — UI baseline validated (2026-08-12). Resume for content polish or forge surfaces.
 
 Authored content only (no forge). Markdown in git syncs to ORM via `pages/sources/`; dev middleware
-re-syncs on each request. Real collective data in place (9 members, 5 systems, groups, 1 article).
+re-syncs on each request. Real collective data: 9 members, 6 systems, 2 groups, 1 article. Site chrome,
+about/join pages, system `stage` and `url`, article layouts in place.
 
 - **Overview**: `docs/projects/site-ui/overview.md` — **start here for current state**
 - **Discussion**: `docs/projects/site-ui/discussions/ui-without-ingest.md` (original decision)
@@ -102,7 +103,30 @@ These are known unknowns. Each will likely become its own project.
 
 - **Draft preview**: drafts are simply not ingested; viewing one at its URL behind an explicit flag is
   unexplored.
-- **Media and assets**: images living next to the `.md` files that reference them.
+- **Media and assets**: images and other files living next to the `.md` files that reference them.
+  Site chrome (logo, CSS) stays in `static/`; author content stays in `content/`. Today
+  `render_markdown()` emits bare relative `<img src="…">` paths with no bridge to HTTP — they 404.
+  Likely a dedicated prototype (`07-media-assets` or similar). Open design choices:
+  - **Co-location** — e.g. `content/articles/<slug>/article.md` + `diagram.png`; markdown uses relative
+    paths.
+  - **Serve from git** — URL maps into `CONTENT_DIR`; ingest rewrites paths in `body_html` (no copy;
+    custom view + path safety).
+  - **Copy at sync** — `sync_content` mirrors assets into `static/content/…`; ingest rewrites to
+    static URLs (simpler serving, derived like the ORM).
+  - **Scope** — inline markdown images first; frontmatter assets (member avatar, system hero) can reuse
+    the same resolver.
+  - **Touched by** — `pages/sources/common.py` (`render_markdown` needs a source path), plus either a
+    content-media view or a sync copy step.
+- **Template tags and HTML components in markdown**: can authored content invoke Django template tags,
+  includes, or reusable HTML components (e.g. a callout box, CTA, stage badge) from inside `.md` files?
+  Today `body_html` is rendered markdown stored at sync time — no template pass on output. Open angles:
+  - **Shortcodes in markdown** — author writes `{% callout %}…{% /callout %}` or `:::note` syntax;
+    expanded at ingest or render time.
+  - **Post-sync template render** — treat stored HTML as a Django template fragment (security/sandbox
+    concerns for git-authored content).
+  - **Markdown extensions** — custom block types mapped to template partials.
+  - **Boundary** — what authors may use vs what stays in page templates; relationship to pure HTML
+    pages (Join, About) that skip markdown entirely.
 - **Scale**: parked. Never measured, not currently a priority.
 - **Forge content presentation**: prototype 04 syncs issues and PRs and renders plain linked lists.
   How to present them on the site is unresolved — e.g. promoting certain forge labels prominently

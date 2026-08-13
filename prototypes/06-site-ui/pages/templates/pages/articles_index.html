@@ -9,15 +9,17 @@
     <ul class="post-list">
       {% for article in articles %}
         <li>
-          <a href="{% url 'article_detail' article.slug %}">{{ article.title }}</a>
-          <time datetime="{{ article.date|date:'Y-m-d' }}">{{ article.date|date:"j F Y" }}</time>
-          <span class="post-meta">
-            by <a href="{% url 'member_detail' article.author.username %}">{{ article.author.name }}</a>
-            {% if article.system %}
-              · about <a href="{% url 'system_detail' article.system.slug %}">{{ article.system.title }}</a>
-            {% endif %}
-          </span>
+          <h2 class="post-list-title">
+            <a href="{% url 'article_detail' article.slug %}">{{ article.title }}</a>
+          </h2>
           {% if article.summary %}<p>{{ article.summary }}</p>{% endif %}
+          <div class="post-byline">
+            <time datetime="{{ article.date|date:'Y-m-d' }}">{{ article.date|date:"j F Y" }}</time>
+            <span class="post-meta">by <a href="{% url 'member_detail' article.author.username %}">{{ article.author.name }}</a></span>
+            {% if article.system %}
+              <a class="system-badge" href="{% url 'system_detail' article.system.slug %}">{{ article.system.title }}</a>
+            {% endif %}
+          </div>
         </li>
       {% endfor %}
     </ul>

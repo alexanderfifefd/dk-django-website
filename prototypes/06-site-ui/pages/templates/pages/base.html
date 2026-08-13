@@ -7,22 +7,12 @@
   <link rel="stylesheet" href="{% static 'css/site.css' %}">
 </head>
 <body>
-  <header class="site-header">
-    <a class="site-name" href="{% url 'home' %}">The Collective</a>
-    <nav>
-      <a href="{% url 'home' %}">Home</a>
-      <a href="{% url 'systems_index' %}">Systems</a>
-      <a href="{% url 'members_index' %}">Members</a>
-      <a href="{% url 'articles_index' %}">Articles</a>
-    </nav>
-  </header>
+  {% include "pages/includes/header.html" %}
 
   <main>
     {% block content %}{% endblock %}
   </main>
 
-  <footer class="site-footer">
-    <p>Prototype 06 — content synced from <code>content/</code> on each request in dev.</p>
-  </footer>
+  {% include "pages/includes/footer.html" %}
 </body>
 </html>

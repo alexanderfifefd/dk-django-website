@@ -1,3 +1,4 @@
 ---
 name: Daniel
+groups: [board]
 ---

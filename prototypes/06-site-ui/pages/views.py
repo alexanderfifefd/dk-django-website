@@ -3,28 +3,12 @@ from django.shortcuts import get_object_or_404, render
 from .models import Article, Member, System
 
 
-def _recent_updates(limit=5):
-    updates = []
-    for system in System.objects.all():
-        for item in system.updates:
-            updates.append(
-                {
-                    "date": item["date"],
-                    "kind": item["kind"],
-                    "message": item["message"],
-                    "system": system,
-                }
-            )
-    updates.sort(key=lambda item: item["date"], reverse=True)
-    return updates[:limit]
-
-
 def home(request):
     return render(
         request,
         "pages/home.html",
         {
-            "recent_updates": _recent_updates(),
+            "systems": System.objects.all(),
             "latest_articles": Article.objects.select_related("author", "system")[:3],
         },
     )
@@ -34,7 +18,7 @@ def systems_index(request):
     return render(
         request,
         "pages/systems_index.html",
-        {"systems": System.objects.select_related("teamlead")},
+        {"systems": System.objects.all()},
     )
 
 
@@ -84,3 +68,23 @@ def article_detail(request, slug):
         slug=slug,
     )
     return render(request, "pages/article_detail.html", {"article": article})
+
+
+def about(request):
+    return render(
+        request,
+        "pages/about.html",
+        {
+            "board_members": Member.objects.filter(active=True, groups__slug="board").order_by(
+                "username"
+            ),
+        },
+    )
+
+
+def join(request):
+    return render(
+        request,
+        "pages/join.html",
+        {"submitted": request.method == "POST"},
+    )

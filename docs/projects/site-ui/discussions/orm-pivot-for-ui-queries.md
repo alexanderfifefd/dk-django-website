@@ -74,6 +74,8 @@ article. Placeholder content from early prototyping was removed.
   rename (via temp name) if changing case
 - Unknown group slugs or member references fail sync loudly — fix the file, reload
 - Sync order: groups → members → systems → articles
+- **`stage` on systems** — `suggestion` | `development` | `production` in `system.md` frontmatter
+- **`url` on systems** — optional hostname or URL; ingest prepends `https://` when missing
 
 ## Related prototype files
 
@@ -83,11 +85,16 @@ prototypes/06-site-ui/
     members/<slug>.md, groups.yaml
     systems/<slug>/system.md, updates.json
     articles/<slug>.md
+  static/
+    css/site.css, img/logo-light-theme.png
   pages/
     models.py
     sources/          # groups, members, systems, updates, articles, sync
     middleware.py     # ContentSyncMiddleware (DEBUG)
     views.py          # ORM queries
+    templates/pages/
+      includes/header.html, includes/footer.html
+      home, about, join, …
 ```
 
 First-time setup: `uv sync`, `cd prototypes/06-site-ui`, `migrate`, `runserver`.

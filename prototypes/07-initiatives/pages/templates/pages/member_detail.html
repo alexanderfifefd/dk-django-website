@@ -1,0 +1,71 @@
+{% extends "pages/base.html" %}
+
+{% block title %}{{ member.name }} — The Collective{% endblock %}
+
+{% block content %}
+  <article class="post">
+    <header>
+      <h1>{{ member.name }}</h1>
+      <p class="lead">@{{ member.username }}</p>
+      {% if member.role or member.groups.all %}
+        <p class="member-org">
+          {% if member.role %}{{ member.role }}{% endif %}
+          {% if member.role and member.groups.all %} · {% endif %}
+          {% if member.groups.all %}
+            {% for group in member.groups.all %}{{ group.title }}{% if not forloop.last %}, {% endif %}{% endfor %}
+          {% endif %}
+        </p>
+      {% endif %}
+    </header>
+    {% if member.body_html %}
+      {{ member.body_html|safe }}
+    {% endif %}
+  </article>
+
+  <h2>Initiatives</h2>
+  {% if member.initiatives_led.all %}
+    <ul class="system-list">
+      {% for initiative in member.initiatives_led.all %}
+        <li><a href="{% url 'initiative_detail' initiative.slug %}">{{ initiative.title }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Does not lead any initiatives.</p>
+  {% endif %}
+
+  <h2>Leads</h2>
+  {% if member.systems_led.all %}
+    <ul class="system-list">
+      {% for system in member.systems_led.all %}
+        <li><a href="{% url 'system_detail' system.slug %}">{{ system.title }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Does not lead any systems.</p>
+  {% endif %}
+
+  <h2>Administers</h2>
+  {% if member.systems_administered.all %}
+    <ul class="system-list">
+      {% for system in member.systems_administered.all %}
+        <li><a href="{% url 'system_detail' system.slug %}">{{ system.title }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Does not administer any systems.</p>
+  {% endif %}
+
+  <h2>Articles</h2>
+  {% if member.articles.all %}
+    <ul class="post-list">
+      {% for article in member.articles.all %}
+        <li>
+          <a href="{% url 'article_detail' article.slug %}">{{ article.title }}</a>
+          <time datetime="{{ article.date|date:'Y-m-d' }}">{{ article.date|date:"j F Y" }}</time>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Has not written any articles.</p>
+  {% endif %}
+{% endblock %}

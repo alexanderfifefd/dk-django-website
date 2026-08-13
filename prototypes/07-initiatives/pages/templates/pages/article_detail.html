@@ -1,0 +1,33 @@
+{% extends "pages/base.html" %}
+
+{% block title %}{{ article.title }} — The Collective{% endblock %}
+
+{% block content %}
+  <article class="post">
+    <header class="post-header">
+      <h1>{{ article.title }}</h1>
+      <p class="post-meta">
+        <time datetime="{{ article.date|date:'Y-m-d' }}">{{ article.date|date:"j F Y" }}</time>
+        <span class="post-meta-sep" aria-hidden="true">·</span>
+        <span>by <a href="{% url 'member_detail' article.author.username %}">{{ article.author.name }}</a></span>
+        {% if article.system %}
+          <span class="post-meta-sep" aria-hidden="true">·</span>
+          <a class="system-badge" href="{% url 'system_detail' article.system.slug %}">{{ article.system.title }}</a>
+        {% endif %}
+        {% if article.initiative %}
+          <span class="post-meta-sep" aria-hidden="true">·</span>
+          <a class="initiative-badge" href="{% url 'initiative_detail' article.initiative.slug %}">{{ article.initiative.title }}</a>
+        {% endif %}
+      </p>
+    </header>
+
+    {% if article.summary %}
+      <p class="post-deck">{{ article.summary }}</p>
+    {% endif %}
+
+    <div class="post-body">
+      {{ article.body_html|safe }}
+    </div>
+  </article>
+  <p class="post-back"><a href="{% url 'articles_index' %}">&larr; All articles</a></p>
+{% endblock %}

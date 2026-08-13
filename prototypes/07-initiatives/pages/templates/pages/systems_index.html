@@ -1,0 +1,25 @@
+{% extends "pages/base.html" %}
+
+{% block title %}Systems — The Collective{% endblock %}
+
+{% block content %}
+  <h1>Systems</h1>
+  <p class="lead">Software the collective builds and operates.</p>
+
+  {% if systems %}
+    <ul class="system-list">
+      {% for system in systems %}
+        <li>
+          <a href="{% url 'system_detail' system.slug %}">{{ system.title }}</a>
+          <span class="stage-badge stage-badge-{{ system.stage }}">{{ system.get_stage_display }}</span>
+          {% if system.url %}
+            <a class="system-url" href="{{ system.url }}" rel="noopener noreferrer">{{ system.url|cut:"https://" }}</a>
+          {% endif %}
+          {% if system.summary %}<p>{{ system.summary }}</p>{% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No systems yet — add a folder under <code>content/systems/</code>.</p>
+  {% endif %}
+{% endblock %}

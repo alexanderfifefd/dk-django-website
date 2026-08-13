@@ -1,0 +1,81 @@
+{% extends "pages/base.html" %}
+
+{% block title %}{{ system.title }} — The Collective{% endblock %}
+
+{% block content %}
+  <article class="post system-page">
+    <div class="system-header">
+      <div class="system-intro">
+        <h1>{{ system.title }}</h1>
+        {% if system.summary %}<p class="lead">{{ system.summary }}</p>{% endif %}
+      </div>
+      <aside class="system-details" aria-label="System details">
+        <dl class="system-meta">
+          <div class="system-meta-item">
+            <dt>Stage</dt>
+            <dd><span class="stage-badge stage-badge-{{ system.stage }}">{{ system.get_stage_display }}</span></dd>
+          </div>
+          {% if system.url %}
+            <div class="system-meta-item">
+              <dt>URL</dt>
+              <dd><a href="{{ system.url }}" rel="noopener noreferrer">{{ system.url|cut:"https://" }}</a></dd>
+            </div>
+          {% endif %}
+          <div class="system-meta-item">
+            <dt>Teamlead</dt>
+            <dd><a href="{% url 'member_detail' system.teamlead.username %}">{{ system.teamlead.name }}</a></dd>
+          </div>
+          {% if system.admins.all %}
+            <div class="system-meta-item">
+              <dt>Admins</dt>
+              <dd>
+                {% for admin in system.admins.all %}
+                  <a href="{% url 'member_detail' admin.username %}">{{ admin.name }}</a>{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+              </dd>
+            </div>
+          {% endif %}
+        </dl>
+      </aside>
+    </div>
+
+    <div class="system-body">
+      {{ system.body_html|safe }}
+    </div>
+
+    <section class="system-section">
+      <h2>Updates</h2>
+      {% if system.updates %}
+        <ul class="update-list">
+          {% for update in system.updates %}
+            <li>
+              <span class="update-kind">{{ update.kind }}</span>
+              <time datetime="{{ update.date }}">{{ update.date }}</time>
+              <p>{{ update.message }}</p>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No updates for this system.</p>
+      {% endif %}
+    </section>
+
+    <section class="system-section">
+      <h2>Related articles</h2>
+      {% if system.articles.all %}
+        <ul class="post-list">
+          {% for article in system.articles.all %}
+            <li>
+              <a href="{% url 'article_detail' article.slug %}">{{ article.title }}</a>
+              by <a href="{% url 'member_detail' article.author.username %}">{{ article.author.name }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No articles about this system yet.</p>
+      {% endif %}
+    </section>
+
+    <p class="system-back"><a href="{% url 'systems_index' %}">&larr; All systems</a></p>
+  </article>
+{% endblock %}

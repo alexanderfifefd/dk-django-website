@@ -21,6 +21,19 @@ the outcome in the plan and move the project to Completed.
 
 ## Active
 
+### `initiatives` — how should we represent goal-oriented efforts on the site?
+
+**Status: in progress** — prototype 07 forked from 06 (2026-08-13).
+
+Initiatives are distinct from systems: goal-oriented efforts with taker(s), status, and authored updates.
+Fork of prototype 06; English slugs and copy; Systems + Initiatives in left nav. Git authoring only — no
+creation form.
+
+- **Overview**: `docs/projects/initiatives/overview.md` — **start here**
+- **Discussion**: `docs/projects/initiatives/discussions/initiatives-as-a-noun.md`
+- **Plan**: `docs/projects/initiatives/plans/2026-08-13-prototype-07-initiatives.md`
+- **Prototype**: `prototypes/07-initiatives/`
+
 ### `site-ui` — how should we present systems, members, articles, and updates?
 
 **Status: paused** — UI baseline validated (2026-08-12). Resume for content polish or forge surfaces.

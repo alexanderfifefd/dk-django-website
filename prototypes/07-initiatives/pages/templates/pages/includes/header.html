@@ -1,0 +1,15 @@
+{% load static %}
+<header class="site-header">
+  <nav class="site-nav site-nav-start" aria-label="Sections">
+    <a href="{% url 'systems_index' %}">Systems</a>
+    <a href="{% url 'initiatives_index' %}">Initiatives</a>
+  </nav>
+  <a class="site-logo" href="{% url 'home' %}">
+    <img src="{% static 'img/logo-light-theme.png' %}" alt="datakollektivet">
+  </a>
+  <nav class="site-nav site-nav-end" aria-label="More">
+    <a href="{% url 'articles_index' %}">Articles</a>
+    <a href="{% url 'about' %}">About</a>
+    <a class="nav-join btn btn-primary" href="{% url 'join' %}">Join</a>
+  </nav>
+</header>

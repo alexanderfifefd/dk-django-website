@@ -1,0 +1,43 @@
+{% extends "pages/base.html" %}
+
+{% block title %}Join — The Collective{% endblock %}
+
+{% block content %}
+  <h1>Join the collective</h1>
+  <p class="lead">
+    Interested in building and maintaining software together? Tell us a bit about yourself.
+    This isn't account signup — we'll reach out if there's a good fit.
+  </p>
+
+  {% if submitted %}
+    <p class="join-notice">Thanks for your interest. This prototype doesn't send submissions anywhere yet.</p>
+  {% else %}
+    <form class="join-form" method="post" action="">
+      {% csrf_token %}
+      <p>
+        <label for="nick">Nick</label>
+        <input id="nick" name="nick" type="text" autocomplete="username" required
+               placeholder="lowercase handle, e.g. alexanrf">
+        <span class="field-hint">What you'd like to go by in git, chat, and on the site.</span>
+      </p>
+      <p>
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" autocomplete="name" required
+               placeholder="Your name">
+      </p>
+      <p>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" required
+               placeholder="you@example.com">
+      </p>
+      <p>
+        <label for="interest">What interests you?</label>
+        <textarea id="interest" name="interest" rows="4"
+                  placeholder="Systems you care about, how you'd like to contribute, questions…"></textarea>
+      </p>
+      <p>
+        <button type="submit" class="btn btn-primary">Send interest</button>
+      </p>
+    </form>
+  {% endif %}
+{% endblock %}

@@ -1,8 +1,14 @@
 {% load static %}
 <header class="site-header">
   <nav class="site-nav site-nav-start" aria-label="Sections">
-    <a href="{% url 'systems_index' %}">Systems</a>
-    <a href="{% url 'initiatives_index' %}">Initiatives</a>
+    <a class="nav-noun nav-noun-system" href="{% url 'systems_index' %}">
+      {% include "pages/includes/icon-system.html" %}
+      Systems
+    </a>
+    <a class="nav-noun nav-noun-initiative" href="{% url 'initiatives_index' %}">
+      {% include "pages/includes/icon-initiative.html" %}
+      Initiatives
+    </a>
   </nav>
   <a class="site-logo" href="{% url 'home' %}">
     <img src="{% static 'img/logo-light-theme.png' %}" alt="datakollektivet">

@@ -17,10 +17,16 @@
             <time datetime="{{ article.date|date:'Y-m-d' }}">{{ article.date|date:"j F Y" }}</time>
             <span class="post-meta">by <a href="{% url 'member_detail' article.author.username %}">{{ article.author.name }}</a></span>
             {% if article.system %}
-              <a class="system-badge" href="{% url 'system_detail' article.system.slug %}">{{ article.system.title }}</a>
+              <a class="system-badge" href="{% url 'system_detail' article.system.slug %}">
+                {% include "pages/includes/icon-system.html" %}
+                {{ article.system.title }}
+              </a>
             {% endif %}
             {% if article.initiative %}
-              <a class="initiative-badge" href="{% url 'initiative_detail' article.initiative.slug %}">{{ article.initiative.title }}</a>
+              <a class="initiative-badge" href="{% url 'initiative_detail' article.initiative.slug %}">
+                {% include "pages/includes/icon-initiative.html" %}
+                {{ article.initiative.title }}
+              </a>
             {% endif %}
           </div>
         </li>

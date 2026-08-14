@@ -3,8 +3,14 @@
 {% block title %}Systems — The Collective{% endblock %}
 
 {% block content %}
-  <h1>Systems</h1>
-  <p class="lead">Software the collective builds and operates.</p>
+  <header class="index-header index-header-system">
+    <p class="noun-eyebrow noun-eyebrow-system">
+      {% include "pages/includes/icon-system.html" %}
+      System
+    </p>
+    <h1>Systems</h1>
+    <p class="lead">Software the collective builds and operates.</p>
+  </header>
 
   {% if systems %}
     <ul class="system-list">
@@ -20,6 +26,6 @@
       {% endfor %}
     </ul>
   {% else %}
-    <p>No systems yet — add a folder under <code>content/systems/</code>.</p>
+    <p>No systems yet.</p>
   {% endif %}
 {% endblock %}

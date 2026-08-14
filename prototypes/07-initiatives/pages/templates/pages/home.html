@@ -11,43 +11,58 @@
     </p>
   </section>
 
-  <section class="home-section">
-    <div class="section-heading">
-      <h2>Systems</h2>
-      <a class="section-link" href="{% url 'systems_index' %}">View all</a>
+  <section class="home-section home-section-split home-section-split-system">
+    <div class="home-section-copy">
+      <h2 class="section-heading-noun section-heading-noun-system">
+        {% include "pages/includes/icon-system.html" %}
+        Systems
+      </h2>
+      <p class="section-intro">Software and services the collective builds and runs — identity, communication, the forge, and the public site. Each system has a team behind it and a page where you can see who is accountable and what is going on.</p>
     </div>
-    {% if systems %}
-      <ul class="system-list">
-        {% for system in systems %}
-          <li>
-            <a href="{% url 'system_detail' system.slug %}">{{ system.title }}</a>
-            {% if system.summary %}<p>{{ system.summary }}</p>{% endif %}
+    <div class="home-section-items">
+      {% if featured_systems %}
+        <ul class="system-list">
+          {% for system in featured_systems %}
+            <li>
+              <a href="{% url 'system_detail' system.slug %}">{{ system.title }}</a>
+              {% if system.summary %}<p>{{ system.summary }}</p>{% endif %}
+            </li>
+          {% endfor %}
+          <li class="system-list-more">
+            <a href="{% url 'systems_index' %}">All systems <span aria-hidden="true">→</span></a>
           </li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p>No systems yet.</p>
-    {% endif %}
+        </ul>
+      {% else %}
+        <p class="home-section-empty">No systems yet.</p>
+      {% endif %}
+    </div>
   </section>
 
-  <section class="home-section">
-    <div class="section-heading">
-      <h2>Initiatives</h2>
-      <a class="section-link" href="{% url 'initiatives_index' %}">View all</a>
+  <section class="home-section home-section-split home-section-split-initiative">
+    <div class="home-section-copy">
+      <h2 class="section-heading-noun section-heading-noun-initiative">
+        {% include "pages/includes/icon-initiative.html" %}
+        Initiatives
+      </h2>
+      <p class="section-intro">Goals members drive forward — governance, onboarding, shipping something new. An initiative lifts work up so others can see what is happening, weigh in, or join.</p>
     </div>
-    {% if initiatives %}
-      <ul class="system-list">
-        {% for initiative in initiatives %}
-          <li>
-            <a href="{% url 'initiative_detail' initiative.slug %}">{{ initiative.title }}</a>
-            <span class="status-badge status-badge-{{ initiative.status }}">{{ initiative.get_status_display }}</span>
-            {% if initiative.summary %}<p>{{ initiative.summary }}</p>{% endif %}
+    <div class="home-section-items">
+      {% if featured_initiatives %}
+        <ul class="system-list">
+          {% for initiative in featured_initiatives %}
+            <li>
+              <a href="{% url 'initiative_detail' initiative.slug %}">{{ initiative.title }}</a>
+              {% if initiative.summary %}<p>{{ initiative.summary }}</p>{% endif %}
+            </li>
+          {% endfor %}
+          <li class="system-list-more system-list-more-initiative">
+            <a href="{% url 'initiatives_index' %}">All initiatives <span aria-hidden="true">→</span></a>
           </li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p>No active initiatives.</p>
-    {% endif %}
+        </ul>
+      {% else %}
+        <p class="home-section-empty">No active initiatives.</p>
+      {% endif %}
+    </div>
   </section>
 
   <section class="home-section">
@@ -61,10 +76,16 @@
           <li>
             <a href="{% url 'article_detail' article.slug %}">{{ article.title }}</a>
             {% if article.system %}
-              <a class="system-badge" href="{% url 'system_detail' article.system.slug %}">{{ article.system.title }}</a>
+              <a class="system-badge" href="{% url 'system_detail' article.system.slug %}">
+                {% include "pages/includes/icon-system.html" %}
+                {{ article.system.title }}
+              </a>
             {% endif %}
             {% if article.initiative %}
-              <a class="initiative-badge" href="{% url 'initiative_detail' article.initiative.slug %}">{{ article.initiative.title }}</a>
+              <a class="initiative-badge" href="{% url 'initiative_detail' article.initiative.slug %}">
+                {% include "pages/includes/icon-initiative.html" %}
+                {{ article.initiative.title }}
+              </a>
             {% endif %}
             <time datetime="{{ article.date|date:'Y-m-d' }}">{{ article.date|date:"j F Y" }}</time>
             {% if article.summary %}<p>{{ article.summary }}</p>{% endif %}

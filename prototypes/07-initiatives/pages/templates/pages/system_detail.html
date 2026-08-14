@@ -3,7 +3,11 @@
 {% block title %}{{ system.title }} — The Collective{% endblock %}
 
 {% block content %}
-  <article class="post system-page">
+  <article class="post noun-page noun-page-system">
+    <p class="noun-eyebrow noun-eyebrow-system">
+      {% include "pages/includes/icon-system.html" %}
+      System
+    </p>
     <div class="system-header">
       <div class="system-intro">
         <h1>{{ system.title }}</h1>
@@ -44,7 +48,7 @@
     </div>
 
     <section class="system-section">
-      <h2>Updates</h2>
+      <h2>Operational updates</h2>
       {% if system.updates %}
         <ul class="update-list">
           {% for update in system.updates %}

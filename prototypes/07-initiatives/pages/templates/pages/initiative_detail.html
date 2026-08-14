@@ -3,70 +3,58 @@
 {% block title %}{{ initiative.title }} — The Collective{% endblock %}
 
 {% block content %}
-  <article class="post system-page">
-    <div class="system-header">
-      <div class="system-intro">
-        <h1>{{ initiative.title }}</h1>
-        {% if initiative.summary %}<p class="lead">{{ initiative.summary }}</p>{% endif %}
+  <article class="post noun-page noun-page-initiative">
+    <p class="noun-eyebrow noun-eyebrow-initiative">
+      {% include "pages/includes/icon-initiative.html" %}
+      Initiative
+    </p>
+
+    <header class="initiative-hero">
+      <h1>{{ initiative.title }}</h1>
+      {% if initiative.summary %}<p class="lead">{{ initiative.summary }}</p>{% endif %}
+      <div class="initiative-timespan">
+        <time datetime="{{ initiative.start_date|date:'Y-m-d' }}">{{ initiative.start_date|date:"j F Y" }}</time>
+        <span class="initiative-timespan-sep" aria-hidden="true">–</span>
+        {% if initiative.end_date %}
+          <time datetime="{{ initiative.end_date|date:'Y-m-d' }}">{{ initiative.end_date|date:"j F Y" }}</time>
+        {% else %}
+          <span>present</span>
+        {% endif %}
+        <span class="status-badge status-badge-{{ initiative.status }}">{{ initiative.get_status_display }}</span>
       </div>
-      <aside class="system-details" aria-label="Initiative details">
-        <dl class="system-meta">
-          <div class="system-meta-item">
-            <dt>Status</dt>
-            <dd><span class="status-badge status-badge-{{ initiative.status }}">{{ initiative.get_status_display }}</span></dd>
-          </div>
-          <div class="system-meta-item">
-            <dt>Started</dt>
-            <dd><time datetime="{{ initiative.start_date|date:'Y-m-d' }}">{{ initiative.start_date|date:"j F Y" }}</time></dd>
-          </div>
-          {% if initiative.end_date %}
-            <div class="system-meta-item">
-              <dt>Ended</dt>
-              <dd><time datetime="{{ initiative.end_date|date:'Y-m-d' }}">{{ initiative.end_date|date:"j F Y" }}</time></dd>
-            </div>
-          {% endif %}
-          {% if initiative.takers.all %}
-            <div class="system-meta-item">
-              <dt>Takers</dt>
-              <dd>
-                {% for taker in initiative.takers.all %}
-                  <a href="{% url 'member_detail' taker.username %}">{{ taker.name }}</a>{% if not forloop.last %}, {% endif %}
-                {% endfor %}
-              </dd>
-            </div>
-          {% endif %}
-          {% if initiative.systems.all %}
-            <div class="system-meta-item">
-              <dt>Systems</dt>
-              <dd>
-                {% for system in initiative.systems.all %}
-                  <a href="{% url 'system_detail' system.slug %}">{{ system.title }}</a>{% if not forloop.last %}, {% endif %}
-                {% endfor %}
-              </dd>
-            </div>
-          {% endif %}
+      {% if initiative.takers.all %}
+        <p class="initiative-takers">
+          Led by
+          {% for taker in initiative.takers.all %}
+            <a href="{% url 'member_detail' taker.username %}">{{ taker.name }}</a>{% if not forloop.last %}, {% endif %}
+          {% endfor %}
+        </p>
+      {% endif %}
+    </header>
+
+    {% if initiative.loomio_url or initiative.matrix_room or initiative.systems.all %}
+      <aside class="initiative-involve" aria-label="Get involved">
+        <h2 class="initiative-involve-title">Get involved</h2>
+        <ul class="initiative-involve-list">
           {% if initiative.loomio_url %}
-            <div class="system-meta-item">
-              <dt>Loomio</dt>
-              <dd><a href="{{ initiative.loomio_url }}" rel="noopener noreferrer">{{ initiative.loomio_url|cut:"https://" }}</a></dd>
-            </div>
+            <li><a href="{{ initiative.loomio_url }}" rel="noopener noreferrer">Discuss on Loomio</a></li>
           {% endif %}
           {% if initiative.matrix_room %}
-            <div class="system-meta-item">
-              <dt>Matrix</dt>
-              <dd><code>{{ initiative.matrix_room }}</code></dd>
-            </div>
+            <li>Matrix: <code>{{ initiative.matrix_room }}</code></li>
           {% endif %}
-        </dl>
+          {% for system in initiative.systems.all %}
+            <li>Related system: <a href="{% url 'system_detail' system.slug %}">{{ system.title }}</a></li>
+          {% endfor %}
+        </ul>
       </aside>
-    </div>
+    {% endif %}
 
-    <div class="system-body">
+    <div class="initiative-body">
       {{ initiative.body_html|safe }}
     </div>
 
-    <section class="system-section">
-      <h2>Updates</h2>
+    <section class="initiative-section">
+      <h2>Progress</h2>
       {% if initiative.updates %}
         <ul class="update-list">
           {% for update in initiative.updates %}
@@ -78,11 +66,11 @@
           {% endfor %}
         </ul>
       {% else %}
-        <p>No updates for this initiative.</p>
+        <p>No progress updates yet.</p>
       {% endif %}
     </section>
 
-    <section class="system-section">
+    <section class="initiative-section">
       <h2>Related articles</h2>
       {% if initiative.articles.all %}
         <ul class="post-list">
@@ -98,6 +86,6 @@
       {% endif %}
     </section>
 
-    <p class="system-back"><a href="{% url 'initiatives_index' %}">&larr; All initiatives</a></p>
+    <p class="initiative-back"><a href="{% url 'initiatives_index' %}">&larr; All initiatives</a></p>
   </article>
 {% endblock %}

@@ -4,17 +4,19 @@ from .models import Article, Initiative, Member, System
 
 
 def home(request):
+    systems = System.objects.all()
+    initiatives = Initiative.objects.filter(
+        status__in=[
+            Initiative.Status.ACTIVE,
+            Initiative.Status.SEEKING_CONTRIBUTORS,
+        ]
+    ).prefetch_related("takers").order_by("-start_date", "slug")
     return render(
         request,
         "pages/home.html",
         {
-            "systems": System.objects.all(),
-            "initiatives": Initiative.objects.filter(
-                status__in=[
-                    Initiative.Status.ACTIVE,
-                    Initiative.Status.SEEKING_CONTRIBUTORS,
-                ]
-            ).prefetch_related("takers"),
+            "featured_systems": systems[:3],
+            "featured_initiatives": initiatives[:3],
             "latest_articles": Article.objects.select_related(
                 "author", "system", "initiative"
             )[:3],

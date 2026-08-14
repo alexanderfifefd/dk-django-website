@@ -31,12 +31,15 @@ class Member(models.Model):
         return self.username
 
 
+class Recruiting(models.TextChoices):
+    OPEN = "open", "Open"
+
+
 class Initiative(models.Model):
     """Goal-oriented effort, derived from ``content/initiatives/<slug>/initiative.md``."""
 
     class Status(models.TextChoices):
-        PROPOSAL = "proposal", "Proposal"
-        SEEKING_CONTRIBUTORS = "seeking-contributors", "Seeking contributors"
+        PROPOSED = "proposed", "Proposed"
         ACTIVE = "active", "Active"
         PAUSED = "paused", "Paused"
         COMPLETED = "completed", "Completed"
@@ -46,6 +49,9 @@ class Initiative(models.Model):
     summary = models.TextField(blank=True)
     body_html = models.TextField()
     status = models.CharField(max_length=30, choices=Status.choices, default=Status.ACTIVE)
+    recruiting = models.CharField(
+        max_length=20, choices=Recruiting.choices, blank=True, default=""
+    )
     start_date = models.DateField()
     end_date = models.DateField(null=True, blank=True)
     loomio_url = models.URLField(blank=True)
@@ -65,7 +71,7 @@ class System(models.Model):
     """Software the collective maintains, derived from ``system.md``."""
 
     class Stage(models.TextChoices):
-        SUGGESTION = "suggestion", "Suggestion"
+        IDEA = "idea", "Idea"
         DEVELOPMENT = "development", "Development"
         PRODUCTION = "production", "Production"
 
@@ -74,6 +80,9 @@ class System(models.Model):
     summary = models.TextField(blank=True)
     body_html = models.TextField()
     stage = models.CharField(max_length=20, choices=Stage.choices, default=Stage.PRODUCTION)
+    recruiting = models.CharField(
+        max_length=20, choices=Recruiting.choices, blank=True, default=""
+    )
     url = models.URLField(blank=True)
     teamlead = models.ForeignKey(Member, on_delete=models.PROTECT, related_name="systems_led")
     admins = models.ManyToManyField(Member, related_name="systems_administered", blank=True)

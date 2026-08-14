@@ -8,7 +8,7 @@ from typing import Literal
 import frontmatter
 from django.conf import settings
 from django.db import transaction
-from pydantic import BaseModel, ConfigDict, Field, ValidationError
+from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_validator
 
 from pages.models import Member, System
 from pages.sources import updates
@@ -22,7 +22,33 @@ from pages.sources.common import (
 )
 
 
-SystemStage = Literal["suggestion", "development", "production"]
+SystemStage = Literal["idea", "development", "production"]
+RecruitingStatus = Literal["open"]
+
+
+def normalize_stage(stage: str) -> str:
+    if stage == "suggestion":
+        return "idea"
+    return stage
+
+
+class SystemFrontmatter(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    title: str
+    summary: str = ""
+    stage: SystemStage = "production"
+    recruiting: RecruitingStatus | None = None
+    url: str = ""
+    teamlead: str
+    admins: list[str] = Field(default_factory=list)
+
+    @field_validator("stage", mode="before")
+    @classmethod
+    def _normalize_stage(cls, value: object) -> object:
+        if isinstance(value, str):
+            return normalize_stage(value)
+        return value
 
 
 def normalize_url(url: str) -> str:
@@ -32,17 +58,6 @@ def normalize_url(url: str) -> str:
     if "://" not in url:
         return f"https://{url}"
     return url
-
-
-class SystemFrontmatter(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-
-    title: str
-    summary: str = ""
-    stage: SystemStage = "production"
-    url: str = ""
-    teamlead: str
-    admins: list[str] = Field(default_factory=list)
 
 
 @dataclass(frozen=True)
@@ -114,6 +129,7 @@ def sync_systems(records: list[SystemRecord], members: dict[str, Member]) -> Syn
                     "title": record.meta.title,
                     "summary": record.meta.summary,
                     "stage": record.meta.stage,
+                    "recruiting": record.meta.recruiting or "",
                     "url": record.meta.url,
                     "body_html": record.body_html,
                     "teamlead": members[record.meta.teamlead],

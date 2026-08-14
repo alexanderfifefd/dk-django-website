@@ -3,7 +3,8 @@
 **Question:** How should we represent initiatives — goal-oriented efforts someone drives forward, not
 necessarily tied to a single system — in the site's information architecture and content model?
 
-**Status:** In progress — prototype 07 forked from 06 (2026-08-13).
+**Status:** In progress — prototype 07 forked from 06 (2026-08-13); lifecycle/recruiting split
+(2026-08-14). See [lifecycle-and-recruiting.md](./discussions/lifecycle-and-recruiting.md).
 
 **Prototype:** `prototypes/07-initiatives/`
 
@@ -12,13 +13,18 @@ necessarily tied to a single system — in the site's information architecture a
 ## Summary
 
 Systems are *what we operate*; initiatives are *what we're trying to accomplish*. An initiative has
-taker(s), status, optional related systems, authored updates, and optional Loomio/Matrix links. Articles
-can link to an initiative and/or a system. Forge activity stays system-scoped.
+taker(s), lifecycle **status**, optional **recruiting**, optional related systems, authored updates, and
+optional Loomio/Matrix links. Articles can link to an initiative and/or a system. Index pages group by
+lifecycle (initiatives: active → proposed → completed/paused; systems: production → development →
+ideas). The shared `recruiting: open` field syncs from git but **recruiting UI is deferred** — see
+[lifecycle-and-recruiting.md](./discussions/lifecycle-and-recruiting.md). Forge activity stays
+system-scoped.
 
 ## How to read this project
 
 1. [initiatives-as-a-noun.md](./discussions/initiatives-as-a-noun.md) — definitions and decisions
-2. [2026-08-13-prototype-07-initiatives.md](./plans/2026-08-13-prototype-07-initiatives.md) — **plan and
+2. [lifecycle-and-recruiting.md](./discussions/lifecycle-and-recruiting.md) — lifecycle vs recruiting split
+3. [2026-08-13-prototype-07-initiatives.md](./plans/2026-08-13-prototype-07-initiatives.md) — **plan and
    build checklist**
 
 ## File index
@@ -28,6 +34,7 @@ can link to an initiative and/or a system. Forge activity stays system-scoped.
 | File | Summary |
 |---|---|
 | [initiatives-as-a-noun.md](./discussions/initiatives-as-a-noun.md) | Initiative vs system, updates, status model, nav, decisions |
+| [lifecycle-and-recruiting.md](./discussions/lifecycle-and-recruiting.md) | Split lifecycle from recruiting; shared `recruiting: open` field |
 
 ### Plans
 

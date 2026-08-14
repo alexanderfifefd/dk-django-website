@@ -22,9 +22,16 @@ from pages.sources.common import (
 )
 
 
-InitiativeStatus = Literal[
-    "proposal", "seeking-contributors", "active", "paused", "completed"
-]
+InitiativeStatus = Literal["proposed", "active", "paused", "completed"]
+RecruitingStatus = Literal["open"]
+
+
+def normalize_status(status: str) -> str:
+    if status == "proposal":
+        return "proposed"
+    if status == "seeking-contributors":
+        return "active"
+    return status
 
 
 class InitiativeFrontmatter(BaseModel):
@@ -33,12 +40,20 @@ class InitiativeFrontmatter(BaseModel):
     title: str
     summary: str = ""
     status: InitiativeStatus = "active"
+    recruiting: RecruitingStatus | None = None
     start_date: dt.date
     end_date: dt.date | None = None
     takers: list[str] = Field(default_factory=list)
     systems: list[str] = Field(default_factory=list)
     loomio: str = ""
     matrix: str = ""
+
+    @field_validator("status", mode="before")
+    @classmethod
+    def _normalize_status(cls, value: object) -> object:
+        if isinstance(value, str):
+            return normalize_status(value)
+        return value
 
     @field_validator("start_date", "end_date", mode="before")
     @classmethod
@@ -60,6 +75,7 @@ class InitiativeRecord:
     meta: InitiativeFrontmatter
     body_html: str
     updates: list[dict[str, str]]
+    legacy_recruiting: bool = False
 
 
 def load_initiatives(
@@ -96,6 +112,9 @@ def _load_initiative(
         return None
 
     parsed = frontmatter.load(path)
+    raw_status = parsed.metadata.get("status", "active")
+    legacy_recruiting = raw_status == "seeking-contributors"
+
     try:
         meta = InitiativeFrontmatter.model_validate(parsed.metadata)
     except ValidationError as exc:
@@ -123,6 +142,7 @@ def _load_initiative(
         meta=meta,
         body_html=render_markdown(parsed.content),
         updates=loaded_updates,
+        legacy_recruiting=legacy_recruiting,
     )
 
 
@@ -131,12 +151,17 @@ def sync_initiatives(
 ) -> SyncResult:
     with transaction.atomic():
         for record in records:
+            recruiting = record.meta.recruiting or ""
+            if record.legacy_recruiting:
+                recruiting = "open"
+
             initiative, _ = Initiative.objects.update_or_create(
                 slug=record.slug,
                 defaults={
                     "title": record.meta.title,
                     "summary": record.meta.summary,
                     "status": record.meta.status,
+                    "recruiting": recruiting,
                     "start_date": record.meta.start_date,
                     "end_date": record.meta.end_date,
                     "body_html": record.body_html,

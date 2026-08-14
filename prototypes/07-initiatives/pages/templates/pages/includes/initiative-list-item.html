@@ -1,0 +1,32 @@
+<li>
+  <h2 class="post-list-title">
+    <a href="{% url 'initiative_detail' initiative.slug %}">{{ initiative.title }}</a>
+  </h2>
+  {% if initiative.summary %}<p>{{ initiative.summary }}</p>{% endif %}
+  <div class="post-byline">
+    <time datetime="{{ initiative.start_date|date:'Y-m-d' }}">{{ initiative.start_date|date:"j F Y" }}</time>
+    {% if initiative.end_date %}
+      <span class="post-meta-sep" aria-hidden="true">–</span>
+      <time datetime="{{ initiative.end_date|date:'Y-m-d' }}">{{ initiative.end_date|date:"j F Y" }}</time>
+    {% else %}
+      <span class="post-meta-sep" aria-hidden="true">–</span>
+      <span class="post-meta">present</span>
+    {% endif %}
+    {% if initiative.takers.all %}
+      <span class="post-meta-sep" aria-hidden="true">·</span>
+      <span class="post-meta">
+        led by
+        {% for taker in initiative.takers.all %}
+          <a href="{% url 'member_detail' taker.username %}">{{ taker.name }}</a>{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+      </span>
+    {% endif %}
+    <span class="status-badge status-badge-{{ initiative.status }}">{{ initiative.get_status_display }}</span>
+    {% for system in initiative.systems.all %}
+      <a class="system-badge" href="{% url 'system_detail' system.slug %}">
+        {% include "pages/includes/icon-system.html" %}
+        {{ system.title }}
+      </a>
+    {% endfor %}
+  </div>
+</li>

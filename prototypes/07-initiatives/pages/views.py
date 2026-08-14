@@ -1,21 +1,51 @@
+from django.db.models import Case, IntegerField, Value, When
 from django.shortcuts import get_object_or_404, render
 
 from .models import Article, Initiative, Member, System
 
+INITIATIVE_STATUS_ORDER = Case(
+    When(status=Initiative.Status.ACTIVE, then=Value(0)),
+    When(status=Initiative.Status.PROPOSED, then=Value(1)),
+    When(status=Initiative.Status.COMPLETED, then=Value(2)),
+    When(status=Initiative.Status.PAUSED, then=Value(3)),
+    default=Value(99),
+    output_field=IntegerField(),
+)
+
+SYSTEM_STAGE_ORDER = Case(
+    When(stage=System.Stage.PRODUCTION, then=Value(0)),
+    When(stage=System.Stage.DEVELOPMENT, then=Value(1)),
+    When(stage=System.Stage.IDEA, then=Value(2)),
+    default=Value(99),
+    output_field=IntegerField(),
+)
+
+
+def _initiative_queryset():
+    return Initiative.objects.prefetch_related("takers", "systems").order_by(
+        INITIATIVE_STATUS_ORDER,
+        "-start_date",
+        "slug",
+    )
+
+
+def _system_queryset():
+    return System.objects.select_related("teamlead").order_by(
+        SYSTEM_STAGE_ORDER,
+        "slug",
+    )
+
 
 def home(request):
-    systems = System.objects.all()
-    initiatives = Initiative.objects.filter(
-        status__in=[
-            Initiative.Status.ACTIVE,
-            Initiative.Status.SEEKING_CONTRIBUTORS,
-        ]
-    ).prefetch_related("takers").order_by("-start_date", "slug")
+    systems = _system_queryset()
+    initiatives = _initiative_queryset().filter(status=Initiative.Status.ACTIVE)
     return render(
         request,
         "pages/home.html",
         {
-            "featured_systems": systems[:3],
+            "featured_systems": systems.filter(
+                stage__in=[System.Stage.PRODUCTION, System.Stage.DEVELOPMENT]
+            )[:3],
             "featured_initiatives": initiatives[:3],
             "latest_articles": Article.objects.select_related(
                 "author", "system", "initiative"
@@ -25,10 +55,15 @@ def home(request):
 
 
 def systems_index(request):
+    systems = _system_queryset()
     return render(
         request,
         "pages/systems_index.html",
-        {"systems": System.objects.all()},
+        {
+            "production_systems": systems.filter(stage=System.Stage.PRODUCTION),
+            "development_systems": systems.filter(stage=System.Stage.DEVELOPMENT),
+            "idea_systems": systems.filter(stage=System.Stage.IDEA),
+        },
     )
 
 
@@ -43,13 +78,16 @@ def system_detail(request, slug):
 
 
 def initiatives_index(request):
+    initiatives = _initiative_queryset()
     return render(
         request,
         "pages/initiatives_index.html",
         {
-            "initiatives": Initiative.objects.prefetch_related(
-                "takers", "systems"
-            ).order_by("-start_date", "slug"),
+            "active_initiatives": initiatives.filter(status=Initiative.Status.ACTIVE),
+            "proposed_initiatives": initiatives.filter(status=Initiative.Status.PROPOSED),
+            "closed_initiatives": initiatives.filter(
+                status__in=[Initiative.Status.COMPLETED, Initiative.Status.PAUSED]
+            ),
         },
     )
 

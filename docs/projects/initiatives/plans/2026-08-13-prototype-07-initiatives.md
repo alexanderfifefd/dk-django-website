@@ -103,3 +103,10 @@ uv run python manage.py runserver
 **2026-08-13:** Prototype 07 forked from 06. Initiative model, ingest, three seed initiatives, index and
 detail pages, updates on initiative pages, home and member surfaces, Systems + Initiatives left nav.
 Article optional `initiative` frontmatter. Prototype 06 untouched.
+
+**2026-08-14:** Lifecycle/recruiting split — see
+[lifecycle-and-recruiting.md](../discussions/lifecycle-and-recruiting.md). System `suggestion` → `idea`;
+initiative `proposal` → `proposed`; dropped `seeking-contributors`; shared optional `recruiting: open` on
+systems and initiatives (ORM + ingest; UI deferred). Index pages grouped by lifecycle. Seed: added
+`terms-of-service` initiative, Listmonk `recruiting: open`. Test articles cover initiative-only,
+system+initiative, and both link combinations (four articles total).

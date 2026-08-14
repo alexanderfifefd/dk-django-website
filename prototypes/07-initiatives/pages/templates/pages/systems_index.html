@@ -12,20 +12,40 @@
     <p class="lead">Software the collective builds and operates.</p>
   </header>
 
-  {% if systems %}
-    <ul class="system-list">
-      {% for system in systems %}
-        <li>
-          <a href="{% url 'system_detail' system.slug %}">{{ system.title }}</a>
-          <span class="stage-badge stage-badge-{{ system.stage }}">{{ system.get_stage_display }}</span>
-          {% if system.url %}
-            <a class="system-url" href="{{ system.url }}" rel="noopener noreferrer">{{ system.url|cut:"https://" }}</a>
-          {% endif %}
-          {% if system.summary %}<p>{{ system.summary }}</p>{% endif %}
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
+  {% if production_systems %}
+    <section class="index-section">
+      <h2 class="index-section-title">Production</h2>
+      <ul class="system-list">
+        {% for system in production_systems %}
+          {% include "pages/includes/system-list-item.html" %}
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+
+  {% if development_systems %}
+    <section class="index-section">
+      <h2 class="index-section-title">Development</h2>
+      <ul class="system-list">
+        {% for system in development_systems %}
+          {% include "pages/includes/system-list-item.html" %}
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+
+  {% if idea_systems %}
+    <section class="index-section">
+      <h2 class="index-section-title">Ideas</h2>
+      <ul class="system-list">
+        {% for system in idea_systems %}
+          {% include "pages/includes/system-list-item.html" %}
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+
+  {% if not production_systems and not development_systems and not idea_systems %}
     <p>No systems yet.</p>
   {% endif %}
 {% endblock %}

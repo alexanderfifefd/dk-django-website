@@ -1,7 +1,8 @@
 ---
 title: Listmonk
 summary: Newsletter and mailing lists for the collective and its systems.
-stage: suggestion
+stage: idea
+recruiting: open
 teamlead: alexanrf
 admins: []
 ---

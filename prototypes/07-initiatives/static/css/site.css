@@ -933,7 +933,7 @@ td {
   color: var(--muted);
 }
 
-.stage-badge-suggestion {
+.stage-badge-idea {
   background: #fef3c7;
   color: #92400e;
 }
@@ -959,14 +959,9 @@ td {
   vertical-align: 0.05em;
 }
 
-.status-badge-proposal {
+.status-badge-proposed {
   background: #f3e8ff;
   color: #6b21a8;
-}
-
-.status-badge-seeking-contributors {
-  background: #ffedd5;
-  color: #c2410c;
 }
 
 .status-badge-active {
@@ -993,6 +988,52 @@ td {
   font-weight: 500;
   line-height: 1.4;
   vertical-align: 0.05em;
+}
+
+.recruiting-badge {
+  display: inline-block;
+  margin-left: 0.35rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.4;
+  vertical-align: 0.05em;
+}
+
+.recruiting-badge-open {
+  background: #ffedd5;
+  color: #c2410c;
+}
+
+.index-section {
+  margin-top: 2rem;
+}
+
+.index-section-title {
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
+}
+
+.index-section-intro {
+  margin: -0.25rem 0 0.75rem;
+  color: var(--muted);
+}
+
+.index-recruiting {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.index-recruiting-item p {
+  color: var(--muted);
+}
+
+.home-recruiting-links {
+  margin-top: 0.75rem;
+  color: var(--muted);
+  font-size: 0.95rem;
 }
 
 .initiative-badge {

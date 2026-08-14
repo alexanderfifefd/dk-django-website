@@ -7,13 +7,14 @@ from pathlib import Path
 import frontmatter
 from django.conf import settings
 from django.db import transaction
-from pydantic import BaseModel, ConfigDict, ValidationError, field_validator
+from pydantic import BaseModel, ConfigDict, ValidationError, field_validator, model_validator
 
-from pages.models import Article, Member, System, Initiative
+from pages.models import Article, Group, Member, System, Initiative
 from pages.sources.common import (
     SyncResult,
     abort_if,
     format_validation_error,
+    group_cache,
     member_cache,
     render_markdown,
     require_members,
@@ -25,7 +26,8 @@ class ArticleFrontmatter(BaseModel):
 
     title: str
     date: dt.date
-    author: str
+    author: str | None = None
+    author_group: str | None = None
     system: str | None = None
     initiative: str | None = None
     summary: str = ""
@@ -38,6 +40,12 @@ class ArticleFrontmatter(BaseModel):
             return value.date()
         return value
 
+    @model_validator(mode="after")
+    def _author_or_group(self) -> "ArticleFrontmatter":
+        if not self.author and not self.author_group:
+            raise ValueError("author or author_group is required")
+        return self
+
 
 @dataclass(frozen=True)
 class ArticleRecord:
@@ -49,6 +57,7 @@ class ArticleRecord:
 def load_articles(
     articles_dir: Path,
     members: dict[str, Member],
+    groups: dict[str, Group],
     system_slugs: set[str],
     initiative_slugs: set[str],
     errors: list[str],
@@ -58,7 +67,7 @@ def load_articles(
         return records
 
     for path in sorted(articles_dir.glob("*.md")):
-        record = _load_article(path, members, system_slugs, initiative_slugs, errors)
+        record = _load_article(path, members, groups, system_slugs, initiative_slugs, errors)
         if record is not None:
             records.append(record)
 
@@ -68,6 +77,7 @@ def load_articles(
 def _load_article(
     path: Path,
     members: dict[str, Member],
+    groups: dict[str, Group],
     system_slugs: set[str],
     initiative_slugs: set[str],
     errors: list[str],
@@ -84,8 +94,12 @@ def _load_article(
     if meta.draft:
         return None
 
-    if meta.author not in members:
+    if meta.author and meta.author not in members:
         errors.append(f"{label}: unknown author {meta.author!r}")
+        return None
+
+    if meta.author_group and meta.author_group not in groups:
+        errors.append(f"{label}: unknown author_group {meta.author_group!r}")
         return None
 
     if meta.system and meta.system not in system_slugs:
@@ -99,7 +113,11 @@ def _load_article(
     return ArticleRecord(slug=path.stem, meta=meta, body_html=render_markdown(parsed.content))
 
 
-def sync_articles(records: list[ArticleRecord], members: dict[str, Member]) -> SyncResult:
+def sync_articles(
+    records: list[ArticleRecord],
+    members: dict[str, Member],
+    groups: dict[str, Group],
+) -> SyncResult:
     with transaction.atomic():
         for record in records:
             system = (
@@ -110,12 +128,17 @@ def sync_articles(records: list[ArticleRecord], members: dict[str, Member]) -> S
                 if record.meta.initiative
                 else None
             )
+            author = members[record.meta.author] if record.meta.author else None
+            author_group = (
+                groups[record.meta.author_group] if record.meta.author_group else None
+            )
             Article.objects.update_or_create(
                 slug=record.slug,
                 defaults={
                     "title": record.meta.title,
                     "date": record.meta.date,
-                    "author": members[record.meta.author],
+                    "author": author,
+                    "author_group": author_group,
                     "system": system,
                     "initiative": initiative,
                     "summary": record.meta.summary,
@@ -134,12 +157,14 @@ def run_sync_articles(*, flush: bool = False) -> SyncResult:
     require_members()
 
     members = member_cache()
+    groups = group_cache()
     system_slugs = set(System.objects.values_list("slug", flat=True))
     initiative_slugs = set(Initiative.objects.values_list("slug", flat=True))
     errors: list[str] = []
     records = load_articles(
         settings.CONTENT_DIR / "articles",
         members,
+        groups,
         system_slugs,
         initiative_slugs,
         errors,
@@ -149,4 +174,4 @@ def run_sync_articles(*, flush: bool = False) -> SyncResult:
     if flush:
         Article.objects.all().delete()
 
-    return sync_articles(records, members)
+    return sync_articles(records, members, groups)

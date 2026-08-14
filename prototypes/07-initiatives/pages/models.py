@@ -103,7 +103,12 @@ class Article(models.Model):
     slug = models.SlugField(unique=True)
     title = models.CharField(max_length=200)
     date = models.DateField()
-    author = models.ForeignKey(Member, on_delete=models.PROTECT, related_name="articles")
+    author = models.ForeignKey(
+        Member, on_delete=models.PROTECT, related_name="articles", null=True, blank=True
+    )
+    author_group = models.ForeignKey(
+        Group, on_delete=models.PROTECT, related_name="articles", null=True, blank=True
+    )
     system = models.ForeignKey(
         System, on_delete=models.PROTECT, related_name="articles", null=True, blank=True
     )

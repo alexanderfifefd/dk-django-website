@@ -50,7 +50,7 @@ def home(request):
             )[:3],
             "featured_initiatives": initiatives[:3],
             "latest_articles": Article.objects.select_related(
-                "author", "system", "initiative"
+                "author", "author_group", "system", "initiative"
             )[:3],
         },
     )
@@ -72,7 +72,7 @@ def systems_index(request):
 def system_detail(request, slug):
     system = get_object_or_404(
         System.objects.select_related("teamlead").prefetch_related(
-            "admins", "articles__author", "initiatives"
+            "admins", "articles__author", "articles__author_group", "initiatives"
         ),
         slug=slug,
     )
@@ -97,7 +97,7 @@ def initiatives_index(request):
 def initiative_detail(request, slug):
     initiative = get_object_or_404(
         Initiative.objects.prefetch_related(
-            "takers", "systems", "articles__author"
+            "takers", "systems", "articles__author", "articles__author_group"
         ),
         slug=slug,
     )
@@ -151,13 +151,13 @@ def articles_index(request):
     return render(
         request,
         "pages/articles_index.html",
-        {"articles": Article.objects.select_related("author", "system", "initiative")},
+        {"articles": Article.objects.select_related("author", "author_group", "system", "initiative")},
     )
 
 
 def article_detail(request, slug):
     article = get_object_or_404(
-        Article.objects.select_related("author", "system", "initiative"),
+        Article.objects.select_related("author", "author_group", "system", "initiative"),
         slug=slug,
     )
     return render(request, "pages/article_detail.html", {"article": article})

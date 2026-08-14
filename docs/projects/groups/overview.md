@@ -23,7 +23,8 @@ uv run python manage.py runserver
 ```
 
 Code and content touched by this project include `content/members/groups.yaml`, `pages/sources/groups.py`,
-`pages/models.py` (`Group`), members/about templates, and migration `0007_group_summary_matrix`.
+`pages/models.py` (`Group`, `Article.author_group`), members/about/article templates, and migrations
+`0007_group_summary_matrix`, `0008_article_author_group`.
 
 The [initiatives](../initiatives/overview.md) project owns the 07 fork; **groups** adds org-group
 presentation on top of that baseline without forking again.
@@ -33,7 +34,8 @@ presentation on top of that baseline without forking again.
 Three org groups: **Board**, **Maintainers**, **Moderators**. Group definitions include **summary** and
 **matrix** for nicer section headers and join paths. **Members index** is the primary surface — one
 section per group with anchors. **About** points to Members instead of listing the board inline.
-Membership on profiles is **explicit only**. Interest-based persona groups remain deferred.
+Membership on profiles is **explicit only**. Articles may set **`author_group`** (optional alongside
+`author`) for collective voice — links to `/members/#<slug>`. Interest-based persona groups remain deferred.
 
 ## How to read this project
 

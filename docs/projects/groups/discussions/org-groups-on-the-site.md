@@ -91,21 +91,41 @@ Member detail pages keep inline group labels; no group detail URLs in this pass.
 ## Relationship to other nouns
 
 ```
+Article
+  ├─ author → Member (optional)
+  └─ author_group → Group (optional; at least one required)
+
 Member
   └─ groups → Board | Maintainers | Moderators  (org belonging)
 
 Group (groups.yaml)
   └─ summary, matrix  (presentation + join path)
-
-System / Initiative
-  └─ matrix in frontmatter  (service- or goal-specific rooms)
-
-Deferred interest personas
-  └─ prose + shared Matrix rooms  (not group pages yet)
 ```
 
 Systems and initiatives keep their own coordination links. Org groups answer *what kind of member are
 you in the collective structure* — not *what stack do you work on*.
+
+## Articles with a group author (2026-08-14)
+
+Articles can name an org **group** as author — collective voice without a individual member, or both.
+
+```yaml
+# Board only
+author_group: board
+
+# Person on behalf of the board
+author: daniel
+author_group: board
+```
+
+| Frontmatter | Renders as | Links to |
+|---|---|---|
+| `author_group` only | by **Board** | `/members/#board` |
+| `author` + `author_group` | **Daniel · Board** | member profile + group anchor |
+
+At least one of `author` or `author_group` is required. Group-only articles do not appear on member
+profiles (`member.articles` is the individual author relation). Implementation: `Article.author_group`
+FK on prototype 07, migration `0008_article_author_group`.
 
 ## Seed membership (explicit assignments)
 

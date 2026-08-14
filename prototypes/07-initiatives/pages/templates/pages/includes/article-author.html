@@ -1,0 +1,10 @@
+{% if article.author %}
+  by <a href="{% url 'member_detail' article.author.username %}">{{ article.author.name }}</a>
+{% endif %}
+{% if article.author and article.author_group %}
+  <span class="post-meta-sep" aria-hidden="true">·</span>
+{% endif %}
+{% if article.author_group %}
+  {% if not article.author %}by {% endif %}
+  <a href="{% url 'members_index' %}#{{ article.author_group.slug }}">{{ article.author_group.title }}</a>
+{% endif %}

@@ -71,7 +71,7 @@
           {% for article in system.articles.all %}
             <li>
               <a href="{% url 'article_detail' article.slug %}">{{ article.title }}</a>
-              by <a href="{% url 'member_detail' article.author.username %}">{{ article.author.name }}</a>
+              {% include "pages/includes/article-author.html" %}
             </li>
           {% endfor %}
         </ul>

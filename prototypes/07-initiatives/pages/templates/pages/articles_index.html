@@ -15,7 +15,7 @@
           {% if article.summary %}<p>{{ article.summary }}</p>{% endif %}
           <div class="post-byline">
             <time datetime="{{ article.date|date:'Y-m-d' }}">{{ article.date|date:"j F Y" }}</time>
-            <span class="post-meta">by <a href="{% url 'member_detail' article.author.username %}">{{ article.author.name }}</a></span>
+            <span class="post-meta">{% include "pages/includes/article-author.html" %}</span>
             {% if article.system %}
               <a class="system-badge" href="{% url 'system_detail' article.system.slug %}">
                 {% include "pages/includes/icon-system.html" %}

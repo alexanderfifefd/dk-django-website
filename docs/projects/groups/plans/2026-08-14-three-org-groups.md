@@ -118,4 +118,5 @@ uv run python manage.py runserver
 
 **2026-08-14:** Group model extended with `summary` and `matrix_room`; ingest via Pydantic. Three groups in
 `groups.yaml`. Members index: sections per group with anchors. About: pointers to `/members/#board` (and
-maintainers/moderators). Moderators seeded: hallvord, papiris, tormod.
+maintainers/moderators). Moderators seeded: hallvord, papiris, tormod. Articles: optional `author_group`
+(migration `0008`); seed articles for board-only and daniel+board voices.

@@ -1,0 +1,35 @@
+<li>
+  <a href="{% url 'member_detail' member.username %}">{{ member.name }}</a>
+  <span class="member-meta">@{{ member.username }}</span>
+  {% if member.role %}
+    <p class="member-org">{{ member.role }}</p>
+  {% endif %}
+  {% if member.systems_led.all or member.systems_administered.all or member.initiatives_led.all %}
+    <p class="member-roles">
+      {% if member.systems_led.all %}
+        <span class="member-role-label">Leads</span>
+        {% for system in member.systems_led.all %}
+          <a href="{% url 'system_detail' system.slug %}">{{ system.title }}</a>{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+      {% endif %}
+      {% if member.systems_led.all and member.systems_administered.all %}
+        <span class="member-role-sep">·</span>
+      {% endif %}
+      {% if member.systems_administered.all %}
+        <span class="member-role-label">Administers</span>
+        {% for system in member.systems_administered.all %}
+          <a href="{% url 'system_detail' system.slug %}">{{ system.title }}</a>{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+      {% endif %}
+      {% if member.initiatives_led.all %}
+        {% if member.systems_led.all or member.systems_administered.all %}
+          <span class="member-role-sep">·</span>
+        {% endif %}
+        <span class="member-role-label">Initiatives</span>
+        {% for initiative in member.initiatives_led.all %}
+          <a href="{% url 'initiative_detail' initiative.slug %}">{{ initiative.title }}</a>{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+      {% endif %}
+    </p>
+  {% endif %}
+</li>

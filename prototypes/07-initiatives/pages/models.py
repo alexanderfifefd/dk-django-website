@@ -6,6 +6,8 @@ class Group(models.Model):
 
     slug = models.SlugField(unique=True)
     title = models.CharField(max_length=200)
+    summary = models.TextField(blank=True)
+    matrix_room = models.CharField(max_length=200, blank=True)
 
     class Meta:
         ordering = ["slug"]

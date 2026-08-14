@@ -8,6 +8,8 @@ necessarily tied to a single system — in the site's information architecture a
 
 **Prototype:** `prototypes/07-initiatives/`
 
+**Also on this prototype:** [groups](../groups/overview.md) — org-group presentation (no separate fork).
+
 **Builds on:** [site-ui](../site-ui/overview.md) (prototype 06)
 
 ## Summary

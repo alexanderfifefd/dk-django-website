@@ -1,3 +1,4 @@
 ---
 name: Tormod
+groups: [moderators]
 ---

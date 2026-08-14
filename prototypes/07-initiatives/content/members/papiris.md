@@ -1,3 +1,4 @@
 ---
 name: jacob
+groups: [moderators]
 ---

@@ -36,6 +36,19 @@ Initiatives in left nav; index pages grouped by lifecycle. Git authoring only �
 - **Plan**: `docs/projects/initiatives/plans/2026-08-13-prototype-07-initiatives.md`
 - **Prototype**: `prototypes/07-initiatives/`
 
+### `groups` — how should we present Board, Maintainers, and Moderators?
+
+**Status: built** (2026-08-14).
+
+Org groups on the existing `Group` model in **prototype 07** — enriched `groups.yaml`, Members index
+sections per group, About pointers. **No separate prototype** (`08-groups/` does not exist); this project
+is a pass on `prototypes/07-initiatives/` alongside `initiatives`.
+
+- **Overview**: `docs/projects/groups/overview.md` — **start here** (includes prototype mapping)
+- **Discussion**: `docs/projects/groups/discussions/org-groups-on-the-site.md`
+- **Plan**: `docs/projects/groups/plans/2026-08-14-three-org-groups.md`
+- **Prototype**: `prototypes/07-initiatives/` (shared with `initiatives`; not a standalone fork)
+
 ### `site-ui` — how should we present systems, members, articles, and updates?
 
 **Status: paused** — UI baseline validated (2026-08-12). Resume for content polish or forge surfaces.

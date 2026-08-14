@@ -479,6 +479,42 @@ time {
   margin: 0 0.5rem;
 }
 
+.member-group-section {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+}
+
+.member-group-section:first-of-type {
+  margin-top: 1.5rem;
+  padding-top: 0;
+  border-top: none;
+}
+
+.member-group-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+}
+
+.member-group-summary {
+  margin: 0 0 0.5rem;
+  color: var(--muted);
+}
+
+.member-group-matrix {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+}
+
+.member-group-matrix code {
+  font-size: 0.9em;
+}
+
+.member-group-empty {
+  margin: 0;
+  color: var(--muted);
+}
+
 .post-meta time,
 .system-meta time {
   margin-left: 0;

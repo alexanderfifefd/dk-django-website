@@ -37,22 +37,13 @@
     The collective is its members — people who build, operate, and steward the systems together.
     Profiles carry org roles and group membership alongside per-system accountability.
   </p>
-  <p><a href="{% url 'members_index' %}">See all members</a></p>
-
-  <h2>Board</h2>
-  {% if board_members %}
-    <ul class="member-list">
-      {% for member in board_members %}
-        <li>
-          <a href="{% url 'member_detail' member.username %}">{{ member.name }}</a>
-          <span class="member-meta">@{{ member.username }}</span>
-          {% if member.role %}<p class="member-org">{{ member.role }}</p>{% endif %}
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>No board members listed yet.</p>
-  {% endif %}
+  <p>
+    Members are listed by org group on the
+    <a href="{% url 'members_index' %}">members page</a> — including the
+    <a href="{% url 'members_index' %}#board">board</a>,
+    <a href="{% url 'members_index' %}#maintainers">maintainers</a>, and
+    <a href="{% url 'members_index' %}#moderators">moderators</a>.
+  </p>
 
   <p class="about-cta">
     Curious about joining?

@@ -1,3 +1,4 @@
 ---
 name: Hallvord
+groups: [moderators]
 ---

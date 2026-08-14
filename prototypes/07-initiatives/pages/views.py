@@ -1,7 +1,9 @@
-from django.db.models import Case, IntegerField, Value, When
+from django.db.models import Case, IntegerField, Prefetch, Value, When
 from django.shortcuts import get_object_or_404, render
 
-from .models import Article, Initiative, Member, System
+from .models import Article, Group, Initiative, Member, System
+
+ORG_GROUP_ORDER = ["board", "maintainers", "moderators"]
 
 INITIATIVE_STATUS_ORDER = Case(
     When(status=Initiative.Status.ACTIVE, then=Value(0)),
@@ -103,14 +105,30 @@ def initiative_detail(request, slug):
 
 
 def members_index(request):
+    active_members = Member.objects.filter(active=True).order_by("username")
+    org_groups = []
+    for slug in ORG_GROUP_ORDER:
+        group = (
+            Group.objects.filter(slug=slug)
+            .prefetch_related(
+                Prefetch(
+                    "members",
+                    queryset=active_members.prefetch_related(
+                        "systems_led",
+                        "systems_administered",
+                        "initiatives_led",
+                    ),
+                )
+            )
+            .first()
+        )
+        if group is not None:
+            org_groups.append(group)
+
     return render(
         request,
         "pages/members_index.html",
-        {
-            "members": Member.objects.filter(active=True).prefetch_related(
-                "groups", "systems_led", "systems_administered", "initiatives_led"
-            ),
-        },
+        {"org_groups": org_groups},
     )
 
 
@@ -146,15 +164,7 @@ def article_detail(request, slug):
 
 
 def about(request):
-    return render(
-        request,
-        "pages/about.html",
-        {
-            "board_members": Member.objects.filter(active=True, groups__slug="board").order_by(
-                "username"
-            ),
-        },
-    )
+    return render(request, "pages/about.html")
 
 
 def join(request):

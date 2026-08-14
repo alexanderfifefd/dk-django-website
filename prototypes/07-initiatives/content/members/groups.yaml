@@ -1,4 +1,14 @@
 board:
   title: Board
+  summary: Governance and collective-level decisions for the collective.
+  matrix: "#board:datakollektivet.no"
+
 maintainers:
   title: Maintainers
+  summary: Members actively building and running the collective — systems, initiatives, and infrastructure.
+  matrix: "#maintainers:datakollektivet.no"
+
+moderators:
+  title: Moderators
+  summary: Moderation across Matrix rooms and other collective spaces.
+  matrix: "#moderators:datakollektivet.no"

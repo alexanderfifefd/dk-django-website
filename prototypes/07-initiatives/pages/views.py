@@ -1,7 +1,7 @@
 from django.db.models import Case, IntegerField, Prefetch, Value, When
 from django.shortcuts import get_object_or_404, render
 
-from .models import Article, Group, Initiative, Member, System
+from .models import Article, Group, Initiative, Member, Recruiting, System
 
 ORG_GROUP_ORDER = ["board", "maintainers", "moderators"]
 
@@ -36,6 +36,14 @@ def _system_queryset():
         SYSTEM_STAGE_ORDER,
         "slug",
     )
+
+
+def _recruiting_initiatives():
+    return _initiative_queryset().filter(recruiting=Recruiting.OPEN)
+
+
+def _recruiting_systems():
+    return _system_queryset().filter(recruiting=Recruiting.OPEN)
 
 
 def home(request):
@@ -168,8 +176,28 @@ def about(request):
 
 
 def join(request):
+    return render(request, "pages/join.html")
+
+
+def join_account(request):
+    return render(request, "pages/join_account.html")
+
+
+def join_member(request):
     return render(
         request,
-        "pages/join.html",
+        "pages/join_member.html",
         {"submitted": request.method == "POST"},
+    )
+
+
+def join_volunteer(request):
+    return render(
+        request,
+        "pages/join_volunteer.html",
+        {
+            "submitted": request.method == "POST",
+            "recruiting_initiatives": _recruiting_initiatives(),
+            "recruiting_systems": _recruiting_systems(),
+        },
     )

@@ -101,6 +101,7 @@ Current URLs in content:
 
 ## Related docs
 
+- **`docs/systems-and-initiatives.md`** — systems (core model)
 - `docs/organizational-context.md` — the nouns this prototype presents
 - `docs/projects/integration-layer/` — ingest pattern this prototype now follows
 - `docs/projects/index.md` — repo-wide project list and open questions (media, template tags in markdown, …)

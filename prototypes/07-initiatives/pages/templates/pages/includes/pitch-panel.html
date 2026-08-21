@@ -1,0 +1,60 @@
+<div class="recruiting-card recruiting-card-{{ kind }} recruiting-card-detail">
+  <p class="recruiting-card-kind">
+    {% if kind == "system" %}
+      {% include "pages/includes/icon-system.html" %}
+      System · Idea
+    {% else %}
+      {% include "pages/includes/icon-initiative.html" %}
+      Initiative · Proposed
+    {% endif %}
+  </p>
+
+  <h2 class="recruiting-card-title">{{ item.title }}</h2>
+  {% if item.summary %}<p class="recruiting-card-summary">{{ item.summary }}</p>{% endif %}
+
+  {% if kind == "system" %}
+    <p class="recruiting-card-explainer">
+      An idea is software we think should exist — not something we run yet. Moving it forward means
+      helping shape what to build, standing up the service, and usually stepping in as maintainer.
+    </p>
+  {% else %}
+    <p class="recruiting-card-explainer">
+      Proposed means the pitch is visible but work has not started. Someone needs to take ownership —
+      gather input, move it to active, or make the case to drop it.
+    </p>
+  {% endif %}
+
+  <div class="recruiting-card-actions">
+    <a class="recruiting-card-link recruiting-card-link-action" href="{% url 'join_volunteer' %}">
+      {% if kind == "system" %}Volunteer to build this{% else %}Apply to take this on{% endif %}
+      <span aria-hidden="true">→</span>
+    </a>
+    {% if kind == "initiative" and item.loomio_url %}
+      <a class="recruiting-card-link" href="{{ item.loomio_url }}" rel="noopener noreferrer">Discuss on Loomio <span aria-hidden="true">→</span></a>
+    {% endif %}
+    <a class="recruiting-card-link recruiting-card-link-muted" href="{% url 'join_account' %}">Create account first <span aria-hidden="true">→</span></a>
+  </div>
+
+  {% if kind == "system" or item.takers.all or item.matrix_room or item.systems.all %}
+    <ul class="recruiting-card-meta">
+      {% if kind == "system" %}
+        <li>Teamlead: <a href="{% url 'member_detail' item.teamlead.username %}">{{ item.teamlead.name }}</a></li>
+      {% elif item.takers.all %}
+        <li>
+          Led by
+          {% for taker in item.takers.all %}
+            <a href="{% url 'member_detail' taker.username %}">{{ taker.name }}</a>{% if not forloop.last %}, {% endif %}
+          {% endfor %}
+        </li>
+      {% endif %}
+      {% if kind == "initiative" and item.matrix_room %}
+        <li>Matrix: <code>{{ item.matrix_room }}</code></li>
+      {% endif %}
+      {% if kind == "initiative" %}
+        {% for system in item.systems.all %}
+          <li>Related system: <a href="{% url 'system_detail' system.slug %}">{{ system.title }}</a></li>
+        {% endfor %}
+      {% endif %}
+    </ul>
+  {% endif %}
+</div>

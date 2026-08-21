@@ -1,7 +1,7 @@
 # Discussion: initiatives as a site noun
 
 **Date:** 2026-08-13
-**Builds on:** `docs/projects/site-ui/` (prototype 06), `docs/organizational-context.md`
+**Builds on:** `docs/systems-and-initiatives.md`, `docs/organizational-context.md`
 **Status:** decisions recorded (2026-08-13) — status/stage vocabulary superseded for prototype 07 by
 [lifecycle-and-recruiting.md](./lifecycle-and-recruiting.md) (2026-08-14). See also
 [plan](../plans/2026-08-13-prototype-07-initiatives.md) and `prototypes/07-initiatives/`

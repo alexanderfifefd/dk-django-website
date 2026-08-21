@@ -1,0 +1,102 @@
+{% extends "pages/base.html" %}
+
+{% block title %}Become a volunteer — The Collective{% endblock %}
+
+{% block content %}
+  <p class="join-back"><a href="{% url 'join' %}">&larr; Join</a></p>
+
+  <header class="join-hero">
+    <h1>Become a volunteer</h1>
+    <p class="lead">
+      Volunteers take on real work — moderation, running systems, driving initiatives. It is a step
+      beyond having an account: you are agreeing to show up.
+    </p>
+  </header>
+
+  <section class="join-hub">
+    <h2 class="join-hub-title">What volunteering can involve</h2>
+    <ul class="join-benefits">
+      <li><strong>Moderation</strong> — helping keep collective spaces usable</li>
+      <li><strong>Technical maintenance</strong> — systems the collective operates</li>
+      <li><strong>Initiative driving</strong> — owning a goal until it lands or hands off</li>
+      <li><strong>Other stewardship</strong> — areas the board or maintainers agree need a named person</li>
+    </ul>
+    <p class="join-hub-intro">
+      You need a collective account first —
+      <a href="{% url 'join_account' %}">create one</a> before applying. Membership (voting, fee) is
+      separate — see <a href="{% url 'join_member' %}">become a member</a>.
+    </p>
+  </section>
+
+  {% if recruiting_initiatives or recruiting_systems %}
+    <section class="join-hub">
+      <h2 class="join-hub-title">We're looking for help</h2>
+      <p class="join-hub-intro">
+        Concrete open roles right now. Read the pitch on each page, then mention it in your application.
+      </p>
+      <div class="recruiting-cards">
+        {% for initiative in recruiting_initiatives %}
+          {% if initiative.status == "proposed" %}
+            {% include "pages/includes/recruiting-card.html" with item=initiative kind="initiative" pitch=True %}
+          {% else %}
+            {% include "pages/includes/recruiting-card.html" with item=initiative kind="initiative" %}
+          {% endif %}
+        {% endfor %}
+        {% for system in recruiting_systems %}
+          {% if system.stage == "idea" %}
+            {% include "pages/includes/recruiting-card.html" with item=system kind="system" pitch=True %}
+          {% else %}
+            {% include "pages/includes/recruiting-card.html" with item=system kind="system" %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  <section class="join-hub">
+    <h2 class="join-hub-title">Volunteer application</h2>
+    <p class="join-hub-intro">
+      This is a light agreement — the board or relevant lead will follow up. In production this
+      would include a signed volunteer contract.
+    </p>
+
+    {% if submitted %}
+      <p class="join-notice">Thanks for applying. This prototype doesn't send submissions anywhere yet.</p>
+    {% else %}
+      <form class="join-form" method="post" action="">
+        {% csrf_token %}
+        <p>
+          <label for="nick">Nick</label>
+          <input id="nick" name="nick" type="text" autocomplete="username" required
+                 placeholder="lowercase handle, e.g. alexanrf">
+          <span class="field-hint">Your collective account handle.</span>
+        </p>
+        <p>
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" autocomplete="name" required
+                 placeholder="Your name">
+        </p>
+        <p>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required
+                 placeholder="you@example.com">
+        </p>
+        <p>
+          <label for="interest">What are you interested in?</label>
+          <textarea id="interest" name="interest" rows="4" required
+                    placeholder="Moderation, specific systems, initiatives, skills you bring…"></textarea>
+        </p>
+        <p class="join-form-checkbox">
+          <label>
+            <input type="checkbox" name="agreement" required>
+            I understand volunteering means taking on real responsibility and I am willing to be
+            contacted about a volunteer agreement.
+          </label>
+        </p>
+        <p>
+          <button type="submit" class="btn btn-primary">Submit application</button>
+        </p>
+      </form>
+    {% endif %}
+  </section>
+{% endblock %}

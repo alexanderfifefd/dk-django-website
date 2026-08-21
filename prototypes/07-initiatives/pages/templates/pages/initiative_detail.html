@@ -21,6 +21,7 @@
           <span>present</span>
         {% endif %}
         <span class="status-badge status-badge-{{ initiative.status }}">{{ initiative.get_status_display }}</span>
+        {% include "pages/includes/recruiting-badge.html" with item=initiative %}
       </div>
       {% if initiative.takers.all %}
         <p class="initiative-takers">
@@ -32,9 +33,18 @@
       {% endif %}
     </header>
 
-    {% if initiative.loomio_url or initiative.matrix_room or initiative.systems.all %}
+    {% if initiative.status == "proposed" %}
+      {% include "pages/includes/pitch-panel.html" with item=initiative kind="initiative" %}
+    {% elif initiative.recruiting or initiative.loomio_url or initiative.matrix_room or initiative.systems.all %}
       <aside class="initiative-involve" aria-label="Get involved">
         <h2 class="initiative-involve-title">Get involved</h2>
+        {% if initiative.recruiting %}
+          <p class="initiative-involve-lead">We're looking for someone to help with this.</p>
+          <p class="initiative-involve-note">
+            To join Forgejo, Matrix, or Loomio you need a collective account first —
+            <a href="{% url 'join_account' %}">create an account</a>.
+          </p>
+        {% endif %}
         <ul class="initiative-involve-list">
           {% if initiative.loomio_url %}
             <li><a href="{{ initiative.loomio_url }}" rel="noopener noreferrer">Discuss on Loomio</a></li>
@@ -45,6 +55,16 @@
           {% for system in initiative.systems.all %}
             <li>Related system: <a href="{% url 'system_detail' system.slug %}">{{ system.title }}</a></li>
           {% endfor %}
+          {% if initiative.takers.all %}
+            <li>
+              Talk to
+              {% for taker in initiative.takers.all %}
+                <a href="{% url 'member_detail' taker.username %}">{{ taker.name }}</a>{% if not forloop.last %} or {% endif %}
+              {% endfor %}
+            </li>
+          {% elif initiative.recruiting %}
+            <li><a href="{% url 'join_volunteer' %}">Apply to take this on</a></li>
+          {% endif %}
         </ul>
       </aside>
     {% endif %}

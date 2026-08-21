@@ -22,6 +22,7 @@
       </span>
     {% endif %}
     <span class="status-badge status-badge-{{ initiative.status }}">{{ initiative.get_status_display }}</span>
+    {% include "pages/includes/recruiting-badge.html" with item=initiative %}
     {% for system in initiative.systems.all %}
       <a class="system-badge" href="{% url 'system_detail' system.slug %}">
         {% include "pages/includes/icon-system.html" %}

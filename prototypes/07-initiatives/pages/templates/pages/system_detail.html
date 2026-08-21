@@ -17,7 +17,10 @@
         <dl class="system-meta">
           <div class="system-meta-item">
             <dt>Stage</dt>
-            <dd><span class="stage-badge stage-badge-{{ system.stage }}">{{ system.get_stage_display }}</span></dd>
+            <dd>
+              <span class="stage-badge stage-badge-{{ system.stage }}">{{ system.get_stage_display }}</span>
+              {% include "pages/includes/recruiting-badge.html" with item=system %}
+            </dd>
           </div>
           {% if system.url %}
             <div class="system-meta-item">
@@ -42,6 +45,23 @@
         </dl>
       </aside>
     </div>
+
+    {% if system.stage == "idea" %}
+      {% include "pages/includes/pitch-panel.html" with item=system kind="system" %}
+    {% elif system.recruiting %}
+      <aside class="system-involve" aria-label="Get involved">
+        <h2 class="system-involve-title">Get involved</h2>
+        <p class="system-involve-lead">This system is looking for maintainers.</p>
+        <p class="system-involve-note">
+          To join Forgejo, Matrix, or Loomio discussions you need a collective account first —
+          <a href="{% url 'join_account' %}">create an account</a>.
+        </p>
+        <ul class="system-involve-list">
+          <li>Teamlead: <a href="{% url 'member_detail' system.teamlead.username %}">{{ system.teamlead.name }}</a></li>
+          <li><a href="{% url 'join_volunteer' %}">Apply to help maintain this system</a></li>
+        </ul>
+      </aside>
+    {% endif %}
 
     <div class="system-body">
       {{ system.body_html|safe }}

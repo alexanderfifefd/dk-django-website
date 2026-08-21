@@ -21,6 +21,20 @@ the outcome in the plan and move the project to Completed.
 
 ## Active
 
+### `member-journeys` — how should the site convert visitors into participants?
+
+**Status: in progress** — three Join paths on prototype 07 (2026-08-14).
+
+`/join/` chooser → **account**, **member**, **volunteer**. Core model in
+**[`docs/organizational-context.md`](../../organizational-context.md)**; implementation in
+[member-journeys](docs/projects/member-journeys/overview.md).
+
+- **Overview**: `docs/projects/member-journeys/overview.md` — **start here**
+- **Discussion**: `docs/projects/member-journeys/discussions/three-paths-to-participate.md`
+- **Discussion**: `docs/projects/member-journeys/discussions/help-wanted-and-recruiting.md`
+- **Plan**: `docs/projects/member-journeys/plans/2026-08-14-three-join-paths.md`
+- **Prototype**: `prototypes/07-initiatives/`
+
 ### `initiatives` — how should we represent goal-oriented efforts on the site?
 
 **Status: in progress** — prototype 07 forked from 06 (2026-08-13); lifecycle/recruiting in content

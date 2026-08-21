@@ -62,8 +62,10 @@ that prototype's own business. Its project docs under `docs/projects/` describe 
 - **`docs/overview.md`** (this file): orientation. Stack, layout, conventions, non-goals.
 - **`docs/high-level-goals.md`**: where this is heading — Django as an integration layer over git-owned
   data. The prototypes test pieces of it.
-- **`docs/organizational-context.md`**: what the site is for — a software collective's homepage — and the
-  nouns (members, systems, updates, articles) the data model mirrors.
+- **`docs/organizational-context.md`**: what the site is for — a software collective's homepage — the
+  nouns the data model mirrors, paths to participate, recruitment signals.
+- **`docs/systems-and-initiatives.md`**: the two core work nouns — what we operate vs what we are trying
+  to accomplish, lifecycle, and how they relate.
 - **`docs/projects/`**: the reasoning behind each prototype, grouped by project.
   - **Start here**: `docs/projects/index.md` lists active and completed projects.
   - **`<project>/overview.md`**: when present, a project index with summaries and reading order.
@@ -79,7 +81,10 @@ hold the intent; the prototype holds the code.
 
 `docs/projects/<project>/` is authoritative for that prototype's intent and decisions. When code changes
 what a prototype does or concludes, update its project docs in the same change. If a decision turns out to
-apply to the whole repo rather than one prototype, promote it into this overview.
+apply to the whole repo rather than one prototype, **promote it into `docs/organizational-context.md`**
+(for what the site *is*) or this overview (for repo-wide conventions). The member-journeys project
+documents Join UX implementation; the three participation paths and recruitment signals are defined in
+organizational context.
 
 ## Local workflows
 

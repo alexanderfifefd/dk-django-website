@@ -37,11 +37,12 @@
   {% if idea_systems %}
     <section class="index-section">
       <h2 class="index-section-title">Ideas</h2>
-      <ul class="system-list">
+      <p class="index-section-intro">Software we think should exist — not built yet. Each needs someone to help drive it forward.</p>
+      <div class="recruiting-cards">
         {% for system in idea_systems %}
-          {% include "pages/includes/system-list-item.html" %}
+          {% include "pages/includes/recruiting-card.html" with item=system kind="system" pitch=True %}
         {% endfor %}
-      </ul>
+      </div>
     </section>
   {% endif %}
 

@@ -14,12 +14,14 @@ necessarily tied to a single system — in the site's information architecture a
 
 ## Summary
 
+Core definitions: **`docs/systems-and-initiatives.md`**. This project implements them in prototype 07.
+
 Systems are *what we operate*; initiatives are *what we're trying to accomplish*. An initiative has
 taker(s), lifecycle **status**, optional **recruiting**, optional related systems, authored updates, and
 optional Loomio/Matrix links. Articles can link to an initiative and/or a system. Index pages group by
 lifecycle (initiatives: active → proposed → completed/paused; systems: production → development →
-ideas). The shared `recruiting: open` field syncs from git but **recruiting UI is deferred** — see
-[lifecycle-and-recruiting.md](./discussions/lifecycle-and-recruiting.md). Forge activity stays
+ideas). The shared `recruiting: open` field syncs from git; **recruiting UI** is implemented by the
+[member-journeys](../member-journeys/overview.md) project (2026-08-14). Forge activity stays
 system-scoped.
 
 ## How to read this project
@@ -46,5 +48,6 @@ system-scoped.
 
 ## Related docs
 
+- **`docs/systems-and-initiatives.md`** — core model (authoritative)
 - `docs/organizational-context.md`
 - `docs/projects/site-ui/` — prototype 06 baseline (unchanged)

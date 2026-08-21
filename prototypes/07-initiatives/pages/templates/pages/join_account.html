@@ -1,0 +1,44 @@
+{% extends "pages/base.html" %}
+
+{% block title %}Create account — The Collective{% endblock %}
+
+{% block content %}
+  <p class="join-back"><a href="{% url 'join' %}">&larr; Join</a></p>
+
+  <header class="join-hero">
+    <h1>Create an account</h1>
+    <p class="lead">
+      Everyone can register. You do not need to be a member or volunteer first — an account is the
+      shared front door to the tools we run.
+    </p>
+  </header>
+
+  <section class="join-hub">
+    <h2 class="join-hub-title">What you get</h2>
+    <ul class="join-benefits">
+      <li><strong>Forgejo</strong> — browse repos, follow issues, contribute when you are ready</li>
+      <li><strong>Loomio</strong> — read discussions (member-only voting is separate)</li>
+      <li><strong>Matrix</strong> — join rooms that are open to account holders</li>
+      <li><strong>Other services</strong> — access to free-tier collective services as we add them</li>
+    </ul>
+    <p class="join-hub-intro">
+      Account creation is handled through our identity service (SSO). You will pick a handle that
+      works across git, chat, and the site.
+    </p>
+    <p>
+      <a class="btn btn-primary" href="https://sso.datakollektivet.no/realms/datakollektivet/protocol/openid-connect/registrations" rel="noopener noreferrer">Continue to account creation</a>
+    </p>
+    <p class="join-card-note">
+      Already have an account? <a href="https://sso.datakollektivet.no" rel="noopener noreferrer">Sign in</a>.
+    </p>
+  </section>
+
+  <section class="join-hub">
+    <h2 class="join-hub-title">Not what you need?</h2>
+    <p class="join-hub-intro">
+      <a href="{% url 'join_member' %}">Become a member</a> for voting rights (paid), or
+      <a href="{% url 'join_volunteer' %}">become a volunteer</a> if you want to take on
+      moderation, maintenance, or driving an initiative.
+    </p>
+  </section>
+{% endblock %}

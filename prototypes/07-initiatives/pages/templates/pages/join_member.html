@@ -1,0 +1,67 @@
+{% extends "pages/base.html" %}
+
+{% block title %}Become a member — The Collective{% endblock %}
+
+{% block content %}
+  <p class="join-back"><a href="{% url 'join' %}">&larr; Join</a></p>
+
+  <header class="join-hero">
+    <h1>Become a member</h1>
+    <p class="lead">
+      Membership is org belonging in the collective — not the same as having an account, and not the
+      same as volunteering on a specific system.
+    </p>
+  </header>
+
+  <section class="join-hub">
+    <h2 class="join-hub-title">What membership includes</h2>
+    <ul class="join-benefits">
+      <li><strong>Voting rights</strong> — participate in collective decisions on Loomio</li>
+      <li><strong>Full Loomio access</strong> — beyond what a free account can do</li>
+      <li><strong>Member obligations</strong> — the collective expects participation, not passive membership</li>
+    </ul>
+    <p class="join-hub-intro">
+      You need a collective account first —
+      <a href="{% url 'join_account' %}">create one</a> if you have not already.
+    </p>
+  </section>
+
+  <section class="join-hub">
+    <h2 class="join-hub-title">Fee &amp; payment</h2>
+    <p class="join-hub-intro">
+      Membership carries a fee that supports running the collective. Payment is handled in a
+      separate step after you confirm your details.
+    </p>
+
+    {% if submitted %}
+      <p class="join-notice">Thanks — this prototype does not process membership or payment yet.</p>
+    {% else %}
+      <form class="join-form" method="post" action="">
+        {% csrf_token %}
+        <p>
+          <label for="account-nick">Account nick</label>
+          <input id="account-nick" name="account_nick" type="text" required
+                 placeholder="Your existing collective handle">
+          <span class="field-hint">The nick you registered with SSO.</span>
+        </p>
+        <p>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required
+                 placeholder="you@example.com">
+        </p>
+        <p>
+          <button type="submit" class="btn btn-primary">Continue to payment</button>
+        </p>
+      </form>
+    {% endif %}
+  </section>
+
+  <section class="join-hub">
+    <h2 class="join-hub-title">Want to contribute without membership?</h2>
+    <p class="join-hub-intro">
+      Many people start with an account or
+      <a href="{% url 'join_volunteer' %}">volunteer</a> on a specific area before becoming a member.
+      See the <a href="{% url 'members_index' %}">members page</a> for how org groups work today.
+    </p>
+  </section>
+{% endblock %}

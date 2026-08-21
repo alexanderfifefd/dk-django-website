@@ -136,6 +136,17 @@ a {
   background: #134a8a;
 }
 
+.btn-secondary {
+  background: #fff;
+  color: var(--accent);
+  border: 1px solid var(--rule);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+  background: var(--bg-code);
+}
+
 .join-form {
   margin-top: 2rem;
 }
@@ -183,6 +194,290 @@ a {
   border-radius: 6px;
   background: var(--bg-code);
   color: var(--muted);
+}
+
+.join-hero {
+  margin-bottom: 2.5rem;
+}
+
+.join-hub {
+  margin-top: 2.5rem;
+}
+
+.join-hub-title {
+  margin: 0 0 0.75rem;
+  font-size: 1.35rem;
+}
+
+.join-hub-intro {
+  margin: 0 0 1.25rem;
+  color: var(--muted);
+  max-width: 42rem;
+}
+
+.join-card {
+  padding: 1.25rem 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--rule);
+  background: var(--bg-code);
+}
+
+.join-card p {
+  margin: 0 0 1rem;
+}
+
+.join-card p:last-child {
+  margin-bottom: 0;
+}
+
+.join-card-account {
+  max-width: 42rem;
+}
+
+.join-card-note {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.join-hub .join-form {
+  margin-top: 1.25rem;
+  max-width: 36rem;
+}
+
+.recruiting-cards {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+}
+
+.recruiting-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1.35rem;
+  border-radius: 8px;
+  border: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.recruiting-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.recruiting-card-initiative {
+  background: var(--lane-initiative-bg);
+  border-color: #ddd6fe;
+}
+
+.recruiting-card-system {
+  background: var(--lane-system-bg);
+  border-color: #bfdbfe;
+}
+
+.recruiting-card-kind {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0 0 0.65rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.recruiting-card-initiative .recruiting-card-kind {
+  color: var(--lane-initiative);
+}
+
+.recruiting-card-system .recruiting-card-kind {
+  color: var(--lane-system);
+}
+
+.recruiting-card-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+  line-height: 1.35;
+}
+
+.recruiting-card-summary {
+  margin: 0 0 1rem;
+  flex: 1;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.recruiting-card-link {
+  margin-top: auto;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.recruiting-card:hover .recruiting-card-link {
+  text-decoration: underline;
+}
+
+.recruiting-card-pitch.recruiting-card-initiative .recruiting-card-link {
+  color: var(--lane-initiative);
+}
+
+.recruiting-card-pitch.recruiting-card-system .recruiting-card-link {
+  color: var(--lane-system);
+}
+
+.recruiting-card-detail {
+  margin-bottom: 1.75rem;
+  cursor: default;
+}
+
+.recruiting-card-detail .recruiting-card-title {
+  font-size: 1.1rem;
+}
+
+.recruiting-card-detail:hover {
+  border-color: inherit;
+  box-shadow: none;
+}
+
+.recruiting-card-detail.recruiting-card-initiative:hover {
+  border-color: #ddd6fe;
+}
+
+.recruiting-card-detail.recruiting-card-system:hover {
+  border-color: #bfdbfe;
+}
+
+.recruiting-card-explainer {
+  margin: 0 0 1rem;
+  flex: 1;
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.recruiting-card-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.recruiting-card-link-action {
+  font-weight: 600;
+}
+
+.recruiting-card-detail.recruiting-card-initiative .recruiting-card-link-action {
+  color: var(--lane-initiative);
+}
+
+.recruiting-card-detail.recruiting-card-system .recruiting-card-link-action {
+  color: var(--lane-system);
+}
+
+.recruiting-card-link-muted {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.recruiting-card-meta {
+  margin: 1rem 0 0;
+  padding: 1rem 0 0;
+  padding-left: 1.25rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.recruiting-card-meta li + li {
+  margin-top: 0.35rem;
+}
+
+.join-back {
+  margin: 0 0 1.5rem;
+  font-size: 0.95rem;
+}
+
+.join-paths {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+}
+
+.join-path-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.35rem 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--rule);
+  background: #fff;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.join-path-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+}
+
+.join-path-card-member {
+  border-color: #bfdbfe;
+  background: var(--lane-system-bg);
+}
+
+.join-path-card-volunteer {
+  border-color: #ddd6fe;
+  background: var(--lane-initiative-bg);
+}
+
+.join-path-title {
+  margin: 0 0 0.65rem;
+  font-size: 1.15rem;
+  line-height: 1.35;
+}
+
+.join-path-summary {
+  margin: 0 0 1rem;
+  flex: 1;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.join-path-link {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.join-path-card:hover .join-path-link {
+  text-decoration: underline;
+}
+
+.join-benefits {
+  margin: 0 0 1.25rem;
+  padding-left: 1.25rem;
+}
+
+.join-benefits li + li {
+  margin-top: 0.5rem;
+}
+
+.join-form-checkbox label {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.join-form-checkbox input {
+  margin-top: 0.25rem;
+  flex-shrink: 0;
 }
 
 .about-cta {
@@ -866,6 +1161,48 @@ td {
   margin-top: 0.35rem;
 }
 
+.initiative-involve-lead {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+}
+
+.system-involve {
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  background: var(--lane-system-bg);
+}
+
+.system-involve-title {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--lane-system);
+}
+
+.system-involve-lead {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+}
+
+.system-involve-note,
+.initiative-involve-note {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.system-involve-list {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.system-involve-list li + li {
+  margin-top: 0.35rem;
+}
+
 .initiative-body {
   margin-bottom: 0;
 }
@@ -1054,6 +1391,7 @@ td {
 .index-section-intro {
   margin: -0.25rem 0 0.75rem;
   color: var(--muted);
+  max-width: 42rem;
 }
 
 .index-recruiting {
@@ -1064,6 +1402,14 @@ td {
 
 .index-recruiting-item p {
   color: var(--muted);
+}
+
+.index-recruiting-systems {
+  margin-top: 1rem;
+}
+
+.home-recruiting {
+  margin-top: 2rem;
 }
 
 .home-recruiting-links {

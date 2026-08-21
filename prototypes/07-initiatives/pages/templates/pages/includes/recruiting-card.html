@@ -1,0 +1,22 @@
+<a class="recruiting-card recruiting-card-{{ kind }}{% if pitch %} recruiting-card-pitch{% endif %}"
+   href="{% if kind == 'initiative' %}{% url 'initiative_detail' item.slug %}{% else %}{% url 'system_detail' item.slug %}{% endif %}">
+  <p class="recruiting-card-kind">
+    {% if kind == "initiative" %}
+      {% include "pages/includes/icon-initiative.html" %}
+      {% if pitch %}Initiative · Proposed{% else %}Initiative{% endif %}
+    {% else %}
+      {% include "pages/includes/icon-system.html" %}
+      {% if pitch %}System · Idea{% else %}System{% endif %}
+    {% endif %}
+  </p>
+  <h3 class="recruiting-card-title">{{ item.title }}</h3>
+  {% if item.summary %}<p class="recruiting-card-summary">{{ item.summary }}</p>{% endif %}
+  <span class="recruiting-card-link">
+    {% if pitch %}
+      {% if kind == "initiative" %}Take this on{% else %}Help build this{% endif %}
+    {% else %}
+      Learn more
+    {% endif %}
+    <span aria-hidden="true">→</span>
+  </span>
+</a>

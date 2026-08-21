@@ -1,6 +1,7 @@
 <li>
   <a href="{% url 'system_detail' system.slug %}">{{ system.title }}</a>
   <span class="stage-badge stage-badge-{{ system.stage }}">{{ system.get_stage_display }}</span>
+  {% include "pages/includes/recruiting-badge.html" with item=system %}
   {% if system.url %}
     <a class="system-url" href="{{ system.url }}" rel="noopener noreferrer">{{ system.url|cut:"https://" }}</a>
   {% endif %}

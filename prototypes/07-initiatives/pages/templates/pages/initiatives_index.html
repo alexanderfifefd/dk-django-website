@@ -26,11 +26,12 @@
   {% if proposed_initiatives %}
     <section class="index-section">
       <h2 class="index-section-title">Proposed</h2>
-      <ul class="post-list">
+      <p class="index-section-intro">Pitches on the table — not active work yet. Each needs someone to take ownership or help shape it.</p>
+      <div class="recruiting-cards">
         {% for initiative in proposed_initiatives %}
-          {% include "pages/includes/initiative-list-item.html" %}
+          {% include "pages/includes/recruiting-card.html" with item=initiative kind="initiative" pitch=True %}
         {% endfor %}
-      </ul>
+      </div>
     </section>
   {% endif %}
 

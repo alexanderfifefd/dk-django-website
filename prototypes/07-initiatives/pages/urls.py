@@ -14,4 +14,7 @@ urlpatterns = [
     path("articles/<slug:slug>/", views.article_detail, name="article_detail"),
     path("about/", views.about, name="about"),
     path("join/", views.join, name="join"),
+    path("join/account/", views.join_account, name="join_account"),
+    path("join/member/", views.join_member, name="join_member"),
+    path("join/volunteer/", views.join_volunteer, name="join_volunteer"),
 ]

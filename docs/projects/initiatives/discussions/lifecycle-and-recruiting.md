@@ -72,17 +72,11 @@ Index pages group by lifecycle:
 - **Initiatives** — active, then proposed, then completed and paused.
 - **Systems** — production, then development, then ideas.
 
-### Recruiting UI — deferred
+### Recruiting UI
 
-The `recruiting: open` field is in the content model and syncs to the ORM. **Surfacing it on the site
-is not implemented yet.** A plausible future layout (to explore later):
-
-1. **Main list** — lifecycle groups as above.
-2. **Looking for takers** — a lower band on index pages (and possibly home) filtering
-   `recruiting: open`, presented more lightly than underway work.
-
-Detail-page badges are likewise deferred. Seed content may still set `recruiting: open` so the shape is
-ready when presentation is picked up.
+Surfaced by the [member-journeys](../member-journeys/overview.md) project (2026-08-14). Index pages,
+home, and detail pages show `recruiting: open`. See
+[entry-points-and-conversion.md](../member-journeys/discussions/entry-points-and-conversion.md).
 
 ## Examples
 
@@ -117,6 +111,6 @@ recruiting: open
 
 ## Open after this decision
 
-- Recruiting presentation on home, index pages, and detail pages (see **Recruiting UI — deferred**
-  above).
 - Whether `proposed` + `recruiting: open` should warn at sync time.
+- Further member-journey work: Join page copy, forge get-involved, article CTAs — see
+  [member-journeys](../member-journeys/overview.md).

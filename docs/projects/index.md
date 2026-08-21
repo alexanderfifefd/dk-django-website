@@ -25,6 +25,18 @@ project to Completed.
 
 ## Active
 
+### `dark-mode` — how should the site look on a dark background?
+
+**Status: in progress** — first pass on prototype 12 (2026-08-21).
+
+Charcoal + cream palette from the dark brand mockup. Fork of prototype 11; CSS tokens only.
+Prototype 11 stays on the light palette.
+
+- **Overview**: `docs/projects/12-dark-mode/overview.md` — **start here**
+- **Discussion**: `docs/projects/12-dark-mode/discussions/dark-palette.md`
+- **Plan**: `docs/projects/12-dark-mode/plans/2026-08-21-prototype-12-dark-mode.md`
+- **Prototype**: `prototypes/12-dark-mode/`
+
 ### `site-design` — how should the first public site look?
 
 **Status: in progress** — first design pass on prototype 11 (2026-08-21); see iteration summary.

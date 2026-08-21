@@ -1,0 +1,38 @@
+{% extends "public/layouts/base.html" %}
+
+{% block title %}Join — The Collective{% endblock %}
+
+{% block content %}
+  <header class="page-hero">
+    <h1>Join the collective</h1>
+  </header>
+
+  <div class="join-paths">
+    <a class="join-path-card" href="{% url 'join_account' %}">
+      <h2 class="join-path-title">Start with an account</h2>
+      <p class="join-path-summary">
+        Free for everyone. One identity for Forgejo, Loomio, Matrix, and other collective services
+        we make available without membership.
+      </p>
+      <span class="join-path-link">Create account <span aria-hidden="true">→</span></span>
+    </a>
+
+    <a class="join-path-card join-path-card-member" href="{% url 'join_member' %}">
+      <h2 class="join-path-title">Become a member</h2>
+      <p class="join-path-summary">
+        Voting rights in the collective, full participation in Loomio decisions, and the
+        obligations that come with org membership. There is a fee.
+      </p>
+      <span class="join-path-link">Membership &amp; payment <span aria-hidden="true">→</span></span>
+    </a>
+
+    <a class="join-path-card join-path-card-volunteer" href="{% url 'join_volunteer' %}">
+      <h2 class="join-path-title">Become a volunteer</h2>
+      <p class="join-path-summary">
+        Moderation, technical maintenance, driving initiatives — real responsibility with a
+        light agreement. Tell us what fits you.
+      </p>
+      <span class="join-path-link">Volunteer application <span aria-hidden="true">→</span></span>
+    </a>
+  </div>
+{% endblock %}

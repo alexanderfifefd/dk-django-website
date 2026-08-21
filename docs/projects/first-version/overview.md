@@ -102,5 +102,6 @@ All page templates extend `public/layouts/base.html`.
 
 ## Related
 
+- [site-design](../site-design/overview.md) — brand palette in prototype 11 (`prototypes/11-site-design/`)
 - `docs/organizational-context.md` — full noun model (prototype 10 presents a subset)
 - `prototypes/07-initiatives/` — feature-rich reference; do not copy wholesale

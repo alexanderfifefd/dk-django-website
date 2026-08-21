@@ -21,6 +21,20 @@ the outcome in the plan and move the project to Completed.
 
 ## Active
 
+### `site-design` — how should the first public site look?
+
+**Status: in progress** — first design pass on prototype 11 (2026-08-21); see iteration summary.
+
+Warm cream + sage / peach / clay palette. Fork of prototype 10; CSS tokens only in
+`prototypes/11-site-design/`. Prototype 10 stays on generic blue tokens.
+
+- **Overview**: `docs/projects/site-design/overview.md` — **start here**
+- **Discussion**: `docs/projects/site-design/discussions/brand-palette.md`
+- **Discussion**: `docs/projects/site-design/discussions/stripe-variants.md`
+- **Summary**: `docs/projects/site-design/discussions/2026-08-21-design-iteration-summary.md`
+- **Plan**: `docs/projects/site-design/plans/2026-08-21-prototype-11-site-design.md`
+- **Prototype**: `prototypes/11-site-design/`
+
 ### `first-version` — what is the smallest useful public site?
 
 **Status: in progress** — foundation built; home copy v1 (2026-08-21).

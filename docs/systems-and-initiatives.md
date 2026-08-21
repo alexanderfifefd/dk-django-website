@@ -100,5 +100,5 @@ Systems and initiatives each have index pages grouped by lifecycle, detail pages
 home page. They are first-class navigation — the primary way outsiders see what the collective operates
 and what it is pushing forward.
 
-Implementation: `docs/projects/initiatives/` (prototype 07). Systems began in
-`docs/projects/site-ui/`; initiatives extended the model on the same prototype.
+Implementation: `docs/projects/07-initiatives/` (prototype 07). Systems began in
+`docs/projects/06-site-ui/`; initiatives extended the model on the same prototype.

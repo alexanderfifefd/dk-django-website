@@ -5,19 +5,23 @@ the decision taken, and the prototype built to test it. Projects are procedural 
 thought at the time and are not rewritten when we later change our minds. A later project supersedes an
 earlier one instead.
 
-Each project lives in `docs/projects/<name>/`:
+Each project lives in `docs/projects/NN-<slug>/`:
 
 - `overview.md` — when present, project summary, file index, and suggested reading order.
 - `discussions/<slug>.md` — the question, the options, the reasoning, the decision.
 - `plans/YYYY-MM-DD-<slug>.md` — what will be built, in what order, and how we'll know it worked.
 
-Most projects map to one prototype directory under `prototypes/`.
+**Naming:** `NN` is the prototype number the project works in — the same prefix as
+`prototypes/NN-<slug>/`. Most projects map 1:1 to one prototype directory. When several lines of enquiry
+share a prototype (e.g. `07-initiatives`, `07-member-journeys`, and `07-groups` all on
+`prototypes/07-initiatives/`), each enquiry still gets its own doc folder with the shared `NN` prefix.
 
 ## Starting a new project
 
 Discussion first, then an entry under Active here, then a plan once a decision is reached, then the
-prototype (`prototypes/NN-<project-name>/`, numbered in build order). When the question is answered, note
-the outcome in the plan and move the project to Completed.
+prototype (`prototypes/NN-<slug>/`, numbered in build order) and matching docs folder
+(`docs/projects/NN-<slug>/`). When the question is answered, note the outcome in the plan and move the
+project to Completed.
 
 ## Active
 
@@ -28,11 +32,11 @@ the outcome in the plan and move the project to Completed.
 Warm cream + sage / peach / clay palette. Fork of prototype 10; CSS tokens only in
 `prototypes/11-site-design/`. Prototype 10 stays on generic blue tokens.
 
-- **Overview**: `docs/projects/site-design/overview.md` — **start here**
-- **Discussion**: `docs/projects/site-design/discussions/brand-palette.md`
-- **Discussion**: `docs/projects/site-design/discussions/stripe-variants.md`
-- **Summary**: `docs/projects/site-design/discussions/2026-08-21-design-iteration-summary.md`
-- **Plan**: `docs/projects/site-design/plans/2026-08-21-prototype-11-site-design.md`
+- **Overview**: `docs/projects/11-site-design/overview.md` — **start here**
+- **Discussion**: `docs/projects/11-site-design/discussions/brand-palette.md`
+- **Discussion**: `docs/projects/11-site-design/discussions/stripe-variants.md`
+- **Summary**: `docs/projects/11-site-design/discussions/2026-08-21-design-iteration-summary.md`
+- **Plan**: `docs/projects/11-site-design/plans/2026-08-21-prototype-11-site-design.md`
 - **Prototype**: `prototypes/11-site-design/`
 
 ### `first-version` — what is the smallest useful public site?
@@ -44,9 +48,9 @@ systems, initiatives, members, or forge surfaces. Single Django app `public`; `l
 `load_articles`; templates in `layouts/`, `partials/`, and section folders. Onboarding:
 `prototypes/10-first-version/README.md`.
 
-- **Overview**: `docs/projects/first-version/overview.md` — **start here**
-- **Discussion**: `docs/projects/first-version/discussions/minimal-v1-scope.md`
-- **Plan**: `docs/projects/first-version/plans/2026-08-21-prototype-10-first-version.md`
+- **Overview**: `docs/projects/10-first-version/overview.md` — **start here**
+- **Discussion**: `docs/projects/10-first-version/discussions/minimal-v1-scope.md`
+- **Plan**: `docs/projects/10-first-version/plans/2026-08-21-prototype-10-first-version.md`
 - **Prototype**: `prototypes/10-first-version/`
 
 ### `member-journeys` — how should the site convert visitors into participants?
@@ -55,12 +59,12 @@ systems, initiatives, members, or forge surfaces. Single Django app `public`; `l
 
 `/join/` chooser → **account**, **member**, **volunteer**. Core model in
 **[`docs/organizational-context.md`](../../organizational-context.md)**; implementation in
-[member-journeys](docs/projects/member-journeys/overview.md).
+[member-journeys](docs/projects/07-member-journeys/overview.md).
 
-- **Overview**: `docs/projects/member-journeys/overview.md` — **start here**
-- **Discussion**: `docs/projects/member-journeys/discussions/three-paths-to-participate.md`
-- **Discussion**: `docs/projects/member-journeys/discussions/help-wanted-and-recruiting.md`
-- **Plan**: `docs/projects/member-journeys/plans/2026-08-14-three-join-paths.md`
+- **Overview**: `docs/projects/07-member-journeys/overview.md` — **start here**
+- **Discussion**: `docs/projects/07-member-journeys/discussions/three-paths-to-participate.md`
+- **Discussion**: `docs/projects/07-member-journeys/discussions/help-wanted-and-recruiting.md`
+- **Plan**: `docs/projects/07-member-journeys/plans/2026-08-14-three-join-paths.md`
 - **Prototype**: `prototypes/07-initiatives/`
 
 ### `initiatives` — how should we represent goal-oriented efforts on the site?
@@ -72,10 +76,10 @@ Initiatives are distinct from systems: goal-oriented efforts with taker(s), life
 `recruiting: open`, and authored updates. Fork of prototype 06; English slugs and copy; Systems +
 Initiatives in left nav; index pages grouped by lifecycle. Git authoring only — no creation form.
 
-- **Overview**: `docs/projects/initiatives/overview.md` — **start here**
-- **Discussion**: `docs/projects/initiatives/discussions/initiatives-as-a-noun.md`
-- **Discussion**: `docs/projects/initiatives/discussions/lifecycle-and-recruiting.md`
-- **Plan**: `docs/projects/initiatives/plans/2026-08-13-prototype-07-initiatives.md`
+- **Overview**: `docs/projects/07-initiatives/overview.md` — **start here**
+- **Discussion**: `docs/projects/07-initiatives/discussions/initiatives-as-a-noun.md`
+- **Discussion**: `docs/projects/07-initiatives/discussions/lifecycle-and-recruiting.md`
+- **Plan**: `docs/projects/07-initiatives/plans/2026-08-13-prototype-07-initiatives.md`
 - **Prototype**: `prototypes/07-initiatives/`
 
 ### `groups` — how should we present Board, Maintainers, and Moderators?
@@ -86,9 +90,9 @@ Org groups on the existing `Group` model in **prototype 07** — enriched `group
 sections per group, About pointers. **No separate prototype** (`08-groups/` does not exist); this project
 is a pass on `prototypes/07-initiatives/` alongside `initiatives`.
 
-- **Overview**: `docs/projects/groups/overview.md` — **start here** (includes prototype mapping)
-- **Discussion**: `docs/projects/groups/discussions/org-groups-on-the-site.md`
-- **Plan**: `docs/projects/groups/plans/2026-08-14-three-org-groups.md`
+- **Overview**: `docs/projects/07-groups/overview.md` — **start here** (includes prototype mapping)
+- **Discussion**: `docs/projects/07-groups/discussions/org-groups-on-the-site.md`
+- **Plan**: `docs/projects/07-groups/plans/2026-08-14-three-org-groups.md`
 - **Prototype**: `prototypes/07-initiatives/` (shared with `initiatives`; not a standalone fork)
 
 ### `site-ui` — how should we present systems, members, articles, and updates?
@@ -99,10 +103,10 @@ Authored content only (no forge). Markdown in git syncs to ORM via `pages/source
 re-syncs on each request. Real collective data: 9 members, 6 systems, 2 groups, 1 article. Site chrome,
 about/join pages, system `stage` and `url`, article layouts in place.
 
-- **Overview**: `docs/projects/site-ui/overview.md` — **start here for current state**
-- **Discussion**: `docs/projects/site-ui/discussions/ui-without-ingest.md` (original decision)
-- **Discussion**: `docs/projects/site-ui/discussions/orm-pivot-for-ui-queries.md` (current architecture)
-- **Plan**: `docs/projects/site-ui/plans/2026-08-12-prototype-06-site-ui.md`
+- **Overview**: `docs/projects/06-site-ui/overview.md` — **start here for current state**
+- **Discussion**: `docs/projects/06-site-ui/discussions/ui-without-ingest.md` (original decision)
+- **Discussion**: `docs/projects/06-site-ui/discussions/orm-pivot-for-ui-queries.md` (current architecture)
+- **Plan**: `docs/projects/06-site-ui/plans/2026-08-12-prototype-06-site-ui.md`
 - **Prototype**: `prototypes/06-site-ui/`
 
 ## Completed
@@ -115,13 +119,13 @@ cross-references. `sync_issues` matches forge author logins against that map and
 `Issue.member` FK. Member pages show markdown bio plus linked PRs and open issues; a members index
 lists active members. No SSO or Django auth required.
 
-- **Overview**: `docs/projects/git-identity/overview.md`
-- **Discussion**: `docs/projects/git-identity/discussions/sso-and-account-linking.md`
-- **Discussion**: `docs/projects/git-identity/discussions/federated-identity-via-git.md`
-- **Discussion**: `docs/projects/git-identity/discussions/member-slug-and-references.md`
-- **Discussion**: `docs/projects/git-identity/discussions/organizational-implications.md`
-- **Discussion**: `docs/projects/git-identity/discussions/forgejo-api-for-identity.md`
-- **Plan**: `docs/projects/git-identity/plans/2026-08-08-prototype-05-git-identity.md`
+- **Overview**: `docs/projects/05-git-identity/overview.md`
+- **Discussion**: `docs/projects/05-git-identity/discussions/sso-and-account-linking.md`
+- **Discussion**: `docs/projects/05-git-identity/discussions/federated-identity-via-git.md`
+- **Discussion**: `docs/projects/05-git-identity/discussions/member-slug-and-references.md`
+- **Discussion**: `docs/projects/05-git-identity/discussions/organizational-implications.md`
+- **Discussion**: `docs/projects/05-git-identity/discussions/forgejo-api-for-identity.md`
+- **Plan**: `docs/projects/05-git-identity/plans/2026-08-08-prototype-05-git-identity.md`
 - **Prototype**: `prototypes/05-git-identity/` — built and validated (2026-08-12)
 
 ### `forge-issues` — does the ingest pattern extend to a forge's HTTP API?
@@ -131,9 +135,9 @@ derived table alongside git-owned systems. First API source; Pydantic with `extr
 boundary; separate `sync_issues` command. Issues and PRs render as linked lists (open/closed badges on
 PRs); updates stay as authored JSON beside each system.
 
-- **Discussion**: `docs/projects/forge-issues/discussions/issues-from-the-forge.md`
-- **Primitives brainstorm**: `docs/projects/forge-issues/discussions/forge-primitives-as-site-content.md`
-- **Plan**: `docs/projects/forge-issues/plans/2026-08-07-prototype-04-forge-issues.md`
+- **Discussion**: `docs/projects/04-forge-issues/discussions/issues-from-the-forge.md`
+- **Primitives brainstorm**: `docs/projects/04-forge-issues/discussions/forge-primitives-as-site-content.md`
+- **Plan**: `docs/projects/04-forge-issues/plans/2026-08-07-prototype-04-forge-issues.md`
 - **Prototype**: `prototypes/04-forge-issues/` — built and validated (2026-08-08)
 
 ### `integration-layer` — do collections, relationships, and mixed sources break the ingest pattern?
@@ -142,8 +146,8 @@ PRs); updates stay as authored JSON beside each system.
 systems and articles from git) with real FKs and strict cross-source validation. Updates stay in a
 JSONField without pain at this scale. Dev middleware deferred — manual sync remains.
 
-- **Discussion**: `docs/projects/integration-layer/discussions/collections-relationships-and-freshness.md`
-- **Plan**: `docs/projects/integration-layer/plans/2026-08-06-prototype-03-integration-layer.md`
+- **Discussion**: `docs/projects/03-integration-layer/discussions/collections-relationships-and-freshness.md`
+- **Plan**: `docs/projects/03-integration-layer/plans/2026-08-06-prototype-03-integration-layer.md`
 - **Prototype**: `prototypes/03-integration-layer/` — built and validated (2026-08-07)
 
 ### `markdown-pages` — can markdown files on disk be the content layer?
@@ -151,9 +155,9 @@ JSONField without pain at this scale. Dev middleware deferred — manual sync re
 **Answer: yes.** Markdown files with frontmatter work as the authoring format; per-request parsing worked
 at toy scale but gave up querying, validation, and relationships. Superseded by `content-pipeline`.
 
-- **Discussion**: `docs/projects/markdown-pages/discussions/filesystem-as-content-source.md`
-- **Learnings**: `docs/projects/markdown-pages/discussions/learnings-from-prototype-01.md`
-- **Plan**: `docs/projects/markdown-pages/plans/2026-08-06-prototype-01-markdown-pages.md`
+- **Discussion**: `docs/projects/01-markdown-pages/discussions/filesystem-as-content-source.md`
+- **Learnings**: `docs/projects/01-markdown-pages/discussions/learnings-from-prototype-01.md`
+- **Plan**: `docs/projects/01-markdown-pages/plans/2026-08-06-prototype-01-markdown-pages.md`
 - **Prototype**: `prototypes/01-markdown-pages/` — built and working (2026-08-06)
 
 ### `content-pipeline` — who owns the path from markdown file to page?
@@ -162,9 +166,9 @@ at toy scale but gave up querying, validation, and relationships. Superseded by 
 files into a derived `Post` table. Main cost found: the save–ingest–reload authoring loop, picked up by
 `integration-layer`.
 
-- **Discussion**: `docs/projects/content-pipeline/discussions/who-owns-the-markdown-layer.md`
-- **Learnings**: `docs/projects/content-pipeline/discussions/learnings-from-prototype-02.md`
-- **Plan**: `docs/projects/content-pipeline/plans/2026-08-06-prototype-02-content-pipeline.md`
+- **Discussion**: `docs/projects/02-content-pipeline/discussions/who-owns-the-markdown-layer.md`
+- **Learnings**: `docs/projects/02-content-pipeline/discussions/learnings-from-prototype-02.md`
+- **Plan**: `docs/projects/02-content-pipeline/plans/2026-08-06-prototype-02-content-pipeline.md`
 - **Prototype**: `prototypes/02-content-pipeline/` — built and validated (2026-08-06)
 
 ## Open questions not yet claimed by a project

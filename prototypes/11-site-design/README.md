@@ -3,7 +3,7 @@
 Fork of [prototype 10](../10-first-version/) with the warm brand palette applied in CSS. Same routes,
 templates, and content — only visual tokens differ.
 
-**Project docs:** `docs/projects/site-design/`
+**Project docs:** `docs/projects/11-site-design/`
 
 ## Quick start
 

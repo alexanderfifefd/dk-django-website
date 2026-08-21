@@ -43,12 +43,18 @@ Treat all state as disposable:
 ```
 pyproject.toml              # one shared uv environment for every prototype
 prototypes/
-  01-<name>/                # a standalone Django project
-  02-<name>/                # another standalone Django project
+  01-<slug>/                # a standalone Django project
+  02-<slug>/                # another standalone Django project
 docs/
   overview.md               # this file
-  projects/                 # the thinking behind each prototype
+  projects/
+    01-<slug>/              # project docs for prototype 01 (usually 1:1)
+    07-initiatives/         # example: several doc folders can share NN
+    07-member-journeys/
 ```
+
+Project doc folders use the same `NN-<slug>` prefix as their prototype. Multiple doc folders may share
+`NN` when several enquiries run on one prototype without forking again.
 
 Each prototype under `prototypes/` is a **fully standalone Django project** with its own `manage.py`,
 settings, templates, and content. Prototypes never import from each other. Copying code between them is
@@ -68,18 +74,19 @@ that prototype's own business. Its project docs under `docs/projects/` describe 
   to accomplish, lifecycle, and how they relate.
 - **`docs/projects/`**: the reasoning behind each prototype, grouped by project.
   - **Start here**: `docs/projects/index.md` lists active and completed projects.
-  - **`<project>/overview.md`**: when present, a project index with summaries and reading order.
-  - **`<project>/discussions/`**: what question we're answering, what options exist, what we chose.
-  - **`<project>/plans/`**: date-prefixed implementation plans (`YYYY-MM-DD-<slug>.md`).
+  - **`NN-<slug>/overview.md`**: when present, a project index with summaries and reading order.
+  - **`NN-<slug>/discussions/`**: what question we're answering, what options exist, what we chose.
+  - **`NN-<slug>/plans/`**: date-prefixed implementation plans (`YYYY-MM-DD-<slug>.md`).
   - Don't read a project's docs unless the current task concerns it — start with that project's
     `overview.md` when one exists.
 
-A project in `docs/projects/` usually maps to one prototype directory under `prototypes/`. The project docs
-hold the intent; the prototype holds the code.
+A project in `docs/projects/NN-<slug>/` usually maps to one prototype directory under
+`prototypes/NN-<slug>/`. The project docs hold the intent; the prototype holds the code. When several
+projects share a prototype, they share the `NN` prefix but keep separate `<slug>` folders.
 
 ### Documentation authority
 
-`docs/projects/<project>/` is authoritative for that prototype's intent and decisions. When code changes
+`docs/projects/NN-<slug>/` is authoritative for that project's intent and decisions. When code changes
 what a prototype does or concludes, update its project docs in the same change. If a decision turns out to
 apply to the whole repo rather than one prototype, **promote it into `docs/organizational-context.md`**
 (for what the site *is*) or this overview (for repo-wide conventions). The member-journeys project

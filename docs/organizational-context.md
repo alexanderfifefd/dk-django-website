@@ -46,7 +46,7 @@ are not the same commitment:
 
 On the site, **Join** is the chooser for these paths — account creation, membership (and payment), and
 volunteer application are separate flows. Implementation details and prototype status live in
-`docs/projects/member-journeys/`.
+`docs/projects/07-member-journeys/`.
 
 A maintainer and a member both need an account first. Volunteering to steward a system is not the same
 as becoming a member, and neither is implied by registering.
@@ -69,7 +69,7 @@ as becoming a member, and neither is implied by registering.
 System and initiative pages answer *what can I do here?* locally (teamlead, taker, future help-wanted
 issues). Open stewardship roles also appear on the volunteer path. See
 [`docs/systems-and-initiatives.md`](systems-and-initiatives.md) and
-`docs/projects/member-journeys/discussions/help-wanted-and-recruiting.md`.
+`docs/projects/07-member-journeys/discussions/help-wanted-and-recruiting.md`.
 
 ## Two voices
 
@@ -97,7 +97,7 @@ HUMAN NOTE: This goes for more systems as well. E.g. work on Loomio. We're discu
   `content/members/<slug>.md` — the filename is the canonical slug for cross-references (`teamlead`,
   `author`, etc.). Frontmatter carries a display `name` and an `identities` map linking to external
   accounts (forge, Matrix, …). Django ingests and caches the profile; forge activity links via
-  `identities.forgejo`, not via SSO. See `docs/projects/git-identity/`.
+  `identities.forgejo`, not via SSO. See `docs/projects/05-git-identity/`.
 - **System**: software the collective maintains — teamlead, admins, updates, lifecycle stage. See
   [`docs/systems-and-initiatives.md`](systems-and-initiatives.md#system).
 - **Initiative**: a goal members drive forward — taker(s), status, optional related systems, coordination

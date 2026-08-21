@@ -23,8 +23,10 @@ repo-wide conventions, and understanding the one prototype you're about to work 
      nearest prior prototype (the one the new work builds on) rather than a project of its own.
 
 3. **Read that project's docs, and only that project's**
-   - Read the relevant `docs/projects/<project>/discussions/*.md` for the reasoning and decisions.
-   - Read the newest `docs/projects/<project>/plans/*.md` for what is being built and what is still open.
+   - Read the relevant `docs/projects/NN-<slug>/discussions/*.md` for the reasoning and decisions.
+   - Read the newest `docs/projects/NN-<slug>/plans/*.md` for what is being built and what is still open.
+   - Project doc folders use the same `NN-<slug>` prefix as their prototype; multiple doc folders may
+     share `NN` when several enquiries run on one prototype.
    - Do not read other projects' docs. They are procedural logs of superseded thinking.
 
 4. **Explore the prototype directory**

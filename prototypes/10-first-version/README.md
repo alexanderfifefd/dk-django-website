@@ -11,6 +11,7 @@ monorepo’s shared `uv` environment):
 ```bash
 uv sync                                    # once, from the monorepo root
 uv run python manage.py migrate
+uv run python manage.py load_articles      # optional — dev middleware syncs on first request too
 uv run python manage.py runserver
 ```
 

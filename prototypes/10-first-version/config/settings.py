@@ -16,7 +16,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.middleware.common.CommonMiddleware",
-    "public.middleware.ContentSyncMiddleware",
+    "public.middleware.ContentLoadMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"

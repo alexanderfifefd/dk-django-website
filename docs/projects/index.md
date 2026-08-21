@@ -23,10 +23,12 @@ the outcome in the plan and move the project to Completed.
 
 ### `first-version` — what is the smallest useful public site?
 
-**Status: in progress** — prototype 10 scaffolded (2026-08-21).
+**Status: in progress** — foundation built; home copy v1 (2026-08-21).
 
-Focused fork of the prototype 07 design: home, markdown articles, about, join hub. No systems,
-initiatives, members, or forge surfaces. Single Django app `public`; git sync via `loaders/`.
+Focused fork of the prototype 07 design: home, markdown articles, about, join hub + sub-paths. No
+systems, initiatives, members, or forge surfaces. Single Django app `public`; `loaders/` +
+`load_articles`; templates in `layouts/`, `partials/`, and section folders. Onboarding:
+`prototypes/10-first-version/README.md`.
 
 - **Overview**: `docs/projects/first-version/overview.md` — **start here**
 - **Discussion**: `docs/projects/first-version/discussions/minimal-v1-scope.md`

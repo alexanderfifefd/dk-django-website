@@ -7,12 +7,12 @@
   <link rel="stylesheet" href="{% static 'css/site.css' %}">
 </head>
 <body>
-  {% include "public/includes/header.html" %}
+  {% include "public/partials/header.html" %}
 
   <main>
     {% block content %}{% endblock %}
   </main>
 
-  {% include "public/includes/footer.html" %}
+  {% include "public/partials/footer.html" %}
 </body>
 </html>

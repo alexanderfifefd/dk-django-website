@@ -13,7 +13,8 @@ version. What do we ship first?
 
 **Prototype 10** (`prototypes/10-first-version/`) covers four surfaces:
 
-1. **Home** — who we are, latest articles, join CTA. No systems or initiatives sections.
+1. **Home** — H1, what we do, who we are (links to about), latest articles, join CTA. No systems or
+   initiatives sections.
 2. **Articles** — markdown in git, synced to a single `Article` model. The only dynamic content.
 3. **About** — static page; collective story without linking to members or systems indexes.
 4. **Join** — chooser hub plus account, member, and volunteer sub-pages (static templates; forms not wired up).
@@ -42,6 +43,8 @@ Everything else from prototype 07 stays out until there is a concrete need.
   linking when profiles return.
 - **Slim CSS** — same tokens and layout feel as prototype 07 (~500 lines, not ~1500). Add rules when
   a page needs them, not preemptively.
+- **Templates in three layers** — `layouts/` (extend), `partials/` (include), section folders for pages
+  (`articles/`, `join/`). Top-level templates for one-off routes (`home.html`, `about.html`).
 - **No copy-paste from 07** — write only the files this scope needs; use 07 as reference for copy and
   design, not as a template tree to duplicate.
 

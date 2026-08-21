@@ -14,14 +14,14 @@ def home(request):
 def articles_index(request):
     return render(
         request,
-        "public/articles_index.html",
+        "public/articles/index.html",
         {"articles": Article.objects.all()},
     )
 
 
 def article_detail(request, slug):
     article = get_object_or_404(Article, slug=slug)
-    return render(request, "public/article_detail.html", {"article": article})
+    return render(request, "public/articles/detail.html", {"article": article})
 
 
 def about(request):
@@ -29,17 +29,17 @@ def about(request):
 
 
 def join(request):
-    return render(request, "public/join.html")
+    return render(request, "public/join/index.html")
 
 
 def join_account(request):
-    return render(request, "public/join_account.html")
+    return render(request, "public/join/account.html")
 
 
 def join_member(request):
     return render(
         request,
-        "public/join_member.html",
+        "public/join/member.html",
         {"submitted": request.method == "POST"},
     )
 
@@ -47,6 +47,6 @@ def join_member(request):
 def join_volunteer(request):
     return render(
         request,
-        "public/join_volunteer.html",
+        "public/join/volunteer.html",
         {"submitted": request.method == "POST"},
     )

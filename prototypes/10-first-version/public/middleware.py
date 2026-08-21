@@ -2,29 +2,29 @@ from django.core.management.base import CommandError
 from django.http import HttpResponse
 from django.template import engines
 
-from public.loaders.articles import run_sync_articles
+from public.loaders.articles import run_load_articles
 
 
-class ContentSyncMiddleware:
-    """Re-sync git-owned articles from disk on every request in DEBUG."""
+class ContentLoadMiddleware:
+    """Re-load git-owned articles from disk on every request in DEBUG."""
 
     def __init__(self, get_response):
         self.get_response = get_response
 
     def __call__(self, request):
         try:
-            run_sync_articles()
+            run_load_articles()
         except CommandError as exc:
-            return self._sync_error_response(exc)
+            return self._load_error_response(exc)
         return self.get_response(request)
 
-    def _sync_error_response(self, exc: CommandError) -> HttpResponse:
+    def _load_error_response(self, exc: CommandError) -> HttpResponse:
         template = engines["django"].from_string(
             """<!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><title>Content sync failed</title></head>
+<head><meta charset="utf-8"><title>Article load failed</title></head>
 <body>
-  <h1>Content sync failed</h1>
+  <h1>Article load failed</h1>
   <pre>{{ message }}</pre>
 </body>
 </html>"""

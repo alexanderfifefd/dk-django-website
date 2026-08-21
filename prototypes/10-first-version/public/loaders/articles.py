@@ -87,10 +87,10 @@ def sync_articles(records: list[ArticleRecord]) -> SyncResult:
     return SyncResult(upserted=len(records), removed=removed)
 
 
-def run_sync_articles(*, flush: bool = False) -> SyncResult:
+def run_load_articles(*, flush: bool = False) -> SyncResult:
     errors: list[str] = []
     records = load_articles(settings.CONTENT_DIR / "articles", errors)
-    abort_if(errors, "sync_content")
+    abort_if(errors, "load_articles")
 
     if flush:
         Article.objects.all().delete()

@@ -142,7 +142,7 @@ h1 {
 }
 
 .hero h1 {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0;
   font-size: 2.25rem;
 }
 
@@ -156,6 +156,20 @@ h1 {
 
 .home-section {
   margin-bottom: 2.5rem;
+}
+
+.home-section > h2 {
+  margin: 0 0 0.75rem;
+}
+
+.home-section > p {
+  margin: 0 0 1rem;
+  max-width: 42rem;
+  color: var(--muted);
+}
+
+.home-section > p:last-child {
+  margin-bottom: 0;
 }
 
 .section-heading {

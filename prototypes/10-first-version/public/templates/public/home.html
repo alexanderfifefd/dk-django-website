@@ -1,0 +1,39 @@
+{% extends "public/base.html" %}
+
+{% block title %}Home — The Collective{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <h1>A software collective</h1>
+    <p class="hero-lead">
+      We build and maintain open infrastructure together — identity, communication, decision-making,
+      and the tools that hold it all up.
+    </p>
+  </section>
+
+  <section class="home-section">
+    <div class="section-heading">
+      <h2>Latest articles</h2>
+      <a class="section-link" href="{% url 'articles_index' %}">View all</a>
+    </div>
+    {% if latest_articles %}
+      <ul class="post-list">
+        {% for article in latest_articles %}
+          <li>
+            <a href="{% url 'article_detail' article.slug %}">{{ article.title }}</a>
+            <time datetime="{{ article.date|date:'Y-m-d' }}">{{ article.date|date:"j F Y" }}</time>
+            {% if article.summary %}<p>{{ article.summary }}</p>{% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No articles yet.</p>
+    {% endif %}
+  </section>
+
+  <section class="join-cta">
+    <h2>Want to participate?</h2>
+    <p>Create an account, pick up open work, or join as a member — it all starts here.</p>
+    <a class="btn btn-primary" href="{% url 'join' %}">Join the collective</a>
+  </section>
+{% endblock %}

@@ -21,6 +21,18 @@ the outcome in the plan and move the project to Completed.
 
 ## Active
 
+### `first-version` — what is the smallest useful public site?
+
+**Status: in progress** — prototype 10 scaffolded (2026-08-21).
+
+Focused fork of the prototype 07 design: home, markdown articles, about, join hub. No systems,
+initiatives, members, or forge surfaces. Single Django app `public`; git sync via `loaders/`.
+
+- **Overview**: `docs/projects/first-version/overview.md` — **start here**
+- **Discussion**: `docs/projects/first-version/discussions/minimal-v1-scope.md`
+- **Plan**: `docs/projects/first-version/plans/2026-08-21-prototype-10-first-version.md`
+- **Prototype**: `prototypes/10-first-version/`
+
 ### `member-journeys` — how should the site convert visitors into participants?
 
 **Status: in progress** — three Join paths on prototype 07 (2026-08-14).

@@ -11,25 +11,20 @@ Make `recruiting: open` visible on the site so initiative and system recruitment
 alongside the existing collective Join funnel. CSS stubs already live in `static/css/site.css`; wire
 templates and views.
 
-## Scope
+## Scope (revised during build)
 
-### Views
+Initial scope included home strips and index "Looking for help" bands. Those were removed — recruiting
+is surfaced via badges, shared **`recruiting-card`** grids, and detail pitch panels instead. See
+[three-paths-to-participate.md](../discussions/three-paths-to-participate.md).
 
-- Filter querysets: `Initiative` and `System` where `recruiting=Recruiting.OPEN`.
-- Pass to `home`, `systems_index`, `initiatives_index`.
+### Shipped
 
-### Templates
-
-| File | Change |
+| Surface | Behaviour |
 |---|---|
-| `includes/recruiting-badge.html` | New — reusable Open badge |
-| `includes/initiative-list-item.html` | Badge when recruiting |
-| `includes/system-list-item.html` | Badge when recruiting |
-| `initiatives_index.html` | "Looking for help" section |
-| `systems_index.html` | "Looking for help" section |
-| `home.html` | Recruiting links strip above join-cta |
-| `initiative_detail.html` | Badge; get-involved aside when recruiting (with Join fallback) |
-| `system_detail.html` | Badge; get-involved aside when recruiting |
+| List items | "Looking for help" badge when `recruiting: open` |
+| **Ideas** / **Proposed** index sections | `recruiting-card` grid with pitch CTAs |
+| **`/join/volunteer/`** | Recruiting cards for open roles |
+| Detail pages | Badge; pitch panel for `idea` / `proposed`; get-involved aside for other recruiting |
 
 ### Out of scope
 
@@ -44,18 +39,18 @@ templates and views.
 
 ## Done when
 
-- Home, both index pages, and both detail page types show recruiting where content sets `recruiting: open`
-- Collective Join CTAs unchanged
-- Project docs and `docs/projects/index.md` updated
+- `recruiting: open` visible on list items, index pitch sections, volunteer page, and detail pages
+- Collective Join CTAs unchanged (later rebuilt as three-path hub — see three-join-paths plan)
+- Project docs updated
 
 ## Outcome
 
 **2026-08-14:** Recruiting surfaces shipped on prototype 07.
 
-- Home: "Looking for help" link strip above collective join-cta
-- `/initiatives/` and `/systems/`: shared "Looking for help" band (initiatives + systems with `recruiting: open`)
 - List items: "Looking for help" badge
-- Initiative detail: badge + get-involved aside when recruiting (Join fallback when no taker/coord links)
-- System detail: badge + get-involved aside with teamlead + Join when recruiting
+- **Ideas** and **Proposed** index sections: shared `recruiting-card` grid (pitch labels + lane-coloured CTAs)
+- **`/join/volunteer/`**: recruiting cards for open initiatives/systems
+- Detail pages: badge; expanded pitch card for `idea` systems and `proposed` initiatives; get-involved aside for production recruiting
 
-Collective Join CTAs unchanged. See `pages/views.py`, recruiting includes, and detail templates.
+Home/index recruiting strips from the first sketch were **removed** after feedback. Join flow later
+split into three paths (account / member / volunteer) — see [2026-08-14-three-join-paths.md](./2026-08-14-three-join-paths.md).

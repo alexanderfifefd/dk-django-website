@@ -90,9 +90,9 @@ Both nouns can carry `recruiting: open` when the collective needs people. That i
 signal — we need a maintainer or taker — distinct from forge **`help wanted`** on a specific task.
 See [Recruitment signals](organizational-context.md#recruitment-signals) in organizational context.
 
-- **System page** — local next steps: teamlead, future help-wanted issues, link to account / volunteer paths.
-- **Initiative page** — taker, Loomio/Matrix, same participation paths.
-- **Volunteer path** — open stewardship roles (`recruiting: open`) aggregated for discovery.
+- **System page** — local next steps: teamlead, future help-wanted issues, link to account / volunteer paths. **Idea** systems use the shared recruiting-card pitch treatment on index and detail pages.
+- **Initiative page** — taker, Loomio/Matrix, same participation paths. **Proposed** initiatives use the same pitch cards on index and detail pages.
+- **Volunteer path** — open stewardship roles (`recruiting: open`) aggregated as recruiting cards.
 
 ## Site presentation
 

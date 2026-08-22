@@ -25,6 +25,24 @@ project to Completed.
 
 ## Active
 
+### `markdown-components` — can articles carry reusable components in markdown?
+
+**Status: in progress** — prototype 13 built (2026-08-22).
+
+Ingest-time shortcodes: callout, CTA banner, syntax-highlighted code. Shortcode package + registry.
+Article callout planned at **render-time** (ingest approach tried and reverted). Showcase article in
+`content/articles/markdown-features.md`. Fork of prototype 11.
+
+- **Overview**: `docs/projects/13-markdown-components/overview.md` — **start here**
+- **Discussion**: `docs/projects/13-markdown-components/discussions/when-to-expand.md`
+- **Discussion**: `docs/projects/13-markdown-components/discussions/shortcode-registry.md`
+- **Discussion**: `docs/projects/13-markdown-components/discussions/v1-component-syntax.md`
+- **Discussion**: `docs/projects/13-markdown-components/discussions/article-callout.md`
+- **Plan**: `docs/projects/13-markdown-components/plans/2026-08-22-prototype-13-markdown-components.md`
+- **Plan**: `docs/projects/13-markdown-components/plans/2026-08-22-shortcode-package-split.md`
+- **Plan**: `docs/projects/13-markdown-components/plans/2026-08-22-article-callout.md` (planned)
+- **Prototype**: `prototypes/13-markdown-components/`
+
 ### `dark-mode` — how should the site look on a dark background?
 
 **Status: in progress** — first pass on prototype 12 (2026-08-21).
@@ -203,16 +221,11 @@ These are known unknowns. Each will likely become its own project.
     the same resolver.
   - **Touched by** — `pages/sources/common.py` (`render_markdown` needs a source path), plus either a
     content-media view or a sync copy step.
-- **Template tags and HTML components in markdown**: can authored content invoke Django template tags,
-  includes, or reusable HTML components (e.g. a callout box, CTA, stage badge) from inside `.md` files?
-  Today `body_html` is rendered markdown stored at sync time — no template pass on output. Open angles:
-  - **Shortcodes in markdown** — author writes `{% callout %}…{% /callout %}` or `:::note` syntax;
-    expanded at ingest or render time.
-  - **Post-sync template render** — treat stored HTML as a Django template fragment (security/sandbox
-    concerns for git-authored content).
-  - **Markdown extensions** — custom block types mapped to template partials.
-  - **Boundary** — what authors may use vs what stays in page templates; relationship to pure HTML
-    pages (Join, About) that skip markdown entirely.
+- **Template tags and HTML components in markdown** — **partially claimed** by
+  [`markdown-components`](13-markdown-components/overview.md) (callout, CTA, code highlight at ingest;
+  shortcode package; article callout planned at render-time). Still open: other live ORM embeds, figures,
+  timeline, API tabs, forms with CSRF. Ingest shortcodes expand at sync; cross-ref cards will resolve at
+  render.
 - **Scale**: parked. Never measured, not currently a priority.
 - **Forge content presentation**: prototype 04 syncs issues and PRs and renders plain linked lists.
   How to present them on the site is unresolved — e.g. promoting certain forge labels prominently

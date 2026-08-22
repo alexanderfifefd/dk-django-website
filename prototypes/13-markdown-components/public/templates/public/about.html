@@ -1,0 +1,39 @@
+{% extends "public/layouts/base.html" %}
+
+{% block title %}About us — The Collective{% endblock %}
+
+{% block content %}
+  <header class="page-hero">
+    <h1>About us</h1>
+  </header>
+
+  <h2>What we do</h2>
+  <p>
+    We run shared infrastructure — identity, communication, decision-making, source control, and the
+    site itself. Members write about the work in
+    <a href="{% url 'articles_index' %}">articles</a> and keep operational notices where users can
+    find them.
+  </p>
+
+  <h2>How we work</h2>
+  <p>
+    We are async and distributed. There is no heavy process handbook — instead, we converge on light
+    shared habits: label work in the forge, write updates when users need to know, and keep our public
+    face honest about what is maintained and what needs help.
+  </p>
+  <p>
+    Content lives in the repository. Anyone in the collective edits markdown files, review happens in
+    the forge, and the site reflects what is in git.
+  </p>
+
+  <h2>Who we are</h2>
+  <p>
+    The collective is its members — people who build, operate, and steward shared infrastructure
+    together.
+  </p>
+
+  <p class="about-cta">
+    Want to participate?
+    <a class="btn btn-primary" href="{% url 'join' %}">Join the collective</a>
+  </p>
+{% endblock %}

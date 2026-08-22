@@ -1,0 +1,11 @@
+{% load static %}
+<header class="site-header">
+  <a class="site-logo" href="{% url 'home' %}">
+    <img src="{% static 'img/logo-light-theme.png' %}" alt="datakollektivet">
+  </a>
+  <nav class="site-nav" aria-label="Site">
+    <a href="{% url 'articles_index' %}">Articles</a>
+    <a href="{% url 'about' %}">About</a>
+    <a class="nav-join btn btn-primary" href="{% url 'join' %}">Join</a>
+  </nav>
+</header>

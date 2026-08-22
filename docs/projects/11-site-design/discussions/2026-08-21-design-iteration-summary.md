@@ -46,6 +46,9 @@ See [stripe-variants.md](./stripe-variants.md) for alternatives we explored and 
 ### Home page
 
 - **Centered hero** — H1 + lead line; divider below is a single peach rule (not tri-colour)
+- **Hero spacing** (2026-08-21, also on prototype 12) — `.page-hero` / `.hero`:
+  `padding-top: 1.25rem`, `margin-bottom: 3rem`, divider `margin-top: 2.25rem`; `.hero-lead`
+  gap `1.15rem`
 - **Section rules** — peach-tinted lines between “What we do”, “Who we are”, and “Latest articles”
 - **No rule** below the last article or around the join CTA (removed double lines)
 - **Join CTA box** — grey `--bg-code` background with a **warm triad cap** (3px gradient top edge);

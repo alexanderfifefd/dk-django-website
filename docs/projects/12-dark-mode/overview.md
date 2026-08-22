@@ -46,8 +46,10 @@ Muted text, rules, code blocks, and join lane fills are derived — see the plan
 ## Chrome on dark
 
 - **Header stripe** — terracotta → peach → lifted charcoal (`--bg-code`)
+- **Header nav** — full cream text; hover lighter orange
 - **Footer bar** — terracotta → peach → mint (mockup swatch order)
 - **Join CTA panel** — `--bg-code` (slightly lifted charcoal), no cream fill
+- **Hero spacing** — extra padding above title and before divider (shared with prototype 11)
 
 ## Docs
 

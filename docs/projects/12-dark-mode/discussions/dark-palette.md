@@ -47,7 +47,17 @@ footer reference those paths.
 ### Header stripe and footer bar
 
 Light mode ends the tri-band with a **cream** band (`--bg-code`). On dark, the third band is a
-**lifted charcoal** (`--bg-code`) — neutral, not mint.
+**lifted charcoal** (`--bg-code`) — neutral, not mint. Template class: `site-stripe-band-muted`.
+
+### Header nav contrast
+
+Nav links (Articles, About) use full `--text`, not `--muted`. Hover → `--accent-2`. Join pill
+unchanged (mint button, cream label).
+
+### Hero spacing
+
+Shared on prototype 11 and 12: `.page-hero` / `.hero` get `padding-top: 1.25rem`,
+`margin-bottom: 3rem`, divider `margin-top: 2.25rem`; home `.hero-lead` gap `1.15rem`.
 
 ### Derived tokens
 
@@ -69,5 +79,5 @@ Light mode ends the tri-band with a **cream** band (`--bg-code`). On dark, the t
 
 ## Open questions
 
-1. **Contrast audit** — terracotta links and mint buttons on `#2B2826`; adjust if any pair fails WCAG targets we care about.
+1. **Contrast audit** — terracotta links and mint buttons on `#373430`; adjust if any pair fails WCAG targets we care about.
 2. **Side-by-side with light** — compare prototype 11 and 12 on the same pages before promoting either.

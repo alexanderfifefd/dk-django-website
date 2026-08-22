@@ -38,8 +38,10 @@ Links → `--accent-3`; primary buttons → `--accent` with `--text` label (same
 ## Chrome adjustments
 
 - **Header stripe** (`.site-stripe-band-muted`) → `--bg-code` (lifted charcoal)
+- **Header nav** — Articles/About at `--text`; hover `--accent-2`
 - **Footer bar** gradient third stop → `var(--accent)` (mint, matching mockup swatch order)
 - **Join path card hover shadow** → `rgba(0, 0, 0, 0.25)` instead of light-mode brown tint
+- **Hero spacing** — `padding-top: 1.25rem`, `margin-bottom: 3rem`, divider `margin-top: 2.25rem` on `.page-hero` / `.hero` (also applied to prototype 11)
 
 ## Verify
 

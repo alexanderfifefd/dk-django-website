@@ -25,6 +25,16 @@ project to Completed.
 
 ## Active
 
+### `design-elements` — how should reusable visual components look on the site?
+
+**Status: in progress** — brand/NT exploration on prototype 14 (2026-08-22).
+
+- **Overview**: `docs/projects/14-design-elements/overview.md`
+- **Brand**: `docs/projects/14-design-elements/discussions/datakollektivet-brand.md` — **start here**
+- **Clickable card**: `docs/projects/14-design-elements/discussions/clickable-card.md` — liked
+- **Transport / NT buttons**: `docs/projects/14-design-elements/discussions/transport-buttons.md`
+- **Prototype**: `prototypes/14-design-elements/`
+
 ### `markdown-components` — can articles carry reusable components in markdown?
 
 **Status: in progress** — prototype 13 built (2026-08-22).

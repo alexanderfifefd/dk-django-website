@@ -1,0 +1,23 @@
+{% load static %}<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}The Collective{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/site.css' %}">
+  <link rel="stylesheet" href="{% static 'css/btn-nt.css' %}">
+  {% block extra_css %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+  <div class="site-top">
+    {% include "public/partials/header.html" %}
+    {% include "public/partials/stripe.html" %}
+  </div>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  {% include "public/partials/footer.html" %}
+</body>
+</html>

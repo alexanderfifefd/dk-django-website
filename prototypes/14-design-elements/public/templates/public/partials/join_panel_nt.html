@@ -1,0 +1,20 @@
+<a class="clickable-card panel-nt join-cta" href="{% url 'join' %}">
+  <span class="panel-nt__icon" aria-hidden="true">
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="4" width="12" height="4" fill="#ffe566"/>
+      <rect x="8" y="8" width="16" height="12" fill="#ffe566"/>
+      <rect x="10" y="20" width="12" height="2" fill="#c8c8c8"/>
+      <rect x="12" y="22" width="8" height="2" fill="#808080"/>
+      <rect x="15" y="10" width="2" height="7" fill="#1a1a1a"/>
+      <rect x="15" y="18" width="2" height="2" fill="#1a1a1a"/>
+    </svg>
+  </span>
+  <span class="panel-nt__content">
+    <h2 class="panel-nt__heading">Want to participate?</h2>
+    <p class="panel-nt__copy">Create an account, pick up open work, or join as a member — it all starts here.</p>
+    <span class="panel-nt__go">
+      Join the collective
+      {% include "public/partials/panel_nt_caret.html" %}
+    </span>
+  </span>
+</a>

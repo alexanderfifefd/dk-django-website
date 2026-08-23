@@ -17,7 +17,7 @@ What colors should the first public site actually use?
 
 ## Source
 
-Aug 2026 brand mockup: **datakollektivet** wordmark on cream, with three accent swatches below the
+Aug 2026 brand mockup: **datakollektivet** wordmark on cream (**Pacifico**), with three accent swatches below the
 logo. The heart above the **i** is sage green; the wordmark text is a warm near-black brown.
 
 ## Palette (as read from the mockup)

@@ -1,0 +1,83 @@
+{% extends "public/layouts/base.html" %}
+{% load static %}
+
+{% block body_class %}page-design-lab{% endblock %}
+
+{% block title %}Design lab — Datakollektivet{% endblock %}
+
+{% block content %}
+  <header class="page-hero">
+    <h1>Design lab</h1>
+    <p class="hero-lead">
+      Patterns from prototype 14 — we add more here as they settle.
+    </p>
+  </header>
+
+  <section class="design-lab-section">
+    <h2>NT buttons</h2>
+    <p class="design-lab-note">
+      <code>btn-nt.css</code> — inset bevel, square corners, pressed on hover.
+    </p>
+    <div class="design-lab-row">
+      <a class="btn-nt btn-nt--primary" href="{% url 'about' %}">Primary</a>
+      <a class="btn-nt btn-nt--secondary" href="{% url 'about' %}">Secondary</a>
+      <a class="btn-nt btn-nt--tertiary" href="{% url 'about' %}">Tertiary</a>
+    </div>
+  </section>
+
+  <section class="design-lab-section">
+    <h2>Button with icon</h2>
+    <p class="design-lab-note">Tertiary + pixel caret (mirrored block arrow), as on home Latest articles.</p>
+    <p class="design-lab-demo">
+      <a class="btn-nt btn-nt--tertiary btn-nt--with-caret" href="{% url 'articles_index' %}">
+        View all
+        <svg class="btn-nt__caret" width="8" height="10" viewBox="0 0 8 10" aria-hidden="true">
+          <g transform="translate(8, 0) scale(-1, 1)">
+            <rect x="4" y="0" width="2" height="2" fill="currentColor"/>
+            <rect x="6" y="0" width="2" height="2" fill="currentColor"/>
+            <rect x="2" y="2" width="2" height="2" fill="currentColor"/>
+            <rect x="4" y="2" width="2" height="2" fill="currentColor"/>
+            <rect x="6" y="2" width="2" height="2" fill="currentColor"/>
+            <rect x="0" y="4" width="2" height="2" fill="currentColor"/>
+            <rect x="2" y="4" width="2" height="2" fill="currentColor"/>
+            <rect x="4" y="4" width="2" height="2" fill="currentColor"/>
+            <rect x="6" y="4" width="2" height="2" fill="currentColor"/>
+            <rect x="2" y="6" width="2" height="2" fill="currentColor"/>
+            <rect x="4" y="6" width="2" height="2" fill="currentColor"/>
+            <rect x="6" y="6" width="2" height="2" fill="currentColor"/>
+            <rect x="4" y="8" width="2" height="2" fill="currentColor"/>
+            <rect x="6" y="8" width="2" height="2" fill="currentColor"/>
+          </g>
+        </svg>
+      </a>
+    </p>
+  </section>
+
+  <section class="design-lab-section">
+    <h2>Panel CTA</h2>
+    <p class="design-lab-note">
+      Entire inset strip is one link — icon, copy, and “Join the collective” with pixel caret
+      bottom-right inside the card. Hover inverts the NT bevel (pressed read); no separate button.
+    </p>
+    {% include "public/partials/join_panel_nt.html" %}
+  </section>
+
+  <section class="design-lab-section">
+    <h2>Transport</h2>
+    <p class="design-lab-note">Section and nav exits — primary unless noted.</p>
+    <div class="design-lab-row design-lab-row--stack">
+      <p class="design-lab-demo">
+        <a class="btn-nt btn-nt--primary" href="{% url 'about' %}">About us</a>
+      </p>
+      <p class="design-lab-demo">
+        <a class="btn-nt btn-nt--primary nav-join" href="{% url 'join' %}">Join</a>
+      </p>
+    </div>
+  </section>
+
+  <p class="design-lab-footer-note">
+    <a href="{% url 'home' %}">Home</a>
+    ·
+    <code>docs/projects/14-design-elements/</code>
+  </p>
+{% endblock %}

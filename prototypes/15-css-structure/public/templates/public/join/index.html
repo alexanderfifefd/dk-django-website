@@ -7,6 +7,18 @@
     <h1>Join the collective</h1>
   </header>
 
+  <div class="page-intro">
+    <p>
+      You do not have to become a member on day one. Most people start with a free account for Forgejo,
+      Loomio, Matrix, and the other services we host — then decide later whether membership or volunteer
+      work fits.
+    </p>
+    <p>
+      The paths below are separate on purpose. Pick the one that matches where you are; you can always
+      come back for another.
+    </p>
+  </div>
+
   <div class="join-paths">
     {% url 'join_account' as join_account_url %}
     {% include "public/partials/card.html" with card_url=join_account_url heading="Start with an account" copy="Free for everyone. One identity for Forgejo, Loomio, Matrix, and other collective services we make available without membership." go_label="Create account" %}

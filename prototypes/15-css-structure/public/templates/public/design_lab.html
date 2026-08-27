@@ -1,8 +1,6 @@
 {% extends "public/layouts/base.html" %}
 {% load static %}
 
-{% block body_class %}page-catalog{% endblock %}
-
 {% block title %}Component catalog — The Collective{% endblock %}
 
 {% block extra_css %}
@@ -76,26 +74,12 @@
 
   <section class="catalog-section">
     <h2>Cards</h2>
-    <p class="catalog-note">Whole-surface links on parchment. Press on hover. Optional icon, meta line, and action label.</p>
+    <p class="catalog-note">Whole-surface links on parchment. Press on hover. Action label uses a sage underline (prose links use clay).</p>
 
     <div class="catalog-row catalog-row--stack">
       {% include "public/partials/card.html" with card_url="#" heading="Path card" copy="Title, copy, and an underlined action label with the pixel caret. Used for the three join paths." go_label="Go somewhere" %}
     </div>
-
-    <div class="catalog-row catalog-row--stack">
-      <a class="card" href="#">
-        <span class="card__body">
-          <h3 class="card__title">Article card</h3>
-          <p class="card__text">Title, summary, and a meta line. Used on the articles index and the home latest-articles list.</p>
-          <span class="card__meta"><time datetime="2026-08-27">27 August 2026</time><span>· A. Member</span></span>
-        </span>
-      </a>
-    </div>
-
-    <div class="catalog-row catalog-row--stack">
-      {% include "public/partials/card_join.html" %}
-    </div>
-    <p class="catalog-ref"><code>a.card</code> + <code>.card__icon|__body|__title|__text|__meta|__action</code></p>
+    <p class="catalog-ref"><code>a.card</code> + <code>.card__body|__title|__text|__action</code> — join paths; not used for article lists</p>
   </section>
 
   <section class="catalog-section">
@@ -109,34 +93,40 @@
 
   <section class="catalog-section">
     <h2>Forms</h2>
-    <p class="catalog-note">Sunken bevel fields on a near-white face; sage focus ring. Labels bold, hints muted.</p>
-    <form class="form-stack" onsubmit="return false">
-      <p>
-        <label for="cat-name">Text field</label>
-        <input id="cat-name" type="text" placeholder="Your name">
-        <span class="field-hint">A hint below the field.</span>
-      </p>
-      <p>
-        <label for="cat-msg">Textarea</label>
-        <textarea id="cat-msg" rows="3" placeholder="A longer message…"></textarea>
-      </p>
-      <p class="form-checkbox">
-        <label>
-          <input type="checkbox">
-          A checkbox agreement line.
-        </label>
-      </p>
-      <p>
-        <button type="submit" class="btn btn--primary">Submit</button>
-      </p>
-    </form>
+    <p class="catalog-note">Sunken bevel fields on a near-white face; sage focus ring. Join forms use <code>.form-card</code> (raised frame + sunken body).</p>
+    <div class="catalog-row catalog-row--stack">
+      <div class="form-card">
+        <div class="form-card__body">
+          <form class="form-stack" onsubmit="return false">
+            <p>
+              <label for="cat-name">Text field</label>
+              <input id="cat-name" type="text" placeholder="Your name">
+              <span class="field-hint">A hint below the field.</span>
+            </p>
+            <p>
+              <label for="cat-msg">Textarea</label>
+              <textarea id="cat-msg" rows="3" placeholder="A longer message…"></textarea>
+            </p>
+            <p class="form-checkbox">
+              <label>
+                <input type="checkbox">
+                A checkbox agreement line.
+              </label>
+            </p>
+            <p>
+              <button type="submit" class="btn btn--primary">Submit</button>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
     <p class="notice">A notice strip — confirmation and status messages.</p>
-    <p class="catalog-ref"><code>.form-stack</code>, <code>.form-checkbox</code>, <code>.field-hint</code>, <code>.notice</code></p>
+    <p class="catalog-ref"><code>.form-card</code>, <code>.form-stack</code>, <code>.form-checkbox</code>, <code>.field-hint</code>, <code>.notice</code></p>
   </section>
 
   <section class="catalog-section">
     <h2>Navigation &amp; chrome</h2>
-    <p class="catalog-note">The stripe (three brand bands) sits under the sticky header and again at the page bottom. Nav links carry an underlined first-letter mark — the mark is a <code>&lt;span&gt;</code> in HTML, not <code>::first-letter</code>.</p>
+    <p class="catalog-note">The stripe (three brand bands) sits under the sticky header. Nav links carry an underlined first-letter mark — the mark is a <code>&lt;span&gt;</code> in HTML, not <code>::first-letter</code>.</p>
     <div class="catalog-chrome-demo">
       <nav class="site-nav" aria-label="Demo">
         <a class="nav-link" href="#"><span class="nav-mark">A</span>rticles</a>
@@ -152,17 +142,25 @@
 
   <section class="catalog-section">
     <h2>Content patterns</h2>
-    <p class="catalog-note">Section heading with a tertiary transport button; clay links in prose, buttons for actions.</p>
-    <div class="catalog-row catalog-row--stack">
-      <div class="section-heading">
-        <h2>Section heading</h2>
+    <p class="catalog-note">Prose sections use <code>.content-section</code>; tertiary transport links sit below content in <code>.content-section__transport</code>.</p>
+    <div class="catalog-row catalog-row--stack content-section">
+      <h2>Section heading</h2>
+      <p>Body text with <a href="#">an inline link</a> — espresso text, clay underline; buttons are for actions.</p>
+      <ul class="article-list">
+        <li class="article-teaser">
+          <h3 class="article-teaser__title"><a href="#">Article title link</a></h3>
+          <p class="article-teaser__summary">Summary in muted text — no box, no bevel. Only the title is the link.</p>
+          <p class="article-teaser__meta"><time datetime="2026-08-27">27 August 2026</time><span>· Author</span></p>
+        </li>
+      </ul>
+      <p class="content-section__transport">
         <a class="btn btn--tertiary btn--with-caret" href="#">
           See all
           {% include "public/partials/caret.html" %}
         </a>
-      </div>
-      <p>Body text with <a href="#">an inline link in clay</a> — links are for navigation within prose, buttons are for actions.</p>
+      </p>
     </div>
+    <p class="catalog-ref"><code>.content-section</code>, <code>.content-section__transport</code>, <code>.article-list</code>, <code>.article-teaser</code></p>
   </section>
 
   <p class="catalog-footer">

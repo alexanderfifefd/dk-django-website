@@ -1,0 +1,19 @@
+{# Article list item — title link only, no card chrome. Context: article, heading ("h2"|"h3"), show_author (optional) #}
+<li class="article-teaser">
+  {% if heading == "h2" %}
+    <h2 class="article-teaser__title">
+      <a href="{% url 'article_detail' article.slug %}">{{ article.title }}</a>
+    </h2>
+  {% else %}
+    <h3 class="article-teaser__title">
+      <a href="{% url 'article_detail' article.slug %}">{{ article.title }}</a>
+    </h3>
+  {% endif %}
+  {% if article.summary %}
+    <p class="article-teaser__summary">{{ article.summary }}</p>
+  {% endif %}
+  <p class="article-teaser__meta">
+    <time datetime="{{ article.date|date:'Y-m-d' }}">{{ article.date|date:"j F Y" }}</time>
+    {% if article.author %}<span>· {{ article.author }}</span>{% endif %}
+  </p>
+</li>

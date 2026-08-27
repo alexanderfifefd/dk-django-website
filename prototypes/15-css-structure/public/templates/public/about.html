@@ -7,33 +7,43 @@
     <h1>About us</h1>
   </header>
 
-  <h2>What we do</h2>
-  <p>
-    We run shared infrastructure — identity, communication, decision-making, source control, and the
-    site itself. Members write about the work in
-    <a href="{% url 'articles_index' %}">articles</a> and keep operational notices where users can
-    find them.
+  <p class="page-intro">
+    We are an async, distributed software collective — members build, operate, and steward shared
+    infrastructure together.
   </p>
 
-  <h2>How we work</h2>
-  <p>
-    We are async and distributed. There is no heavy process handbook — instead, we converge on light
-    shared habits: label work in the forge, write updates when users need to know, and keep our public
-    face honest about what is maintained and what needs help.
-  </p>
-  <p>
-    Content lives in the repository. Anyone in the collective edits markdown files, review happens in
-    the forge, and the site reflects what is in git.
-  </p>
+  <section class="content-section">
+    <h2>What we do</h2>
+    <p>
+      We run shared infrastructure — identity, communication, decision-making, source control, and the
+      site itself. Members write about the work in
+      <a href="{% url 'articles_index' %}">articles</a> and keep operational notices where users can
+      find them.
+    </p>
+  </section>
 
-  <h2>Who we are</h2>
-  <p>
-    The collective is its members — people who build, operate, and steward shared infrastructure
-    together.
-  </p>
+  <section class="content-section">
+    <h2>How we work</h2>
+    <p>
+      We are async and distributed. There is no heavy process handbook — instead, we converge on light
+      shared habits: label work in the forge, write updates when users need to know, and keep our public
+      face honest about what is maintained and what needs help.
+    </p>
+    <p>
+      Content lives in the repository. Anyone in the collective edits markdown files, review happens in
+      the forge, and the site reflects what is in git.
+    </p>
+  </section>
 
-  <p class="about-cta">
-    Want to participate?
-    <a class="btn btn--primary" href="{% url 'join' %}">Join the collective</a>
-  </p>
+  <section class="content-section">
+    <h2>Who we are</h2>
+    <p>
+      The collective is its members — people who build, operate, and steward shared infrastructure
+      together.
+    </p>
+  </section>
+
+  <section class="content-section">
+    {% include "public/partials/panel.html" %}
+  </section>
 {% endblock %}

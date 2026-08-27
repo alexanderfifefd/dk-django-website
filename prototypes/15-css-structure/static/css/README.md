@@ -5,9 +5,9 @@ Hand-written CSS, no build step. Load order matters and is fixed in `base.html`:
 ```
 tokens.css      → variables only (palette, semantic, scales, hero-inv, stripe)
 base.css        → reset, body, typography, links
-layout.css      → sticky header, stripe, nav, footer
-components.css  → btn, card, panel, caret, form fields, notice
-pages.css       → heroes, home sections, articles, join, about
+layout.css      → sticky header, stripe, nav, footer, content sections
+components.css  → btn, card, panel, form-card, caret, form fields, notice
+pages.css       → heroes, articles, join
 catalog.css     → /design-lab/ only, via {% block extra_css %}
 ```
 
@@ -17,7 +17,7 @@ catalog.css     → /design-lab/ only, via {% block extra_css %}
 |---|---|
 | A colour, scale step, semantic alias | `tokens.css` |
 | `body`, `a`, headings | `base.css` |
-| Header, stripe, footer shell | `layout.css` |
+| Header, stripe, footer shell, prose `.content-section` | `layout.css` |
 | Reusable UI (BEM block) | `components.css` |
 | One page or route group | `pages.css` |
 | Catalog page scaffolding | `catalog.css` |

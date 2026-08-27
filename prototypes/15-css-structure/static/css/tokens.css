@@ -45,6 +45,8 @@
   /* ------- Layout ------- */
   --layout-content-width: 44rem;
   --layout-gutter: 1.25rem;
+  /* Match main column inset: centered max-width box + inner gutter */
+  --layout-content-inset: max(var(--layout-gutter), calc(50vw - var(--layout-content-width) / 2 + var(--layout-gutter)));
 
   /* ------- Spacing scale ------- */
   --space-xs: 0.25rem;
@@ -64,7 +66,8 @@
   /* ------- Hero inverted (home hero only — not a theme switch) ------- */
   --hero-inv-bg: #373430;
   --hero-inv-text: #eee6d4;
-  --hero-inv-text-muted: color-mix(in srgb, var(--hero-inv-text) 72%, var(--hero-inv-bg));
+  --hero-inv-heading: #f2efe8;
+  --hero-inv-lead: #ddd8cc;
   --hero-inv-band-height: 10px;
 
   /* ------- Stripe ------- */

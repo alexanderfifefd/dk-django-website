@@ -104,22 +104,6 @@ a.card:focus-visible {
   outline-offset: 2px;
 }
 
-.card__icon {
-  flex-shrink: 0;
-  width: 2.5rem;
-  height: 2.5rem;
-  padding: 0.3rem;
-  background: var(--action-primary);
-  box-shadow: 1px 1px 0 0 color-mix(in srgb, var(--text-primary) 45%, black);
-}
-
-.card__icon svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-  shape-rendering: crispEdges;
-}
-
 .card__body {
   display: flex;
   flex: 1;
@@ -159,8 +143,16 @@ a.card:focus-visible {
   align-self: flex-end;
   font-size: 0.95rem;
   line-height: 1.35;
+  color: var(--text-primary);
   text-decoration: underline;
-  text-underline-offset: 0.12em;
+  text-decoration-color: var(--action-primary);
+  text-underline-offset: 0.14em;
+  text-decoration-thickness: 2px;
+}
+
+a.card:hover .card__action {
+  color: var(--action-primary);
+  text-decoration-thickness: 3px;
 }
 
 /* ------- Panel — framed static chrome (title bar + sunken body) ------- */
@@ -180,15 +172,17 @@ a.card:focus-visible {
 }
 
 .panel__titlebar {
+  --titlebar-face: var(--hero-inv-bg);
+
   padding: 0.3rem 0.5rem;
-  background: var(--action-primary);
-  color: var(--text-primary);
+  background: var(--titlebar-face);
+  color: var(--hero-inv-text);
   font-size: 0.85rem;
   font-weight: 700;
   line-height: 1.3;
   box-shadow:
-    inset 0 1px 0 0 color-mix(in srgb, var(--action-primary) 35%, white),
-    inset 1px 0 0 0 color-mix(in srgb, var(--action-primary) 35%, white);
+    inset 0 1px 0 0 color-mix(in srgb, var(--titlebar-face) 35%, white),
+    inset 1px 0 0 0 color-mix(in srgb, var(--titlebar-face) 35%, white);
 }
 
 .panel__body {
@@ -221,9 +215,51 @@ a.card:focus-visible {
 }
 
 .panel__actions {
-  margin-top: auto;
-  padding-top: 0.5rem;
+  margin-top: 0.75rem;
   align-self: flex-end;
+}
+
+/* ------- Form card — raised frame + sunken body (join forms) ------- */
+
+.form-card {
+  --bevel-face: var(--surface-code);
+  --bevel-hi: color-mix(in srgb, var(--bevel-face) 40%, white);
+  --bevel-lo: color-mix(in srgb, var(--bevel-face) 45%, var(--text-primary));
+
+  max-width: 36rem;
+  padding: 3px;
+  background: var(--bevel-face);
+  box-shadow:
+    inset 0 2px 0 0 var(--bevel-hi),
+    inset 2px 0 0 0 var(--bevel-hi),
+    inset 0 -2px 0 0 var(--bevel-lo),
+    inset -2px 0 0 0 var(--bevel-lo);
+}
+
+.form-card__body {
+  --bevel-face: var(--surface-panel);
+  --bevel-hi: color-mix(in srgb, var(--bevel-face) 35%, white);
+  --bevel-lo: color-mix(in srgb, var(--bevel-face) 40%, var(--text-primary));
+
+  padding: 1rem 1.25rem;
+  background: var(--bevel-face);
+  box-shadow:
+    inset 0 2px 0 0 var(--bevel-lo),
+    inset 2px 0 0 0 var(--bevel-lo),
+    inset 0 -2px 0 0 var(--bevel-hi),
+    inset -2px 0 0 0 var(--bevel-hi);
+}
+
+.form-card__body .form-stack {
+  margin: 0;
+}
+
+.form-card__body .form-stack p:last-child {
+  margin-bottom: 0;
+}
+
+.form-card__body .notice {
+  margin: 0;
 }
 
 /* ------- Form fields — sunken bevel inputs ------- */

@@ -4,11 +4,12 @@
 
 **Prototype:** `prototypes/14-design-elements/` (fork of 11)
 
-**Status:** exploring — header nav liked; join panel and hero still open.
+**Status:** paused 2026-08-27 — header nav, clickable card, and night-sky hero liked; hero stripe convergence in design lab; nothing promoted to prototype 11 yet.
 
 ## Start here
 
 - **[datakollektivet-brand.md](./discussions/datakollektivet-brand.md)** — identity, tensions, opposition to big tech
+- **[hero-directions.md](./discussions/hero-directions.md)** — night sky on home; stripe-lab variants on `/design-lab/`
 - **[clickable-card.md](./discussions/clickable-card.md)** — NT + modern clickable card (liked)
 - **[header-nav.md](./discussions/header-nav.md)** — nav text, first-letter underline, footer (lab)
 - **[transport-buttons.md](./discussions/transport-buttons.md)** — NT tiers + home transport map

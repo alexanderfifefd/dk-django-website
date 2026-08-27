@@ -1,0 +1,22 @@
+<div class="hero-lab hero-lab--{{ variant }}{% if tall %} hero-lab--tall{% endif %}">
+  {% if bands %}
+    <div class="hero-lab__bands" aria-hidden="true">
+      <span class="hero-lab__band hero-lab__band--sage"></span>
+      <span class="hero-lab__band hero-lab__band--sage-light"></span>
+      <span class="hero-lab__band hero-lab__band--cream"></span>
+      <span class="hero-lab__band hero-lab__band--peach"></span>
+      <span class="hero-lab__band hero-lab__band--clay"></span>
+    </div>
+  {% endif %}
+  {% if stripes %}
+    <div class="hero-lab__stripes" aria-hidden="true">
+      {% include stripe_partial %}
+    </div>
+  {% endif %}
+  <div class="hero-lab__content">
+    <p class="hero-lab__label">{{ label }}</p>
+    <h3>{{ title }}</h3>
+    {% if lead %}<p class="hero-lab__lead">{{ lead }}</p>{% endif %}
+  </div>
+</div>
+<p class="design-lab-caption">{{ caption|safe }}</p>

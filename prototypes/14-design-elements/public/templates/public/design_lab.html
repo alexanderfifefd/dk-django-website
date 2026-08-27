@@ -5,6 +5,10 @@
 
 {% block title %}Design lab — Datakollektivet{% endblock %}
 
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/hero-stripe-lab.css' %}">
+{% endblock %}
+
 {% block content %}
   <header class="page-hero">
     <h1>Design lab</h1>
@@ -12,6 +16,21 @@
       Patterns from prototype 14 — we add more here as they settle.
     </p>
   </header>
+
+  <section class="design-lab-section">
+    <h2>Hero stripe lab</h2>
+    <p class="design-lab-note">
+      Dark charcoal field + expanded NT-style stripe convergence in brand colours —
+      <code>hero-stripe-lab.css</code>. Compare variants below; home still uses night sky +
+      gradient until one lands.
+    </p>
+    <div class="hero-lab-stack">
+      {% include "public/partials/hero_lab_demo.html" with variant="fade" label="Baseline" title="Gradient fade (home now)" lead="Charcoal + soft fade into cream — the handoff we're replacing." caption="<strong>Baseline.</strong> Current home hero approach for comparison." %}
+      {% include "public/partials/hero_lab_demo.html" with variant="flat" tall=True bands=True label="Direction 0" title="Flat bands" lead="Header stripe logic — sage down to clay, horizontal, full bleed." caption="<strong>Flat bands.</strong> Start here: actual stripes in brand order before any NT diagonal geometry." %}
+      {% include "public/partials/hero_lab_demo.html" with variant="horizon" tall=True stripes=True stripe_partial="public/partials/hero_lab_svg_horizon.html" label="Direction 1" title="Horizon convergence" lead="Parallel bands — flat centre, 45° wings from the corners, stepped toward the middle." caption="<strong>Horizon.</strong> Same five bands as Direction 0, bent into NT-style convergence while staying readable as stripes." %}
+      {% include "public/partials/hero_lab_demo.html" with variant="wings" tall=True stripes=True stripe_partial="public/partials/hero_lab_svg_wings.html" label="Direction 3" title="Side wings" lead="Parallel bands from both sides — top fans slope down, bottom fans slope up, dark centre open." caption="<strong>Wings.</strong> Same five colours as Direction 0, split into upper and lower fans per side; no centre fill." %}
+    </div>
+  </section>
 
   <section class="design-lab-section">
     <h2>NT buttons</h2>
@@ -54,12 +73,22 @@
   </section>
 
   <section class="design-lab-section">
-    <h2>Panel CTA</h2>
+    <h2>Panel CTA (tip card)</h2>
     <p class="design-lab-note">
       Entire inset strip is one link — icon, copy, and “Join the collective” with pixel caret
       bottom-right inside the card. Hover inverts the NT bevel (pressed read); no separate button.
     </p>
     {% include "public/partials/join_panel_nt.html" %}
+  </section>
+
+  <section class="design-lab-section">
+    <h2>Window card</h2>
+    <p class="design-lab-note">
+      Card variant — raised <code>.win-nt</code> frame, sage title bar, sunken
+      <code>--bg-nt-tip</code> client. Static chrome with a primary NT button inside — not a
+      whole-surface link.
+    </p>
+    {% include "public/partials/window_card_nt.html" %}
   </section>
 
   <section class="design-lab-section">

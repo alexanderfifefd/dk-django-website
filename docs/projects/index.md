@@ -27,11 +27,12 @@ project to Completed.
 
 ### `design-elements` — how should reusable visual components look on the site?
 
-**Status: in progress** — brand/NT exploration on prototype 14 (2026-08-22).
+**Status: paused 2026-08-27** — NT chrome, clickable card, and night-sky hero liked on prototype 14; hero stripe lab open; nothing promoted to prototype 11.
 
 - **Overview**: `docs/projects/14-design-elements/overview.md`
 - **Brand**: `docs/projects/14-design-elements/discussions/datakollektivet-brand.md` — **start here**
-- **Clickable card**: `docs/projects/14-design-elements/discussions/clickable-card.md` — liked
+- **Hero**: `docs/projects/14-design-elements/discussions/hero-directions.md` — night sky on home; stripe lab on `/design-lab/`
+- **Clickable card**: `docs/projects/14-design-elements/discussions/clickable-card.md` — tip + window variants; liked
 - **Transport / NT buttons**: `docs/projects/14-design-elements/discussions/transport-buttons.md`
 - **Prototype**: `prototypes/14-design-elements/`
 

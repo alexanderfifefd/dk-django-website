@@ -11,7 +11,7 @@
 
 | Location | Pattern | Classes | Tier / read |
 |---|---|---|---|
-| Header **Join** | NT button | `.btn-nt.btn-nt--primary` | Sage — main hub entry |
+| Header **Join** | NT button + pixel caret | `.btn-nt.btn-nt--primary.btn-nt--with-caret` | Sage — main hub entry |
 | **Latest articles** heading | NT + pixel caret | `.btn-nt.btn-nt--tertiary.btn-nt--with-caret` | Cream — section index, right of `h2` |
 | **Want to participate?** | Clickable card | `.panel-nt` link | Liked — see [clickable-card.md](./clickable-card.md) |
 | **Who we are** footer | NT + caret | `.btn-nt.btn-nt--tertiary.btn-nt--with-caret` | Warm transport, right-aligned |
@@ -35,6 +35,8 @@ inverts on `:hover` for pressed read), square corners, face colour parameterized
 
 Shared `--nt-face`, `--nt-hi`, `--nt-lo` drive bevel from each face colour.
 
+**Pixel caret** — `.btn-nt--with-caret` appends an 8×10 block-arrow SVG (mirrored for right-pointing read). Used on header Join, Latest articles, About us, and inside the tip card's `.panel-nt__go`.
+
 ## NT panel (`.panel-nt`)
 
 Evolved into the **clickable card** pattern — see [clickable-card.md](./clickable-card.md).
@@ -42,8 +44,8 @@ Evolved into the **clickable card** pattern — see [clickable-card.md](./clicka
 ## Still open
 
 - Secondary NT vs prose-link semantics (terracotta overlap)
-- Promote NT / panel patterns to prototype 11, or keep sandbox-only
-- Hero and inline transport elsewhere
+- Final hero direction (night sky vs stripe-lab variants)
+- Promote NT / panel / hero patterns to prototype 11, or keep sandbox-only
 
 ## Brand context
 

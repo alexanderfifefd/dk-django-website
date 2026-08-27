@@ -155,3 +155,64 @@ a.clickable-card.panel-nt:focus-visible {
   flex-shrink: 0;
   shape-rendering: crispEdges;
 }
+
+/* NT window card — raised frame + title bar + inset client */
+
+.win-nt {
+  --win-face: var(--bg-code);
+  --win-hi: color-mix(in srgb, var(--win-face) 40%, white);
+  --win-lo: color-mix(in srgb, var(--win-face) 45%, var(--text));
+
+  padding: 3px;
+  background: var(--win-face);
+  box-shadow:
+    inset 0 2px 0 0 var(--win-hi),
+    inset 2px 0 0 0 var(--win-hi),
+    inset 0 -2px 0 0 var(--win-lo),
+    inset -2px 0 0 0 var(--win-lo);
+}
+
+.win-nt__actions {
+  margin-top: auto;
+  padding-top: 0.5rem;
+  align-self: flex-end;
+}
+
+.win-nt__titlebar {
+  padding: 0.3rem 0.5rem;
+  background: var(--accent);
+  color: var(--text);
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1.3;
+  box-shadow:
+    inset 0 1px 0 0 color-mix(in srgb, var(--accent) 35%, white),
+    inset 1px 0 0 0 color-mix(in srgb, var(--accent) 35%, white);
+}
+
+.win-nt__body {
+  --tip-face: var(--bg-nt-tip);
+  --tip-hi: color-mix(in srgb, var(--tip-face) 35%, white);
+  --tip-lo: color-mix(in srgb, var(--tip-face) 40%, var(--text));
+
+  display: flex;
+  flex-direction: column;
+  padding: 0.85rem 1rem;
+  background: var(--tip-face);
+  box-shadow:
+    inset 0 2px 0 0 var(--tip-lo),
+    inset 2px 0 0 0 var(--tip-lo),
+    inset 0 -2px 0 0 var(--tip-hi),
+    inset -2px 0 0 0 var(--tip-hi);
+}
+
+.win-nt__body .panel-nt__heading {
+  margin: 0 0 0.35rem;
+  font-size: inherit;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.win-nt__body .panel-nt__copy {
+  margin: 0;
+}

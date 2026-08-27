@@ -1,8 +1,8 @@
 # Datakollektivet brand — tensions and fit
 
 **Project:** `design-elements`  
-**Date:** 2026-08-22  
-**Status:** exploring — logo and stripe are anchors; most other chrome is still open
+**Date:** 2026-08-22 (updated 2026-08-27)  
+**Status:** paused — logo and stripe are anchors; NT chrome and night-sky hero settling in sandbox
 
 ## What is established
 
@@ -12,7 +12,7 @@ loaded as a web font on page chrome. Tone: **cutesy, nice, not mean** — approa
 anti-corporate coldness. This is the emotional center of the brand; changing it is not on the table for
 prototype 14.
 
-**Stripe under the header.** Warm triad bands (clay → peach → cream) — documented in
+**Stripe under the header.** Warm triad bands (cream → peach → clay on prototype 14; was clay-first) — documented in
 [site-design](../../11-site-design/discussions/stripe-variants.md) and
 [header-stripe.md](../../11-site-design/discussions/header-stripe.md). Reads **retro, almost
 Polaroid-like**: a major design element, full-bleed, sticky with the header. **Really strong** — one
@@ -22,7 +22,7 @@ of the clearest “this isn’t a SaaS template” signals on the page.
 evocation (analog warmth, not skeuomorphic UI for its own sake). See
 [brand-palette](../../11-site-design/discussions/brand-palette.md).
 
-Everything else — buttons, transport, hero, typography beyond system sans — is **exploration**.
+Everything else — buttons, transport, hero treatment beyond the band handoff, typography beyond system sans — is **exploration**, with several patterns now **liked in the sandbox** (not yet promoted).
 
 ## Windows NT thread
 
@@ -77,15 +77,16 @@ tools on a human desk**: Polaroid stripe on the wall, NT button on the form.
 
 ## Open design questions
 
-- **Want to participate?** panel — `.panel-nt` on home; left copy + centered button is interim; needs
-  a pass to feel at home with logo/stripe warmth
+- **Hero** — night sky on home; stripe convergence variants in design lab — see [hero-directions.md](./hero-directions.md)
 - Does terracotta **secondary** NT pair with link semantics or confuse it with prose links?
 - Dark mode (prototype 12): does NT chrome invert cleanly or read as Windows 95 cosplay?
-- Promote header nav + NT patterns to prototype 11, or keep sandbox-only
+- Promote header nav + NT + clickable card + hero to prototype 11, or keep sandbox-only
 
 ## Related
 
 - [header-nav.md](./header-nav.md) — nav text colour, first-letter underline, lab in footer
 - [transport-buttons.md](./transport-buttons.md) — NT tiers, home transport map, panel CTA
+- [clickable-card.md](./clickable-card.md) — tip + window card variants
+- [hero-directions.md](./hero-directions.md) — night sky hero, stripe lab
 - [brand-style-framework.md](./brand-style-framework.md) — doc index
 - [site-design iteration summary](../../11-site-design/discussions/2026-08-21-design-iteration-summary.md) — stripe + sticky chrome on prototype 11

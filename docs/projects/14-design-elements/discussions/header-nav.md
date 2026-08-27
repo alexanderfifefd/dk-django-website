@@ -1,6 +1,6 @@
 # Header nav
 
-**Date:** 2026-08-22  
+**Date:** 2026-08-22 (updated 2026-08-27)  
 **Status:** liked — keep exploring on prototype 14
 
 ## Question
@@ -13,7 +13,7 @@ How should wayfinding sit next to the Pacifico wordmark without competing with i
 |---|---|---|
 | **Articles** | Plain text link, `--text` | First letter underlined (`.nav-link--mark`) |
 | **About** | Plain text link, `--text` | Same first-letter mark |
-| **Join** | `.btn-nt.btn-nt--primary` | Only filled control in the header |
+| **Join** | `.btn-nt.btn-nt--primary.btn-nt--with-caret` | Sage primary + pixel caret — main hub entry |
 | **(lab)** | Footer only (`.footer-lab`) | Small, muted, below org nr — not in nav |
 
 Nav links use **`--text`** (espresso), same ink as NT button labels — not `--muted` or terracotta prose-link colour.
@@ -38,6 +38,7 @@ underlines on hover.
 - `public/templates/public/partials/header.html`
 - `public/templates/public/partials/footer.html` — `.footer-lab`
 - `static/css/site.css` — `.site-nav`, `.nav-link--mark`, `.footer-lab`
+- Join uses same pixel caret as tertiary transport buttons — see [transport-buttons.md](./transport-buttons.md)
 
 ## Related
 

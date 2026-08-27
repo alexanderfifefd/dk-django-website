@@ -3,6 +3,9 @@
 {% block title %}{{ article.title }} — The Collective{% endblock %}
 
 {% block content %}
+  {% url 'articles_index' as articles_index_url %}
+  {% include "public/partials/breadcrumbs.html" with parent_url=articles_index_url parent_label="Articles" %}
+
   <article class="post">
     <header class="post-header">
       <h1>{{ article.title }}</h1>
@@ -21,5 +24,4 @@
       {{ article.body_html|safe }}
     </div>
   </article>
-  <p class="post-back"><a href="{% url 'articles_index' %}">&larr; All articles</a></p>
 {% endblock %}

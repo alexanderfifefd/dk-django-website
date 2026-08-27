@@ -163,3 +163,43 @@
 .site-footer-wrap .site-stripe {
   margin-top: var(--space-m);
 }
+
+/* Breadcrumbs — wayfinding on inner pages (articles detail, join paths) */
+
+.breadcrumb {
+  margin: 0 0 1.25rem;
+  font-size: var(--font-size-s);
+}
+
+.breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumb__item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--text-muted);
+}
+
+.breadcrumb__item + .breadcrumb__item::before {
+  content: "/";
+  color: var(--text-muted);
+  opacity: 0.45;
+}
+
+.breadcrumb__item a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.breadcrumb__item a:hover {
+  color: var(--text-link);
+  text-decoration: underline;
+}

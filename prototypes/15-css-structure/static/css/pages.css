@@ -254,16 +254,7 @@
   font-size: 0.9em;
 }
 
-.post-back {
-  margin-top: var(--space-xl);
-}
-
 /* ------- Join pages ------- */
-
-.join-back {
-  margin: 0 0 1.25rem;
-  font-size: 0.95rem;
-}
 
 .join-hub {
   margin-top: 2rem;

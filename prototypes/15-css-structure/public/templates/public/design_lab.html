@@ -1,0 +1,172 @@
+{% extends "public/layouts/base.html" %}
+{% load static %}
+
+{% block body_class %}page-catalog{% endblock %}
+
+{% block title %}Component catalog — The Collective{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/catalog.css' %}">
+{% endblock %}
+
+{% block content %}
+  <header class="page-hero">
+    <h1>Component catalog</h1>
+    <p class="hero-lead">
+      Every supported pattern, in one place. If a component is not here, it is not part of the
+      system yet — add it to <code>components.css</code> and to this page together.
+    </p>
+  </header>
+
+  <section class="catalog-section">
+    <h2>Foundations</h2>
+
+    <h3>Palette</h3>
+    <p class="catalog-note">Brand inks from <code>tokens.css</code>. Rules reference semantic aliases, not these directly.</p>
+    <div class="catalog-swatches">
+      <span class="catalog-swatch"><span class="catalog-swatch__chip" style="background: var(--color-cream)"></span><span class="catalog-swatch__name">--color-cream</span></span>
+      <span class="catalog-swatch"><span class="catalog-swatch__chip" style="background: var(--color-cream-deep)"></span><span class="catalog-swatch__name">--color-cream-deep</span></span>
+      <span class="catalog-swatch"><span class="catalog-swatch__chip" style="background: var(--color-parchment)"></span><span class="catalog-swatch__name">--color-parchment</span></span>
+      <span class="catalog-swatch"><span class="catalog-swatch__chip" style="background: var(--color-espresso)"></span><span class="catalog-swatch__name">--color-espresso</span></span>
+      <span class="catalog-swatch"><span class="catalog-swatch__chip" style="background: var(--color-stone)"></span><span class="catalog-swatch__name">--color-stone</span></span>
+      <span class="catalog-swatch"><span class="catalog-swatch__chip" style="background: var(--color-rule)"></span><span class="catalog-swatch__name">--color-rule</span></span>
+      <span class="catalog-swatch"><span class="catalog-swatch__chip" style="background: var(--color-sage)"></span><span class="catalog-swatch__name">--color-sage</span></span>
+      <span class="catalog-swatch"><span class="catalog-swatch__chip" style="background: var(--color-sage-hover)"></span><span class="catalog-swatch__name">--color-sage-hover</span></span>
+      <span class="catalog-swatch"><span class="catalog-swatch__chip" style="background: var(--color-peach)"></span><span class="catalog-swatch__name">--color-peach</span></span>
+      <span class="catalog-swatch"><span class="catalog-swatch__chip" style="background: var(--color-clay)"></span><span class="catalog-swatch__name">--color-clay</span></span>
+      <span class="catalog-swatch"><span class="catalog-swatch__chip" style="background: var(--color-peach-tint)"></span><span class="catalog-swatch__name">--color-peach-tint</span></span>
+      <span class="catalog-swatch"><span class="catalog-swatch__chip" style="background: var(--color-clay-tint)"></span><span class="catalog-swatch__name">--color-clay-tint</span></span>
+      <span class="catalog-swatch"><span class="catalog-swatch__chip" style="background: var(--hero-inv-bg)"></span><span class="catalog-swatch__name">--hero-inv-bg</span></span>
+      <span class="catalog-swatch"><span class="catalog-swatch__chip" style="background: var(--hero-inv-text)"></span><span class="catalog-swatch__name">--hero-inv-text</span></span>
+    </div>
+
+    <h3>Type scale</h3>
+    <p class="catalog-type-sample" style="font-size: var(--font-size-2xl)">Page title — 2xl</p>
+    <p class="catalog-type-sample" style="font-size: var(--font-size-xl)">Section heading — xl</p>
+    <p class="catalog-type-sample" style="font-size: var(--font-size-l)">Lead / deck — l</p>
+    <p class="catalog-type-sample" style="font-size: var(--font-size-m)">Body — m</p>
+    <p class="catalog-type-sample" style="font-size: var(--font-size-s)">Meta / hints — s</p>
+
+    <h3>Spacing scale</h3>
+    <div class="catalog-space"><span class="catalog-space__bar" style="width: var(--space-xs)"></span><span class="catalog-space__label">--space-xs</span></div>
+    <div class="catalog-space"><span class="catalog-space__bar" style="width: var(--space-s)"></span><span class="catalog-space__label">--space-s</span></div>
+    <div class="catalog-space"><span class="catalog-space__bar" style="width: var(--space-m)"></span><span class="catalog-space__label">--space-m</span></div>
+    <div class="catalog-space"><span class="catalog-space__bar" style="width: var(--space-l)"></span><span class="catalog-space__label">--space-l</span></div>
+    <div class="catalog-space"><span class="catalog-space__bar" style="width: var(--space-xl)"></span><span class="catalog-space__label">--space-xl</span></div>
+    <div class="catalog-space"><span class="catalog-space__bar" style="width: var(--space-2xl)"></span><span class="catalog-space__label">--space-2xl</span></div>
+  </section>
+
+  <section class="catalog-section">
+    <h2>Buttons</h2>
+    <p class="catalog-note">Raised bevel; hover presses. Primary = main action, secondary = emphasis, tertiary = quiet transport.</p>
+    <div class="catalog-row">
+      <a class="btn btn--primary" href="#">Primary</a>
+      <a class="btn btn--secondary" href="#">Secondary</a>
+      <a class="btn btn--tertiary" href="#">Tertiary</a>
+      <button type="button" class="btn btn--primary" disabled>Disabled</button>
+    </div>
+    <div class="catalog-row">
+      <a class="btn btn--tertiary btn--with-caret" href="#">
+        With caret
+        {% include "public/partials/caret.html" %}
+      </a>
+    </div>
+    <p class="catalog-ref"><code>.btn</code> + <code>.btn--primary|--secondary|--tertiary</code>, <code>.btn--with-caret</code></p>
+  </section>
+
+  <section class="catalog-section">
+    <h2>Cards</h2>
+    <p class="catalog-note">Whole-surface links on parchment. Press on hover. Optional icon, meta line, and action label.</p>
+
+    <div class="catalog-row catalog-row--stack">
+      {% include "public/partials/card.html" with card_url="#" heading="Path card" copy="Title, copy, and an underlined action label with the pixel caret. Used for the three join paths." go_label="Go somewhere" %}
+    </div>
+
+    <div class="catalog-row catalog-row--stack">
+      <a class="card" href="#">
+        <span class="card__body">
+          <h3 class="card__title">Article card</h3>
+          <p class="card__text">Title, summary, and a meta line. Used on the articles index and the home latest-articles list.</p>
+          <span class="card__meta"><time datetime="2026-08-27">27 August 2026</time><span>· A. Member</span></span>
+        </span>
+      </a>
+    </div>
+
+    <div class="catalog-row catalog-row--stack">
+      {% include "public/partials/card_join.html" %}
+    </div>
+    <p class="catalog-ref"><code>a.card</code> + <code>.card__icon|__body|__title|__text|__meta|__action</code></p>
+  </section>
+
+  <section class="catalog-section">
+    <h2>Panel</h2>
+    <p class="catalog-note">Framed static chrome — raised frame, title bar, sunken body. Not a link.</p>
+    <div class="catalog-row catalog-row--stack">
+      {% include "public/partials/panel.html" %}
+    </div>
+    <p class="catalog-ref"><code>.panel</code> + <code>.panel__titlebar|__body|__title|__text|__actions</code></p>
+  </section>
+
+  <section class="catalog-section">
+    <h2>Forms</h2>
+    <p class="catalog-note">Sunken bevel fields on a near-white face; sage focus ring. Labels bold, hints muted.</p>
+    <form class="form-stack" onsubmit="return false">
+      <p>
+        <label for="cat-name">Text field</label>
+        <input id="cat-name" type="text" placeholder="Your name">
+        <span class="field-hint">A hint below the field.</span>
+      </p>
+      <p>
+        <label for="cat-msg">Textarea</label>
+        <textarea id="cat-msg" rows="3" placeholder="A longer message…"></textarea>
+      </p>
+      <p class="form-checkbox">
+        <label>
+          <input type="checkbox">
+          A checkbox agreement line.
+        </label>
+      </p>
+      <p>
+        <button type="submit" class="btn btn--primary">Submit</button>
+      </p>
+    </form>
+    <p class="notice">A notice strip — confirmation and status messages.</p>
+    <p class="catalog-ref"><code>.form-stack</code>, <code>.form-checkbox</code>, <code>.field-hint</code>, <code>.notice</code></p>
+  </section>
+
+  <section class="catalog-section">
+    <h2>Navigation &amp; chrome</h2>
+    <p class="catalog-note">The stripe (three brand bands) sits under the sticky header and again at the page bottom. Nav links carry an underlined first-letter mark — the mark is a <code>&lt;span&gt;</code> in HTML, not <code>::first-letter</code>.</p>
+    <div class="catalog-chrome-demo">
+      <nav class="site-nav" aria-label="Demo">
+        <a class="nav-link" href="#"><span class="nav-mark">A</span>rticles</a>
+        <a class="nav-link" href="#"><span class="nav-mark">A</span>bout</a>
+        <a class="nav-join btn btn--primary btn--with-caret" href="#">
+          Join
+          {% include "public/partials/caret.html" %}
+        </a>
+      </nav>
+    </div>
+    <p class="catalog-ref"><code>.site-nav</code>, <code>.nav-link</code>, <code>.nav-mark</code>, <code>.site-stripe</code> (layout.css)</p>
+  </section>
+
+  <section class="catalog-section">
+    <h2>Content patterns</h2>
+    <p class="catalog-note">Section heading with a tertiary transport button; clay links in prose, buttons for actions.</p>
+    <div class="catalog-row catalog-row--stack">
+      <div class="section-heading">
+        <h2>Section heading</h2>
+        <a class="btn btn--tertiary btn--with-caret" href="#">
+          See all
+          {% include "public/partials/caret.html" %}
+        </a>
+      </div>
+      <p>Body text with <a href="#">an inline link in clay</a> — links are for navigation within prose, buttons are for actions.</p>
+    </div>
+  </section>
+
+  <p class="catalog-footer">
+    Prototype 15 — CSS structure fork; visual language from prototype 14.
+    Reasoning in <code>docs/projects/15-css-structure/</code>.
+  </p>
+{% endblock %}

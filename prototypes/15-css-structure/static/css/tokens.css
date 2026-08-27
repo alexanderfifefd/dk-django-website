@@ -1,0 +1,72 @@
+/* Design tokens — variables only, no selectors with rules.
+   The only file where raw hex is allowed.
+   Reasoning: docs/projects/15-css-structure/discussions/tokens-and-palette.md */
+
+:root {
+  /* ------- Palette (brand inks) ------- */
+  --color-cream: #f5f1e5;
+  --color-cream-deep: #ede8d8;
+  --color-parchment: #ede8d6;
+  --color-espresso: #3d2e2a;
+  --color-stone: #73665e;
+  --color-rule: #d9d0c0;
+
+  --color-sage: #8dc7a5;
+  --color-sage-hover: #6fa888;
+  --color-peach: #e9a57d;
+  --color-clay: #d77e57;
+
+  --color-peach-tint: #f9ebdf;
+  --color-clay-tint: #f5ddd0;
+
+  /* ------- Semantic (what rules reference) ------- */
+  --surface-page: var(--color-cream);
+  --surface-code: var(--color-cream-deep);
+  --surface-panel: var(--color-parchment);
+  --surface-field: color-mix(in srgb, var(--color-cream) 45%, white);
+
+  --text-primary: var(--color-espresso);
+  --text-muted: var(--color-stone);
+  --text-link: var(--color-clay);
+
+  --action-primary: var(--color-sage);
+  --action-primary-hover: var(--color-sage-hover);
+  --action-secondary: var(--color-clay);
+  --action-tertiary: var(--surface-panel);
+
+  --border-default: var(--color-rule);
+  --border-section: color-mix(in srgb, var(--color-peach) 38%, var(--color-rule));
+
+  --lane-member: var(--color-peach);
+  --lane-member-surface: var(--color-peach-tint);
+  --lane-volunteer: var(--color-clay);
+  --lane-volunteer-surface: var(--color-clay-tint);
+
+  /* ------- Layout ------- */
+  --layout-content-width: 44rem;
+  --layout-gutter: 1.25rem;
+
+  /* ------- Spacing scale ------- */
+  --space-xs: 0.25rem;
+  --space-s: 0.5rem;
+  --space-m: 1rem;
+  --space-l: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 4rem;
+
+  /* ------- Type scale ------- */
+  --font-size-s: 0.9rem;
+  --font-size-m: 1.05rem;
+  --font-size-l: 1.15rem;
+  --font-size-xl: 1.65rem;
+  --font-size-2xl: 2.5rem;
+
+  /* ------- Hero inverted (home hero only — not a theme switch) ------- */
+  --hero-inv-bg: #373430;
+  --hero-inv-text: #eee6d4;
+  --hero-inv-text-muted: color-mix(in srgb, var(--hero-inv-text) 72%, var(--hero-inv-bg));
+  --hero-inv-band-height: 10px;
+
+  /* ------- Stripe ------- */
+  --stripe-band-height: 3px;
+}

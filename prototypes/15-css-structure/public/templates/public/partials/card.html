@@ -1,0 +1,11 @@
+{# Whole-surface link card. Context: card_url, heading, copy, go_label #}
+<a class="card" href="{{ card_url }}">
+  <span class="card__body">
+    <h2 class="card__title">{{ heading }}</h2>
+    <p class="card__text">{{ copy }}</p>
+    <span class="card__action">
+      {{ go_label }}
+      {% include "public/partials/caret.html" %}
+    </span>
+  </span>
+</a>

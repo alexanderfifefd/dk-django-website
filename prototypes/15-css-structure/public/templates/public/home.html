@@ -1,0 +1,86 @@
+{% extends "public/layouts/base.html" %}
+{% load static %}
+
+{% block body_class %}page-home{% endblock %}
+
+{% block title %}Home — Datakollektivet{% endblock %}
+
+{% block content %}
+  <section class="hero hero--inverted">
+    <div class="hero-inv__stars" aria-hidden="true"></div>
+    <div class="hero-inv__bands" aria-hidden="true">
+      <span class="hero-inv__band hero-inv__band--sage"></span>
+      <span class="hero-inv__band hero-inv__band--sage-light"></span>
+      <span class="hero-inv__band hero-inv__band--cream"></span>
+      <span class="hero-inv__band hero-inv__band--peach"></span>
+      <span class="hero-inv__band hero-inv__band--clay"></span>
+    </div>
+    <div class="hero-inv__content">
+      <h1>A software collective</h1>
+      <p class="hero-lead">
+        We build and run open infrastructure together — collectively owned, documented in git,
+        governed by members.
+      </p>
+    </div>
+  </section>
+
+  <section class="home-section">
+    <h2>What we do</h2>
+    <p>
+      We build and maintain open infrastructure — identity, communication, decision-making, source
+      control, and the public site itself. Services are collectively owned and run for members and
+      anyone who needs them.
+    </p>
+    <p>
+      Members write about the work in <a href="{% url 'articles_index' %}">articles</a> and publish
+      notices when something affects users. The goal is simple: make what we operate understandable
+      from the outside.
+    </p>
+  </section>
+
+  <section class="home-section home-section--transport-footer">
+    <h2>Who we are</h2>
+    <p>
+      Datakollektivet is its members — people who build, operate, and steward shared infrastructure
+      together. We are async, distributed, and democratically governed. Content lives in git; the
+      site reflects what we commit.
+    </p>
+    <p class="who-we-are-more">
+      <a class="btn btn--tertiary btn--with-caret" href="{% url 'about' %}">
+        About us
+        {% include "public/partials/caret.html" %}
+      </a>
+    </p>
+  </section>
+
+  <section class="home-section">
+    <div class="section-heading">
+      <h2>Latest articles</h2>
+      <a class="btn btn--tertiary btn--with-caret" href="{% url 'articles_index' %}">
+        All articles
+        {% include "public/partials/caret.html" %}
+      </a>
+    </div>
+    {% if latest_articles %}
+      <ul class="article-list">
+        {% for article in latest_articles %}
+          <li>
+            <a class="card" href="{% url 'article_detail' article.slug %}">
+              <span class="card__body">
+                <h3 class="card__title">{{ article.title }}</h3>
+                {% if article.summary %}<p class="card__text">{{ article.summary }}</p>{% endif %}
+                <span class="card__meta">
+                  <time datetime="{{ article.date|date:'Y-m-d' }}">{{ article.date|date:"j F Y" }}</time>
+                </span>
+              </span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No articles yet.</p>
+    {% endif %}
+  </section>
+
+  {% include "public/partials/card_join.html" %}
+{% endblock %}

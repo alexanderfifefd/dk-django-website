@@ -1,0 +1,20 @@
+{% extends "public/layouts/base.html" %}
+
+{% block title %}Join — The Collective{% endblock %}
+
+{% block content %}
+  <header class="page-hero">
+    <h1>Join the collective</h1>
+  </header>
+
+  <div class="join-paths">
+    {% url 'join_account' as join_account_url %}
+    {% include "public/partials/card.html" with card_url=join_account_url heading="Start with an account" copy="Free for everyone. One identity for Forgejo, Loomio, Matrix, and other collective services we make available without membership." go_label="Create account" %}
+
+    {% url 'join_member' as join_member_url %}
+    {% include "public/partials/card.html" with card_url=join_member_url heading="Become a member" copy="Voting rights in the collective, full participation in Loomio decisions, and the obligations that come with org membership. There is a fee." go_label="Membership & payment" %}
+
+    {% url 'join_volunteer' as join_volunteer_url %}
+    {% include "public/partials/card.html" with card_url=join_volunteer_url heading="Become a volunteer" copy="Moderation, technical maintenance, driving initiatives — real responsibility with a light agreement. Tell us what fits you." go_label="Volunteer application" %}
+  </div>
+{% endblock %}

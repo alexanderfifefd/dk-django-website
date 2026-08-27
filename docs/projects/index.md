@@ -25,6 +25,19 @@ project to Completed.
 
 ## Active
 
+### `css-structure` — how should hand-written CSS be organised at our scale?
+
+**Status: built 2026-08-27** — six-file layer split (tokens → base → layout → components → pages → catalog) live on prototype 15; two-layer token system, de-NT naming (`btn`/`card`/`panel`), storybook-style catalog at `/design-lab/`, and `static/css/README.md` for contributors. Also shipped from the same review: article-list card redesign, NT sunken-bevel forms, bottom stripe, HTML nav marks.
+
+- **Overview**: `docs/projects/15-css-structure/overview.md` — **start here**
+- **Discussion**: `docs/projects/15-css-structure/discussions/file-layout.md` — layer split (decided)
+- **Discussion**: `docs/projects/15-css-structure/discussions/tokens-and-palette.md` — token system + scales
+- **Discussion**: `docs/projects/15-css-structure/discussions/class-naming.md` — BEM + de-NT renames
+- **Discussion**: `docs/projects/15-css-structure/discussions/catalog-scope.md` — storybook-style component catalog
+- **Plan**: `docs/projects/15-css-structure/plans/2026-08-27-prototype-15-css-structure.md`
+- **Prototype**: `prototypes/15-css-structure/`
+- **Inherits look from**: [`design-elements`](14-design-elements/overview.md) (paused)
+
 ### `design-elements` — how should reusable visual components look on the site?
 
 **Status: paused 2026-08-27** — NT chrome, clickable card, and night-sky hero liked on prototype 14; hero stripe lab open; nothing promoted to prototype 11.

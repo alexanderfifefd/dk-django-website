@@ -63,6 +63,8 @@
   --font-size-xl: 1.65rem;
   --font-size-2xl: 2.5rem;
 
+  --font-chicago: "ChicagoFLF", "Chicago", sans-serif;
+
   /* ------- Hero inverted (home hero only — not a theme switch) ------- */
   --hero-inv-bg: #373430;
   --hero-inv-text: #eee6d4;

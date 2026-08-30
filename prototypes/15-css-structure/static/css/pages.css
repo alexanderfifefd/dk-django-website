@@ -1,6 +1,20 @@
 /* Pages — route-specific styling: heroes, home sections, articles, join, about.
    Scope page-only rules under a body class (.page-*) when they could collide. */
 
+/* ------- Home — Chicago type (front page only) ------- */
+
+@font-face {
+  font-family: "ChicagoFLF";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/ChicagoFLF.woff") format("woff");
+}
+
+.page-home .hero--inverted {
+  font-family: var(--font-chicago);
+}
+
 /* ------- Page titles (inner pages) ------- */
 
 .page-hero {

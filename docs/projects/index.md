@@ -25,6 +25,29 @@ project to Completed.
 
 ## Active
 
+### `articles-and-initiatives` — initiatives + articles on the prototype 15 stack?
+
+**Status: discussion (2026-09-03)** — docs only. Fork prototype 15; port initiative abstractions from
+prototype 07 (content shape, article cross-refs, index/detail routes). No systems, members, or forge.
+
+- **Overview**: `docs/projects/17-articles-and-initiatives/overview.md` — **start here**
+- **Discussion**: `docs/projects/17-articles-and-initiatives/discussions/fork-and-scope.md` — fork base, in/out
+- **Discussion**: `docs/projects/17-articles-and-initiatives/discussions/content-model.md` — initiative + article shape
+- **Discussion**: `docs/projects/17-articles-and-initiatives/discussions/open-questions.md` — decisions before plan
+- **Prototype (planned)**: `prototypes/17-articles-and-initiatives/`
+- **Builds on**: [`css-structure`](15-css-structure/overview.md), [`initiatives`](07-initiatives/overview.md)
+
+### `deployment-pipeline` — what is the smallest site we can deploy to test the pipeline?
+
+**Status: built 2026-08-30** — one route, header/footer chrome, one CSS file, `STATIC_ROOT` for
+`collectstatic`. No ORM, markdown, or content loaders.
+
+- **Overview**: `docs/projects/16-deployment-pipeline/overview.md` — **start here**
+- **Discussion**: `docs/projects/16-deployment-pipeline/discussions/minimal-deploy-scope.md`
+- **Plan**: `docs/projects/16-deployment-pipeline/plans/2026-08-30-prototype-16-deployment-pipeline.md`
+- **Prototype**: `prototypes/16-deployment-pipeline/`
+- **Inherits layout from**: [`first-version`](10-first-version/overview.md)
+
 ### `css-structure` — how should hand-written CSS be organised at our scale?
 
 **Status: built 2026-08-27** — six-file layer split (tokens → base → layout → components → pages → catalog) live on prototype 15; two-layer token system, de-NT naming (`btn`/`card`/`panel`), storybook-style catalog at `/design-lab/`, and `static/css/README.md` for contributors. Also shipped from the same review: article-list card redesign, NT sunken-bevel forms, bottom stripe, HTML nav marks.

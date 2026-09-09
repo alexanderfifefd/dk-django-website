@@ -1,0 +1,7 @@
+# Django / deploy artifacts
+db.sqlite3
+staticfiles/
+
+# Python
+__pycache__/
+*.py[cod]

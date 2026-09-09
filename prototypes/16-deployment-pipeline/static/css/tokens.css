@@ -1,0 +1,35 @@
+/* Design tokens — variables only, no selectors with rules.
+   Same layer split as prototype 15; trimmed for deploy smoke test. */
+
+:root {
+  /* Palette (stripe + text) */
+  --color-cream-deep: #ede8d8;
+  --color-peach: #e9a57d;
+  --color-clay: #d77e57;
+  --color-espresso: #3d2e2a;
+  --color-stone: #73665e;
+  --color-rule: #d9d0c0;
+
+  /* Semantic */
+  --surface-page: #f5f5f5;
+  --text-primary: var(--color-espresso);
+  --text-muted: var(--color-stone);
+  --text-link: var(--color-clay);
+  --border-section: color-mix(in srgb, var(--color-peach) 38%, var(--color-rule));
+
+  /* Layout */
+  --layout-content-width: 44rem;
+  --layout-gutter: 1.25rem;
+
+  /* Spacing */
+  --space-s: 0.5rem;
+  --space-l: 1.5rem;
+  --space-2xl: 4rem;
+
+  /* Type */
+  --font-size-s: 0.9rem;
+  --font-size-m: 1.05rem;
+
+  /* Stripe */
+  --stripe-band-height: 3px;
+}

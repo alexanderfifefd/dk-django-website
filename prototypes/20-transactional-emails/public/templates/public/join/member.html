@@ -47,24 +47,12 @@
           {% if send_failed %}
             <p class="notice">Something went wrong sending your request. Please try again in a moment.</p>
           {% endif %}
-          <form class="form-stack" method="post" action="" novalidate>
+          <form method="post" action="" novalidate>
             {% csrf_token %}
-            <p>
-              <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
-              {{ form.email }}
-              {% for error in form.email.errors %}
-                <span class="field-error">{{ error }}</span>
-              {% endfor %}
-            </p>
-            <p class="form-checkbox">
-              <label for="{{ form.newsletter.id_for_label }}">
-                {{ form.newsletter }}
-                {{ form.newsletter.label }}
-              </label>
-            </p>
-            <p>
+            {{ form.as_div }}
+            <div class="form-actions">
               <button type="submit" class="btn btn--primary">Submit membership request</button>
-            </p>
+            </div>
           </form>
         </div>
       </div>

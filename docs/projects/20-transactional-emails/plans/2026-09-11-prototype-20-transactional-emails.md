@@ -16,7 +16,9 @@ Three join forms notify `hei@datakollektivet.no` with submitted fields and a sug
 | Recipient | `ONBOARDING_INBOX` (default `hei@datakollektivet.no`) |
 | Visitor email | None |
 | Member payment | Thank-you page + internal notification |
-| Validation | Django Forms + per-field template rendering |
+| Validation | Django Forms — `FollowForm`, `MemberForm`, `BuildForm` |
+| Form markup | `{{ form.as_div }}` inlined per join template |
+| Form CSS | Cascade from `.form-card__body form` (see [forms-and-css.md](../discussions/forms-and-css.md)) |
 | Storage | None — mailbox is the record; no `EmailSendLog` |
 | TEM | SMTP via `EMAIL_MAILER=scaleway`; console in dev |
 | Send | Synchronous in view |
@@ -44,4 +46,4 @@ With TEM configured, set `EMAIL_MAILER=scaleway` and confirm delivery to `hei@`.
 
 ## Outcome
 
-**Answer:** Django + Scaleway TEM + `.txt` templates is straightforward for org-inbox notifications. Manual onboarding avoids third-party email-bombing. Standard Django Forms with per-field rendering fits the prototype 15 form CSS.
+**Answer:** Django + Scaleway TEM + `.txt` templates is straightforward for org-inbox notifications. Manual onboarding avoids third-party email-bombing. Django Forms with `as_div` and cascade CSS from `.form-card__body` is a good default for join forms — documented in [forms-and-css.md](../discussions/forms-and-css.md).

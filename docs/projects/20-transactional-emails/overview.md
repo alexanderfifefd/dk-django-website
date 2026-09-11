@@ -14,6 +14,7 @@ Three join paths (**Follow us**, **Become a member**, **Build with us**) send a 
 
 1. **[pivot-to-manual-onboarding.md](./discussions/pivot-to-manual-onboarding.md)** — why manual
 2. **[join-flows.md](./discussions/join-flows.md)** — three paths (product intent; English slugs in prototype)
-3. **[technical-scope.md](./discussions/technical-scope.md)** — implementation notes
-4. **[2026-09-11-prototype-20-transactional-emails.md](./plans/2026-09-11-prototype-20-transactional-emails.md)** — plan and verification
-5. **[scope-and-options.md](./discussions/scope-and-options.md)** — superseded auto-email exploration
+3. **[forms-and-css.md](./discussions/forms-and-css.md)** — Django Forms, `as_div`, cascade styling
+4. **[technical-scope.md](./discussions/technical-scope.md)** — mail, TEM, prototype layout
+5. **[2026-09-11-prototype-20-transactional-emails.md](./plans/2026-09-11-prototype-20-transactional-emails.md)** — plan and verification
+6. **[scope-and-options.md](./discussions/scope-and-options.md)** — superseded auto-email exploration

@@ -37,4 +37,4 @@ Member payment details live in `config/settings.py` → `MEMBER_PAYMENT`.
 
 ## Project docs
 
-`docs/projects/20-transactional-emails/`
+`docs/projects/20-transactional-emails/` — form/CSS decisions in `discussions/forms-and-css.md`.

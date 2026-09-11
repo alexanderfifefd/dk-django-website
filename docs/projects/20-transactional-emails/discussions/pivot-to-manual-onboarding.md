@@ -12,7 +12,7 @@ The first pass assumed **public forms email instructions directly to the address
 - Felt wrong architecturally — the join ladder already assumes account-before-member; auto-mailing unverified addresses sidesteps that.
 - Was not worth building "just to learn TEM" on a design we would not ship.
 
-See [scope-and-options.md](./scope-and-options.md) (2026-09-10 version) in git history for the full exploration of that approach, including Pydantic validation, hashed-email rate limits, and abuse mitigations. Those technical choices mostly carry forward; the **recipient and workflow** change.
+See [scope-and-options.md](./scope-and-options.md) (2026-09-10 version) in git history for the full exploration of that approach (auto-email to submitter, hashed-email rate limits, etc.). The **recipient and workflow** changed; form and CSS decisions are in [forms-and-css.md](./forms-and-css.md).
 
 ## Decision
 
@@ -45,7 +45,7 @@ That gives consistency without pretending the reply is automatic. TEM + Django `
 ## What carries forward from the earlier discussion
 
 - Fork **prototype 15** for form UX and CSS.
-- **Django Forms** for POST validation (refactored from initial Pydantic pass).
+- **Django Forms** + `as_div` + cascade CSS — see [forms-and-css.md](./forms-and-css.md).
 - **Django `.txt` templates** for email bodies.
 - **Scaleway TEM** via SMTP (leaning).
 - **Sync send** in the view; console backend in dev.

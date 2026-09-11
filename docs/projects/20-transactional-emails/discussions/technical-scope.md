@@ -1,9 +1,11 @@
 # Technical scope
 
 **Project:** `transactional-emails`
-**Date:** 2026-09-11
+**Date:** 2026-09-11 (updated)
 
 Implementation choices for the manual-onboarding design in [pivot-to-manual-onboarding.md](./pivot-to-manual-onboarding.md) and [join-flows.md](./join-flows.md).
+
+**Forms and CSS:** [forms-and-css.md](./forms-and-css.md) — Django Forms, `as_div`, cascade styling (authoritative for form decisions).
 
 ## Mail flow
 
@@ -14,52 +16,29 @@ POST form → Form.is_valid() → render .txt template → send_mail(to=hei@)
 
 - **To:** `hei@datakollektivet.no` (setting: `ONBOARDING_INBOX`).
 - **From:** verified TEM domain (e.g. `noreply@datakollektivet.no` or `hei@` if configured).
-- **Subject:** prefixed by flow — e.g. `[Følg oss]`, `[Bli medlem]`, `[Bygg med oss]` — plus submitter email for scanability.
+- **Subject:** prefixed by flow — e.g. `[Follow us]`, `[Become a member]`, `[Build with us]` — plus submitter email for scanability.
 
 ## Email template shape
 
 One `.txt` template per flow under `public/templates/public/emails/join/`:
 
-```
-{# folg_oss.txt — structure, not final copy #}
-
-Ny henvendelse: Følg oss
-
---- Innsendt ---
-E-post: {{ email }}
-Hold meg oppdatert: {{ newsletter|yesno:"Ja,Nei" }}
-
---- Forslag til svar ---
-Hei!
-
-Takk for at du vil følge med på Datakollektivet.
-...
-```
-
-Welcomer replies manually; the site never sends the "Forslag til svar" block to the visitor automatically.
+- `follow.txt`, `member.txt`, `build.txt`
+- **Submitted** — field summary from `form.cleaned_data`
+- **Suggested reply** — copy/edit block for welcomer; never sent to visitor automatically
 
 ## Validation
 
-**Django Forms** — `FollowForm`, `MemberForm`, `BuildForm` (one per path). Templates render fields with `{{ form.email }}` etc.; layout stays in HTML, widgets carry placeholders and `autocomplete`.
+See [forms-and-css.md](./forms-and-css.md). **Django Forms only** — `FollowForm`, `MemberForm`, `BuildForm`.
 
 ## Abuse (inbox protection)
 
 Third-party email bombing is **out of scope** — we do not mail submitter addresses.
 
-Remaining risks: flooding `hei@`, garbage submissions.
-
-| Mitigation | Purpose |
-|---|---|
-| CSRF | Baseline POST protection |
-| Hashed email + flow cooldown (`EmailSendLog`) | Same person cannot trigger 100 notifications for one address in an hour |
-| Per-IP limit (optional v1) | Script flood protection |
-| Field length limits (Form fields) | Readable notifications |
-
-On rate-limit hit: skip send, still show thank-you (do not leak block reason to bots).
+Remaining risks: flooding `hei@`, garbage submissions. Mitigations in v1: CSRF, field length limits on forms. No `EmailSendLog`, no per-IP limit (decided 2026-09-11).
 
 ## Storage
 
-**Mailbox is the system of record** — no ORM models. No `EmailSendLog` (decided 2026-09-11).
+**Mailbox is the system of record** — no ORM models.
 
 ## Scaleway TEM
 
@@ -68,46 +47,41 @@ On rate-limit hit: skip send, still show thank-you (do not leak block reason to 
 | **SMTP** (leaning) | `smtp.tem.scaleway.com:587`, Project ID + API secret |
 | **REST API** | Fallback if SMTP awkward |
 
-Dev: `MAILERS` default → `console.EmailBackend`. Prod: SMTP when env vars set.
-
-Setup checklist: verified domain, SPF/DKIM, IAM key — unchanged from earlier discussion.
+Dev: `MAILERS` default → `console.EmailBackend`. Prod: SMTP when `EMAIL_MAILER=scaleway`.
 
 ## Sync send
 
-Send synchronously in the view. Low volume; failure → error page, no log row, no thank-you.
+Send synchronously in the view. Low volume; on send failure show error and keep form — do not show thank-you.
 
 No Celery in v1.
 
+## Dev tooling
+
+- **Django Debug Toolbar** when `DEBUG=True` (`debug_toolbar` in settings + `__debug__/` URLs).
+- Shared dependency in root `pyproject.toml`.
+
 ## Fork base
 
-**Prototype 15** — form CSS, layout, join section structure. Replace join pages with the three Norwegian flows; strip articles if not needed for smoke test.
+**Prototype 15** — form-card chrome, layout, tokens. Prototype 20 strips articles/loaders; join-only.
 
-Add `CsrfViewMiddleware` (missing in 15 today despite `{% csrf_token %}`).
-
-## Suggested prototype layout
+## Prototype layout
 
 ```
 prototypes/20-transactional-emails/
   config/settings.py
   public/
     forms.py                  # FollowForm, MemberForm, BuildForm
-    mail.py                   # notify_onboarding_inbox(flow, data)
-    views.py
+    mail.py
+    views.py                  # join_follow, join_member, join_build (explicit, no helper)
     templates/
-      public/join/              # hub + three flow pages
-      public/emails/join/       # follow.txt, member.txt, build.txt
+      public/join/            # hub + three pages (form inlined, {{ form.as_div }})
+      public/emails/join/     # notification .txt templates
+  static/css/components.css   # .form-card__body form { … } cascade
 ```
-
-## Open (technical)
-
-- Exact `From` address on TEM domain.
-- Member payment details: thank-you page only, or also embedded in internal template for welcomer's reference?
-- SMTP vs API — try SMTP first unless blocked during setup.
 
 ## Non-goals
 
-- Outbound mail to submitter (including "we received your request").
-- SSO, Keycloak, payment verification, Forgejo/Loomio API integration.
-- Listmonk / newsletter automation.
-- HTML email, attachments, admin UI for submissions.
-- Celery, CAPTCHA (defer).
+- Outbound mail to submitter.
+- Pydantic for POST / HTML forms.
+- SSO, payment verification, Forgejo/Loomino API integration.
+- ORM submission storage, Celery, CAPTCHA.

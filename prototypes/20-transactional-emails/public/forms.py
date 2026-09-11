@@ -4,6 +4,8 @@ from django import forms
 from django.conf import settings
 
 class FollowForm(forms.Form):
+    label_suffix = ""
+
     email = forms.EmailField(
         label="Email",
         widget=forms.EmailInput(
@@ -18,8 +20,17 @@ class FollowForm(forms.Form):
         label="Yes please — keep me updated on Datakollektivet",
     )
 
+    if settings.DEBUG:
+        send_email = forms.BooleanField(
+            required=False,
+            label="Send notification email (uncheck to suppress email)",
+            initial=True,
+        )
+
 
 class MemberForm(forms.Form):
+    label_suffix = ""
+
     email = forms.EmailField(
         label="Email",
         widget=forms.EmailInput(
@@ -36,6 +47,8 @@ class MemberForm(forms.Form):
 
 
 class BuildForm(forms.Form):
+    label_suffix = ""
+
     email = forms.EmailField(
         label="Email",
         widget=forms.EmailInput(

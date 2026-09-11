@@ -250,33 +250,29 @@ a.card:hover .card__action {
     inset -2px 0 0 0 var(--bevel-hi);
 }
 
-.form-card__body .form-stack {
-  margin: 0;
-}
-
-.form-card__body .form-stack p:last-child {
-  margin-bottom: 0;
-}
-
 .form-card__body .notice {
   margin: 0;
 }
 
-/* ------- Form fields — sunken bevel inputs ------- */
+/* ------- Join forms — cascade from .form-card__body form (Django as_div) ------- */
 
-.form-stack p {
+.form-card__body form {
+  margin: 0;
+}
+
+.form-card__body form > div {
   margin: 0 0 1.25rem;
 }
 
-.form-stack label {
+.form-card__body form label {
   display: block;
   margin-bottom: 0.35rem;
   font-weight: 600;
 }
 
-.form-stack input:not([type="checkbox"]),
-.form-stack textarea,
-.form-stack select {
+.form-card__body form input:not([type="checkbox"]),
+.form-card__body form textarea,
+.form-card__body form select {
   --bevel-face: var(--surface-field);
   --bevel-hi: color-mix(in srgb, var(--bevel-face) 35%, white);
   --bevel-lo: color-mix(in srgb, var(--bevel-face) 55%, var(--text-primary));
@@ -297,41 +293,51 @@ a.card:hover .card__action {
     inset -2px 0 0 0 var(--bevel-hi);
 }
 
-.form-stack input:focus,
-.form-stack textarea:focus,
-.form-stack select:focus {
+.form-card__body form input:focus,
+.form-card__body form textarea:focus,
+.form-card__body form select:focus {
   outline: 2px solid var(--action-primary);
   outline-offset: 1px;
 }
 
-.form-stack input[type="checkbox"] {
-  accent-color: var(--action-primary);
+.form-card__body form .errorlist {
+  margin: 0 0 0.35rem;
+  padding: 0;
+  list-style: none;
+  color: var(--text-error, #8b2e2e);
+  font-size: var(--font-size-s);
 }
 
-.form-checkbox label {
+.form-card__body form > div:has(input[type="checkbox"]) {
   display: flex;
-  gap: 0.65rem;
+  flex-wrap: wrap;
   align-items: flex-start;
+  gap: 0.65rem;
+}
+
+.form-card__body form > div:has(input[type="checkbox"]) label {
+  order: 2;
+  flex: 1;
+  margin-bottom: 0;
   font-weight: normal;
   cursor: pointer;
 }
 
-.form-checkbox input {
-  margin-top: 0.25rem;
+.form-card__body form > div:has(input[type="checkbox"]) input[type="checkbox"] {
+  order: 1; 
   flex-shrink: 0;
+  margin-top: 0.25rem;
+  accent-color: var(--action-primary);
+}
+
+.form-card__body form .form-actions {
+  margin-bottom: 0;
 }
 
 .field-hint {
   display: block;
   margin-top: 0.35rem;
   color: var(--text-muted);
-  font-size: var(--font-size-s);
-}
-
-.field-error {
-  display: block;
-  margin-top: 0.35rem;
-  color: var(--text-error, #8b2e2e);
   font-size: var(--font-size-s);
 }
 

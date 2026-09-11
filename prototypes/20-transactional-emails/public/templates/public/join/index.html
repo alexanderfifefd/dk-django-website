@@ -1,0 +1,28 @@
+{% extends "public/layouts/base.html" %}
+
+{% block title %}Join — The Collective{% endblock %}
+
+{% block content %}
+  <header class="page-hero">
+    <h1>Join the collective</h1>
+  </header>
+
+  <div class="page-intro">
+    <p>
+      Pick the path that fits where you are. Each form goes to our team at
+      <strong>hei@datakollektivet.no</strong> — someone will follow up manually.
+      We do not send automated replies to the address you enter.
+    </p>
+  </div>
+
+  <div class="join-paths">
+    {% url 'join_follow' as join_follow_url %}
+    {% include "public/partials/card.html" with card_url=join_follow_url heading="Follow us" copy="Stay informed, ask questions, and find the community on Matrix — without org membership." go_label="Follow us" %}
+
+    {% url 'join_member' as join_member_url %}
+    {% include "public/partials/card.html" with card_url=join_member_url heading="Become a member" copy="Voting rights, full Loomio participation, and membership obligations. There is a fee." go_label="Membership" %}
+
+    {% url 'join_build' as join_build_url %}
+    {% include "public/partials/card.html" with card_url=join_build_url heading="Build with us" copy="Moderation, maintenance, initiatives — tell us where you could contribute and we will point you to Forgejo and Matrix." go_label="Build with us" %}
+  </div>
+{% endblock %}

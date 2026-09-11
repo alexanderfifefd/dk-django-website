@@ -1,0 +1,22 @@
+{% extends "public/layouts/base.html" %}
+
+{% block title %}The Collective{% endblock %}
+
+{% block content %}
+  <header class="page-hero">
+    <h1>Datakollektivet</h1>
+  </header>
+
+  <div class="page-intro">
+    <p>
+      A software collective building and maintaining services for its members.
+      If you want to follow along, join the org, or help build — start on the join page.
+    </p>
+    <p>
+      <a class="btn btn--primary btn--with-caret" href="{% url 'join' %}">
+        Join
+        {% include "public/partials/caret.html" %}
+      </a>
+    </p>
+  </div>
+{% endblock %}

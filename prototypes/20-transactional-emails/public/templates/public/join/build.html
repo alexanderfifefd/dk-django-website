@@ -1,0 +1,69 @@
+{% extends "public/layouts/base.html" %}
+
+{% block title %}Build with us — The Collective{% endblock %}
+
+{% block content %}
+  {% url 'join' as join_url %}
+  {% include "public/partials/breadcrumbs.html" with parent_url=join_url parent_label="Join" %}
+
+  <header class="page-hero">
+    <h1>Build with us</h1>
+  </header>
+
+  <section class="join-hub">
+    <h2 class="join-hub-title">What building with us can involve</h2>
+    <ul class="join-benefits">
+      <li><strong>Moderation</strong> — helping keep collective spaces usable</li>
+      <li><strong>Technical maintenance</strong> — systems the collective operates</li>
+      <li><strong>Initiative driving</strong> — owning a goal until it lands or hands off</li>
+      <li><strong>Other stewardship</strong> — areas the board or maintainers agree need a named person</li>
+    </ul>
+    <p class="join-hub-intro">
+      Tell us your email and where you could imagine contributing. We will follow up with Forgejo
+      access pointers and relevant Matrix spaces.
+    </p>
+  </section>
+
+  <section class="join-hub">
+    <h2 class="join-hub-title">Contributor request</h2>
+
+    {% if submitted %}
+      <div class="form-card">
+        <div class="form-card__body">
+          <p class="notice">
+            Thanks — we received your request for <strong>{{ submitted_email }}</strong>.
+            Someone will follow up manually. We do not send automated confirmation emails.
+          </p>
+        </div>
+      </div>
+    {% else %}
+      <div class="form-card">
+        <div class="form-card__body">
+          {% if send_failed %}
+            <p class="notice">Something went wrong sending your request. Please try again in a moment.</p>
+          {% endif %}
+          <form class="form-stack" method="post" action="" novalidate>
+            {% csrf_token %}
+            <p>
+              <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+              {{ form.email }}
+              {% for error in form.email.errors %}
+                <span class="field-error">{{ error }}</span>
+              {% endfor %}
+            </p>
+            <p>
+              <label for="{{ form.interest.id_for_label }}">{{ form.interest.label }}</label>
+              {{ form.interest }}
+              {% for error in form.interest.errors %}
+                <span class="field-error">{{ error }}</span>
+              {% endfor %}
+            </p>
+            <p>
+              <button type="submit" class="btn btn--primary">Send request</button>
+            </p>
+          </form>
+        </div>
+      </div>
+    {% endif %}
+  </section>
+{% endblock %}

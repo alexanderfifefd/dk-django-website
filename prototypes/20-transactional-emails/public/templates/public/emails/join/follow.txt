@@ -1,0 +1,20 @@
+New request: Follow us
+
+--- Submitted ---
+Email: {{ email }}
+Keep me updated: {% if newsletter %}Yes{% else %}No{% endif %}
+
+--- Suggested reply (copy/edit and send manually) ---
+Hi!
+
+Thanks for wanting to follow Datakollektivet.
+
+We are a software collective building and maintaining services for our members. Right now we are
+[brief current-state blurb — edit before sending].
+
+Matrix is the easiest place to say hello: {{ matrix_contact_url }}
+
+Feel free to ask questions here or reply to this email.
+
+Welcome,
+[your name] — on behalf of Datakollektivet

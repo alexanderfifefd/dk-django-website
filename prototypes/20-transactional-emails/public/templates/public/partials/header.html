@@ -4,8 +4,6 @@
     <img src="{% static 'img/logo-light-theme.png' %}" alt="datakollektivet">
   </a>
   <nav class="site-nav" aria-label="Site">
-    <a class="nav-link" href="{% url 'articles_index' %}"><span class="nav-mark">N</span>ews</a>
-    <a class="nav-link" href="{% url 'about' %}"><span class="nav-mark">A</span>bout</a>
     <a class="nav-join btn btn--primary btn--with-caret" href="{% url 'join' %}">
       Join
       {% include "public/partials/caret.html" %}

@@ -30,7 +30,7 @@
       anyone who needs them.
     </p>
     <p>
-      Members write about the work in <a href="{% url 'articles_index' %}">articles</a> and publish
+      Members write about the work in <a href="{% url 'articles_index' %}">news</a> and publish
       notices when something affects users. The goal is simple: make what we operate understandable
       from the outside.
     </p>
@@ -52,7 +52,7 @@
   </section>
 
   <section class="content-section">
-    <h2>Latest articles</h2>
+    <h2>Latest news</h2>
     {% if latest_articles %}
       <ul class="article-list">
         {% for article in latest_articles %}
@@ -60,11 +60,11 @@
         {% endfor %}
       </ul>
     {% else %}
-      <p>No articles yet.</p>
+      <p>No news yet.</p>
     {% endif %}
     <p class="content-section__transport">
       <a class="btn btn--tertiary btn--with-caret" href="{% url 'articles_index' %}">
-        All articles
+        All news
         {% include "public/partials/caret.html" %}
       </a>
     </p>

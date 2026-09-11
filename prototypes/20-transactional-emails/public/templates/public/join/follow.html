@@ -1,0 +1,67 @@
+{% extends "public/layouts/base.html" %}
+
+{% block title %}Follow us — The Collective{% endblock %}
+
+{% block content %}
+  {% url 'join' as join_url %}
+  {% include "public/partials/breadcrumbs.html" with parent_url=join_url parent_label="Join" %}
+
+  <header class="page-hero">
+    <h1>Follow us</h1>
+  </header>
+
+  <section class="join-hub">
+    <h2 class="join-hub-title">Stay in the loop</h2>
+    <p class="join-hub-intro">
+      Leave your email and we will get in touch with more information — where we are right now,
+      how to find us on Matrix, and room to ask questions.
+    </p>
+    <p class="join-hub-intro">
+      Prefer chat? Say hello in
+      <a href="https://matrix.to/#/#datakollektivet:matrix.org" rel="noopener noreferrer">Matrix</a>.
+    </p>
+  </section>
+
+  <section class="join-hub">
+    <h2 class="join-hub-title">Request contact</h2>
+
+    {% if submitted %}
+      <div class="form-card">
+        <div class="form-card__body">
+          <p class="notice">
+            Thanks — we received your request for <strong>{{ submitted_email }}</strong>.
+            Someone from the collective will follow up manually. We do not send automated
+            confirmation emails.
+          </p>
+        </div>
+      </div>
+    {% else %}
+      <div class="form-card">
+        <div class="form-card__body">
+          {% if send_failed %}
+            <p class="notice">Something went wrong sending your request. Please try again in a moment.</p>
+          {% endif %}
+          <form class="form-stack" method="post" action="" novalidate>
+            {% csrf_token %}
+            <p>
+              <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+              {{ form.email }}
+              {% for error in form.email.errors %}
+                <span class="field-error">{{ error }}</span>
+              {% endfor %}
+            </p>
+            <p class="form-checkbox">
+              <label for="{{ form.newsletter.id_for_label }}">
+                {{ form.newsletter }}
+                {{ form.newsletter.label }}
+              </label>
+            </p>
+            <p>
+              <button type="submit" class="btn btn--primary">Send request</button>
+            </p>
+          </form>
+        </div>
+      </div>
+    {% endif %}
+  </section>
+{% endblock %}

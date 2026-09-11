@@ -25,6 +25,16 @@ project to Completed.
 
 ## Active
 
+### `transactional-emails` — join forms → org inbox via Scaleway TEM?
+
+**Status: built 2026-09-11** — three paths (`/join/follow/`, `/join/member/`, `/join/build/`) notify `hei@datakollektivet.no` with suggested reply templates. No auto-email to visitors. Django Forms, console/SMTP mailers, no DB storage.
+
+- **Overview**: `docs/projects/20-transactional-emails/overview.md` — **start here**
+- **Plan**: `docs/projects/20-transactional-emails/plans/2026-09-11-prototype-20-transactional-emails.md`
+- **Discussion**: `docs/projects/20-transactional-emails/discussions/pivot-to-manual-onboarding.md`
+- **Prototype**: `prototypes/20-transactional-emails/`
+- **Builds on**: [`css-structure`](15-css-structure/overview.md)
+
 ### `articles-and-initiatives` — initiatives + articles on the prototype 15 stack?
 
 **Status: discussion (2026-09-03)** — docs only. Fork prototype 15; port initiative abstractions from

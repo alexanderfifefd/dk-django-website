@@ -1,0 +1,122 @@
+/* Catalog — layout for the component catalog page (/design-lab/) only.
+   Never loaded globally. Component internals live in components.css. */
+
+.catalog-section {
+  margin-bottom: var(--space-xl);
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border-section);
+}
+
+.catalog-section:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.catalog-section > h2 {
+  margin: 0 0 0.5rem;
+}
+
+.catalog-note {
+  margin: 0 0 1rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.catalog-note code {
+  font-size: 0.88em;
+}
+
+.catalog-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.catalog-row--stack {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.catalog-demo {
+  margin: 0 0 1rem;
+}
+
+.catalog-ref {
+  margin: 0.5rem 0 0;
+  font-size: var(--font-size-s);
+  color: var(--text-muted);
+}
+
+.catalog-ref code {
+  font-size: 0.88em;
+}
+
+/* Foundations — swatches */
+
+.catalog-swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.catalog-swatch__chip {
+  display: block;
+  height: 3rem;
+  border: 1px solid var(--border-default);
+}
+
+.catalog-swatch__name {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* Foundations — type scale */
+
+.catalog-type-sample {
+  margin: 0 0 0.5rem;
+  line-height: 1.3;
+}
+
+/* Foundations — spacing scale */
+
+.catalog-space {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.4rem;
+}
+
+.catalog-space__bar {
+  display: block;
+  height: 0.75rem;
+  background: var(--color-sage);
+}
+
+.catalog-space__label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* Chrome demos */
+
+.catalog-chrome-demo {
+  padding: 0.75rem 1rem;
+  border: 1px dashed var(--border-default);
+}
+
+.catalog-footer {
+  margin: 2rem 0 0;
+  font-size: var(--font-size-s);
+  color: var(--text-muted);
+}
+
+.catalog-footer code {
+  font-size: 0.88em;
+}

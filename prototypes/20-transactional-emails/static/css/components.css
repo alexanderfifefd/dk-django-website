@@ -1,0 +1,354 @@
+/* Components — bevel UI: btn, card, panel, caret, form fields, notice.
+   Bevel pattern: each component sets --bevel-face and derives highlight/shadow
+   with color-mix. Raised = light top/left; sunken = dark top/left.
+   Hover on interactive components inverts the bevel (pressed read). */
+
+/* ------- Button ------- */
+
+.btn {
+  --bevel-face: var(--action-primary);
+  --bevel-hi: color-mix(in srgb, var(--bevel-face) 40%, white);
+  --bevel-lo: color-mix(in srgb, var(--bevel-face) 45%, var(--text-primary));
+
+  display: inline-block;
+  padding: 0.35rem 1rem;
+  font: inherit;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  color: var(--text-primary);
+  text-decoration: none;
+  cursor: pointer;
+  background: var(--bevel-face);
+  border: none;
+  border-radius: 0;
+  box-shadow:
+    inset 0 2px 0 0 var(--bevel-hi),
+    inset 2px 0 0 0 var(--bevel-hi),
+    inset 0 -2px 0 0 var(--bevel-lo),
+    inset -2px 0 0 0 var(--bevel-lo);
+}
+
+.btn:hover {
+  color: var(--text-primary);
+  box-shadow:
+    inset 0 -2px 0 0 var(--bevel-hi),
+    inset -2px 0 0 0 var(--bevel-hi),
+    inset 0 2px 0 0 var(--bevel-lo),
+    inset 2px 0 0 0 var(--bevel-lo);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn--primary {
+  --bevel-face: var(--action-primary);
+}
+
+.btn--secondary {
+  --bevel-face: var(--action-secondary);
+}
+
+.btn--tertiary {
+  --bevel-face: var(--action-tertiary);
+}
+
+.btn--with-caret {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Pixel caret (shared include: partials/caret.html) */
+
+.caret {
+  flex-shrink: 0;
+  shape-rendering: crispEdges;
+}
+
+/* ------- Card — whole-surface link ------- */
+
+a.card {
+  --bevel-face: var(--surface-panel);
+  --bevel-hi: color-mix(in srgb, var(--bevel-face) 35%, white);
+  --bevel-lo: color-mix(in srgb, var(--bevel-face) 40%, var(--text-primary));
+
+  display: flex;
+  align-items: stretch;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  background: var(--bevel-face);
+  border-radius: 0;
+  color: var(--text-primary);
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow:
+    inset 0 2px 0 0 var(--bevel-hi),
+    inset 2px 0 0 0 var(--bevel-hi),
+    inset 0 -2px 0 0 var(--bevel-lo),
+    inset -2px 0 0 0 var(--bevel-lo);
+}
+
+a.card:hover {
+  color: var(--text-primary);
+  box-shadow:
+    inset 0 -2px 0 0 var(--bevel-hi),
+    inset -2px 0 0 0 var(--bevel-hi),
+    inset 0 2px 0 0 var(--bevel-lo),
+    inset 2px 0 0 0 var(--bevel-lo);
+}
+
+a.card:focus-visible {
+  outline: 2px solid var(--action-secondary);
+  outline-offset: 2px;
+}
+
+.card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.card__title {
+  margin: 0 0 0.35rem;
+  font-size: inherit;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.card__text {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+  font-size: var(--font-size-s);
+  color: var(--text-muted);
+}
+
+.card__action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  align-self: flex-end;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-decoration-color: var(--action-primary);
+  text-underline-offset: 0.14em;
+  text-decoration-thickness: 2px;
+}
+
+a.card:hover .card__action {
+  color: var(--action-primary);
+  text-decoration-thickness: 3px;
+}
+
+/* ------- Panel — framed static chrome (title bar + sunken body) ------- */
+
+.panel {
+  --bevel-face: var(--surface-code);
+  --bevel-hi: color-mix(in srgb, var(--bevel-face) 40%, white);
+  --bevel-lo: color-mix(in srgb, var(--bevel-face) 45%, var(--text-primary));
+
+  padding: 3px;
+  background: var(--bevel-face);
+  box-shadow:
+    inset 0 2px 0 0 var(--bevel-hi),
+    inset 2px 0 0 0 var(--bevel-hi),
+    inset 0 -2px 0 0 var(--bevel-lo),
+    inset -2px 0 0 0 var(--bevel-lo);
+}
+
+.panel__titlebar {
+  --titlebar-face: var(--hero-inv-bg);
+
+  padding: 0.3rem 0.5rem;
+  background: var(--titlebar-face);
+  color: var(--hero-inv-text);
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1.3;
+  box-shadow:
+    inset 0 1px 0 0 color-mix(in srgb, var(--titlebar-face) 35%, white),
+    inset 1px 0 0 0 color-mix(in srgb, var(--titlebar-face) 35%, white);
+}
+
+.panel__body {
+  --bevel-face: var(--surface-panel);
+  --bevel-hi: color-mix(in srgb, var(--bevel-face) 35%, white);
+  --bevel-lo: color-mix(in srgb, var(--bevel-face) 40%, var(--text-primary));
+
+  display: flex;
+  flex-direction: column;
+  padding: 0.85rem 1rem;
+  background: var(--bevel-face);
+  box-shadow:
+    inset 0 2px 0 0 var(--bevel-lo),
+    inset 2px 0 0 0 var(--bevel-lo),
+    inset 0 -2px 0 0 var(--bevel-hi),
+    inset -2px 0 0 0 var(--bevel-hi);
+}
+
+.panel__title {
+  margin: 0 0 0.35rem;
+  font-size: inherit;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.panel__text {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.panel__actions {
+  margin-top: 0.75rem;
+  align-self: flex-end;
+}
+
+/* ------- Form card — raised frame + sunken body (join forms) ------- */
+
+.form-card {
+  --bevel-face: var(--surface-code);
+  --bevel-hi: color-mix(in srgb, var(--bevel-face) 40%, white);
+  --bevel-lo: color-mix(in srgb, var(--bevel-face) 45%, var(--text-primary));
+
+  max-width: 36rem;
+  padding: 3px;
+  background: var(--bevel-face);
+  box-shadow:
+    inset 0 2px 0 0 var(--bevel-hi),
+    inset 2px 0 0 0 var(--bevel-hi),
+    inset 0 -2px 0 0 var(--bevel-lo),
+    inset -2px 0 0 0 var(--bevel-lo);
+}
+
+.form-card__body {
+  --bevel-face: var(--surface-panel);
+  --bevel-hi: color-mix(in srgb, var(--bevel-face) 35%, white);
+  --bevel-lo: color-mix(in srgb, var(--bevel-face) 40%, var(--text-primary));
+
+  padding: 1rem 1.25rem;
+  background: var(--bevel-face);
+  box-shadow:
+    inset 0 2px 0 0 var(--bevel-lo),
+    inset 2px 0 0 0 var(--bevel-lo),
+    inset 0 -2px 0 0 var(--bevel-hi),
+    inset -2px 0 0 0 var(--bevel-hi);
+}
+
+.form-card__body .form-stack {
+  margin: 0;
+}
+
+.form-card__body .form-stack p:last-child {
+  margin-bottom: 0;
+}
+
+.form-card__body .notice {
+  margin: 0;
+}
+
+/* ------- Form fields — sunken bevel inputs ------- */
+
+.form-stack p {
+  margin: 0 0 1.25rem;
+}
+
+.form-stack label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+}
+
+.form-stack input:not([type="checkbox"]),
+.form-stack textarea,
+.form-stack select {
+  --bevel-face: var(--surface-field);
+  --bevel-hi: color-mix(in srgb, var(--bevel-face) 35%, white);
+  --bevel-lo: color-mix(in srgb, var(--bevel-face) 55%, var(--text-primary));
+
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.65rem;
+  font: inherit;
+  line-height: 1.4;
+  color: var(--text-primary);
+  background: var(--bevel-face);
+  border: none;
+  border-radius: 0;
+  box-shadow:
+    inset 0 2px 0 0 var(--bevel-lo),
+    inset 2px 0 0 0 var(--bevel-lo),
+    inset 0 -2px 0 0 var(--bevel-hi),
+    inset -2px 0 0 0 var(--bevel-hi);
+}
+
+.form-stack input:focus,
+.form-stack textarea:focus,
+.form-stack select:focus {
+  outline: 2px solid var(--action-primary);
+  outline-offset: 1px;
+}
+
+.form-stack input[type="checkbox"] {
+  accent-color: var(--action-primary);
+}
+
+.form-checkbox label {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.form-checkbox input {
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+}
+
+.field-hint {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--text-muted);
+  font-size: var(--font-size-s);
+}
+
+.field-error {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--text-error, #8b2e2e);
+  font-size: var(--font-size-s);
+}
+
+/* ------- Notice — sunken parchment strip ------- */
+
+.notice {
+  --bevel-face: var(--surface-panel);
+  --bevel-hi: color-mix(in srgb, var(--bevel-face) 35%, white);
+  --bevel-lo: color-mix(in srgb, var(--bevel-face) 40%, var(--text-primary));
+
+  margin-top: var(--space-l);
+  padding: var(--space-m);
+  background: var(--bevel-face);
+  color: var(--text-muted);
+  box-shadow:
+    inset 0 2px 0 0 var(--bevel-lo),
+    inset 2px 0 0 0 var(--bevel-lo),
+    inset 0 -2px 0 0 var(--bevel-hi),
+    inset -2px 0 0 0 var(--bevel-hi);
+}

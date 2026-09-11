@@ -1,0 +1,26 @@
+New request: Become a member
+
+--- Submitted ---
+Email: {{ email }}
+Keep me updated: {% if newsletter %}Yes{% else %}No{% endif %}
+
+Payment details (also shown to submitter on the thank-you page):
+  Amount: {{ payment.amount }}
+  Account: {{ payment.account_number }}
+  Reference: {{ payment.reference_hint }}
+
+--- Suggested reply (copy/edit and send manually) ---
+Hi!
+
+Thanks for applying for membership in Datakollektivet.
+
+Next steps:
+1. Transfer {{ payment.amount }} to account {{ payment.account_number }}.
+   Use {{ email }} as the payment reference so we can match your payment.
+2. We will invite you to Loomio once payment is confirmed.
+3. Membership comes with voting rights and member obligations — participation matters.
+
+If anything is unclear, reply here.
+
+Welcome,
+[your name] — on behalf of Datakollektivet

@@ -1,0 +1,73 @@
+{% extends "public/layouts/base.html" %}
+
+{% block title %}Become a member — The Collective{% endblock %}
+
+{% block content %}
+  {% url 'join' as join_url %}
+  {% include "public/partials/breadcrumbs.html" with parent_url=join_url parent_label="Join" %}
+
+  <header class="page-hero">
+    <h1>Become a member</h1>
+  </header>
+
+  <section class="join-hub">
+    <h2 class="join-hub-title">What membership includes</h2>
+    <ul class="join-benefits">
+      <li><strong>Voting rights</strong> — participate in collective decisions on Loomio</li>
+      <li><strong>Full Loomio access</strong> — beyond what a casual follower can do</li>
+      <li><strong>Member obligations</strong> — the collective expects participation, not passive membership</li>
+    </ul>
+    <p class="join-hub-intro">
+      Submit your email below. We will follow up with a Loomio invite. Transfer the membership fee
+      using the bank details shown after you submit — use your email as the payment reference.
+    </p>
+  </section>
+
+  <section class="join-hub">
+    <h2 class="join-hub-title">Membership request</h2>
+
+    {% if submitted %}
+      <div class="form-card">
+        <div class="form-card__body">
+          <p class="notice">
+            Thanks — we received your request for <strong>{{ submitted_email }}</strong>.
+            Someone will follow up with Loomio access. We do not send automated confirmation emails.
+          </p>
+          <h3 class="join-hub-title">Payment details</h3>
+          <ul class="join-benefits">
+            <li><strong>Amount:</strong> {{ payment.amount }}</li>
+            <li><strong>Account:</strong> {{ payment.account_number }}</li>
+            <li><strong>Reference:</strong> {{ payment.reference_hint }}</li>
+          </ul>
+        </div>
+      </div>
+    {% else %}
+      <div class="form-card">
+        <div class="form-card__body">
+          {% if send_failed %}
+            <p class="notice">Something went wrong sending your request. Please try again in a moment.</p>
+          {% endif %}
+          <form class="form-stack" method="post" action="" novalidate>
+            {% csrf_token %}
+            <p>
+              <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+              {{ form.email }}
+              {% for error in form.email.errors %}
+                <span class="field-error">{{ error }}</span>
+              {% endfor %}
+            </p>
+            <p class="form-checkbox">
+              <label for="{{ form.newsletter.id_for_label }}">
+                {{ form.newsletter }}
+                {{ form.newsletter.label }}
+              </label>
+            </p>
+            <p>
+              <button type="submit" class="btn btn--primary">Submit membership request</button>
+            </p>
+          </form>
+        </div>
+      </div>
+    {% endif %}
+  </section>
+{% endblock %}

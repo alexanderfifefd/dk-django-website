@@ -1,0 +1,24 @@
+New request: Build with us
+
+--- Submitted ---
+Email: {{ email }}
+Where they could contribute:
+{{ interest }}
+
+--- Suggested reply (copy/edit and send manually) ---
+Hi!
+
+Thanks for offering to build with Datakollektivet.
+
+You wrote:
+"{{ interest }}"
+
+Based on that, here are good next steps:
+- Matrix: {{ matrix_contact_url }} — introduce yourself in the relevant room
+- Forgejo: [add invite/onboarding link or account steps]
+- Volunteer agreement: [link or attach if applicable]
+
+Reply if you want help picking a first task.
+
+Welcome,
+[your name] — on behalf of Datakollektivet
